@@ -4,7 +4,7 @@ import {
   View,
   ScrollView
 } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { List, ListItem, SearchBar } from 'react-native-elements';
 import { users } from '../config/data';
 
 class FriendList extends Component {
@@ -18,20 +18,28 @@ class FriendList extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <List containerStyle={{marginTop: 0}}>
-          {users.map((user) => (
-            <ListItem
-              key={user.login.username}
-              roundAvatar
-              avatar={{ uri: user.picture.thumbnail }}
-              title={`${this.toTitleCase(user.name.first)} ${this.toTitleCase(user.name.last)}`}
-              // subtitle={user.email}
-              // onPress={() => this.onLearnMore(user)}
-            />
-          ))}
-        </List>
-      </ScrollView>
+      <View style={{flex: 1}}>
+        <View>
+          <SearchBar
+            lightTheme
+            placeholder="Search Friends"
+          />
+        </View>
+        <ScrollView>
+          <List containerStyle={{marginTop: 0}}>
+            {users.map((user) => (
+              <ListItem
+                key={user.login.username}
+                roundAvatar
+                avatar={{ uri: user.picture.thumbnail }}
+                title={`${this.toTitleCase(user.name.first)} ${this.toTitleCase(user.name.last)}`}
+                // subtitle={user.email}
+                // onPress={() => this.onLearnMore(user)}
+              />
+            ))}
+          </List>
+        </ScrollView>
+      </View>
     );
   }
 }
