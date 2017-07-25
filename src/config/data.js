@@ -963,3 +963,48 @@ export const users = [
     "nat": "FR"
   }
 ];
+
+export const posts = [
+  {
+    "name": {
+      "title": "miss",
+      "first": "lily",
+      "last": "roux"
+    },
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/64.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/64.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/64.jpg"
+    },
+    "image": require('../assets/images/boat.jpg'),
+    "caption": "Boat in the middle of the mediterranean sea"
+  },
+  {
+    "name": {
+      "title": "miss",
+      "first": "ayşe",
+      "last": "tahincioğlu"
+    },
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/37.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/37.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/37.jpg"
+    },
+    "image": require('../assets/images/sandy-boots.jpg'),
+    "caption": "Sandy Boots"
+  },
+  {
+    "name": {
+      "title": "ms",
+      "first": "alicia",
+      "last": "morgan"
+    },
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/91.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/91.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/91.jpg"
+    },
+    "image": require('../assets/images/fruit-stall.jpg'),
+    "caption": "Fruit Stall"
+  }
+];
