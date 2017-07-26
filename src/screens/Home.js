@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView, TextInput } from 'react-native';
-import { SearchBar, Card, Avatar } from 'react-native-elements';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TextInput,
+  Dimensions } from 'react-native';
+import {
+  SearchBar,
+  Card,
+  Avatar } from 'react-native-elements';
 import { posts, me } from '../config/data';
 
+const window = Dimensions.get("window");
 
 class Home extends Component {
 
@@ -13,7 +23,7 @@ class Home extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{paddingBottom: 10}}>
+        <View style={{paddingBottom: 5}}>
           <SearchBar
             round
             lightTheme
@@ -33,13 +43,14 @@ class Home extends Component {
                     placeholder="Share Something!"
                     multiline={true}
                     numberOfLines={6}
-                    style={{flex: 1,
-                      flexDirection: 'row',
-                      width: 250,
+                    style={{
+                      flex: 1,
+                      width: 0.6*window.width,
                       fontSize: 14,
                       borderColor: '#F1F1F1',
-                      borderWidth: 2,
-                      padding: 5
+                      borderWidth: 1,
+                      padding: 5,
+                      alignSelf: 'stretch'
                     }}
                   />
                 </View>
@@ -64,7 +75,7 @@ class Home extends Component {
                 <Image
                   source={post.image}
                   resizeMode='cover'
-                  style={{width: null, height: 200}}
+                  style={{width: null, height: 0.5*window.width}}
                 />
                 <Text style={{paddingTop: 10}}>{post.caption}</Text>
               </View>
