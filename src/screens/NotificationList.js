@@ -5,16 +5,14 @@ import {
   ScrollView
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
+
 import { notifications } from '../config/data';
+import { toTitleCase} from '../helpers';
 
 class NotificationList extends Component {
   // onLearnMore = (user) => {
   //   this.props.navigation.navigate('Details', { ...user });
   // };
-
-  toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-}
 
   render() {
     return (
@@ -25,7 +23,7 @@ class NotificationList extends Component {
               key={notification.id}
               roundAvatar
               avatar={{ uri: notification.picture.thumbnail }}
-              title={`${this.toTitleCase(notification.name.first)} ${this.toTitleCase(notification.name.last)} has sent you ${notification.type}`}
+              title={`${toTitleCase(notification.name.first)} ${toTitleCase(notification.name.last)} has sent you ${notification.type}`}
               // subtitle={user.email}
               // onPress={() => this.onLearnMore(user)}
               hideChevron

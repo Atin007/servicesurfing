@@ -10,20 +10,17 @@ import {
   SearchBar,
   Card,
   Avatar } from 'react-native-elements';
-import { posts, me } from '../config/data';
 
+import { posts, me } from '../config/data';
+import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
 
 class Home extends Component {
 
-  toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
-
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{paddingBottom: 5}}>
+        <View>
           <SearchBar
             round
             lightTheme
@@ -67,7 +64,7 @@ class Home extends Component {
                 />
                 <View style={{padding: 10}}>
                   <Text>
-                    {`${this.toTitleCase(post.name.first)} ${this.toTitleCase(post.name.last)}`}
+                    {`${toTitleCase(post.name.first)} ${toTitleCase(post.name.last)}`}
                   </Text>
                 </View>
               </View>

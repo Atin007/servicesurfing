@@ -5,16 +5,14 @@ import {
   ScrollView
 } from 'react-native';
 import { List, ListItem, SearchBar } from 'react-native-elements';
+
 import { users } from '../config/data';
+import { toTitleCase} from '../helpers';
 
 class FriendList extends Component {
-  // onLearnMore = (user) => {
-  //   this.props.navigation.navigate('Details', { ...user });
-  // };
-
-  toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
+  onLearnMore = (user) => {
+    this.props.navigation.navigate('UserProfile', { ...user });
+  };
 
   render() {
     return (
@@ -32,9 +30,9 @@ class FriendList extends Component {
                 key={user.login.username}
                 roundAvatar
                 avatar={{ uri: user.picture.thumbnail }}
-                title={`${this.toTitleCase(user.name.first)} ${this.toTitleCase(user.name.last)}`}
+                title={`${toTitleCase(user.name.first)} ${toTitleCase(user.name.last)}`}
                 // subtitle={user.email}
-                // onPress={() => this.onLearnMore(user)}
+                onPress={() => this.onLearnMore(user)}
               />
             ))}
           </List>
