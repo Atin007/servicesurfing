@@ -19,7 +19,7 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View>
         <View>
           <SearchBar
             round
@@ -56,7 +56,6 @@ class Home extends Component {
           </View>
           {posts.map((post, i) => (
             <Card key={i}>
-
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <Avatar
                   small
@@ -82,7 +81,6 @@ class Home extends Component {
       </View>
     );
   }
-
 }
 
 export default Home;

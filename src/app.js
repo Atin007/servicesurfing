@@ -7,7 +7,7 @@ import NotificationList from './screens/NotificationList';
 
 const App = () => {
   return (
-    <Root />
+      <Root />
   );
 };
 

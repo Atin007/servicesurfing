@@ -16,7 +16,7 @@ class FriendList extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View>
         <View>
           <SearchBar
             lightTheme
