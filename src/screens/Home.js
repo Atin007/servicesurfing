@@ -35,14 +35,13 @@ class Home extends Component {
                   medium
                   source={{uri: me.picture.large}}
                 />
-                <View style={{paddingLeft: 15}}>
+                <View style={{flex: 1, flexDirection: 'column', paddingLeft: 15}}>
                   <TextInput
                     placeholder="Share Something!"
                     multiline={true}
                     numberOfLines={6}
                     style={{
                       flex: 1,
-                      width: 0.6*window.width,
                       fontSize: 14,
                       borderColor: '#F1F1F1',
                       borderWidth: 1,
