@@ -16,7 +16,9 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Home',
       tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-home-outline" size={35} color={tintColor} />,
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name={focused ? "ios-home" : "ios-home-outline"} size={35} color={tintColor} />
+      ),
     },
   },
   FriendList: {
@@ -24,7 +26,9 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Friends',
       tabBarLabel: 'Friends',
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-contacts-outline" size={35} color={tintColor} />,
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name={focused ? "ios-contacts" : "ios-contacts-outline"} size={35} color={tintColor} />
+      ),
     },
   },
   NotificationList: {
@@ -32,7 +36,9 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Notifications',
       tabBarLabel: 'Notifications',
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-notifications-outline" size={35} color={tintColor} />
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} size={35} color={tintColor} />
+      ),
     },
   },
   MenuList: {
@@ -40,7 +46,9 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Menu',
       tabBarLabel: 'Menu',
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-menu-outline" size={35} color={tintColor} />
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} size={35} color={tintColor} />
+      ),
     },
   },
 },  {

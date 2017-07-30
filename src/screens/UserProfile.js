@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, Text, Dimensions } from 'react-native';
+import { View, ScrollView, Image, Text, Dimensions, StyleSheet } from 'react-native';
 import { Icon, Divider } from 'react-native-elements';
 
 import { toTitleCase } from '../helpers';
@@ -15,8 +15,8 @@ class UserProfile extends Component {
           style={
             {
               flex: 1,
-              alignItems: 'center',
-              backgroundColor: '#FFF'
+              backgroundColor: '#FFF',
+              alignItems: 'center'
             }
           }>
           <Image
@@ -28,7 +28,7 @@ class UserProfile extends Component {
             style={{
               transform: [
                 {
-                  translateY: -window.width/8
+                  translateY: -window.width/16
                 }
               ],
               alignItems: 'center'
@@ -40,46 +40,68 @@ class UserProfile extends Component {
                 height: window.width/4,
                 width: window.width/4,
                 paddingBottom: 0,
-                // borderWidth: 6,
-                borderColor: '#FFF'
+                borderColor: '#FFF',
+                borderWidth: 2
               }}
             />
             <Text style={{padding:5, color: '#000', fontSize: 15}}>
               {toTitleCase(user.name.first)} {toTitleCase(user.name.last)}
             </Text>
-            <View style={{flexDirection: 'row'}}>
+            <View
+              style={{
+                  margin: 10,
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  flexDirection: 'row',
+              }}>
               <Icon
-                name='ios-calendar-outline'
+                name='ios-calendar'
                 type='ionicon'
-                color='#32CD32'
+                color='#7F7F7F'
                 onPress={() => console.log('hello')}
-                size={25}
-                containerStyle={{paddingRight: 40, paddingTop: 10}}
-              />
+                size={35}
+                containerStyle={{
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingLeft: 30,
+                  paddingRight: 30
+                }} />
               <Icon
-                name='ios-person-outline'
+                name='ios-person-add'
                 type='ionicon'
-                color='#32CD32'
+                color='#7F7F7F'
                 onPress={() => console.log('hello')}
-                size={29}
-                containerStyle={{paddingRight: 40, paddingTop: 10}}
-              />
+                size={40}
+                containerStyle={{
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingLeft: 30,
+                  paddingRight: 30
+                }} />
               <Icon
-                name='ios-mail-outline'
+                name='ios-mail'
                 type='ionicon'
-                color='#32CD32'
+                color='#7F7F7F'
                 onPress={() => console.log('hello')}
-                size={34}
-                containerStyle={{paddingRight: 40, paddingTop: 10}}
-              />
+                size={44}
+                containerStyle={{
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingLeft: 30,
+                  paddingRight: 30
+                }} />
               <Icon
                 name='md-more'
                 type='ionicon'
-                color='#32CD32'
+                color='#7F7F7F'
                 onPress={() => console.log('hello')}
-                size={28}
-                containerStyle={{paddingTop: 10}}
-              />
+                size={38}
+                containerStyle={{
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  paddingLeft: 30,
+                  paddingRight: 30
+                }} />
             </View>
           </View>
         </View>
