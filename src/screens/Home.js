@@ -9,7 +9,9 @@ import {
 import {
   SearchBar,
   Card,
-  Avatar } from 'react-native-elements';
+  Avatar,
+  Button
+ } from 'react-native-elements';
 
 import { posts, me } from '../config/data';
 import { toTitleCase } from '../helpers';
@@ -51,6 +53,12 @@ class Home extends Component {
                   />
                 </View>
               </View>
+              {/* <View>
+                <Button
+                  raised
+                  // icon={{name: 'cached'}}
+                  title='Share' />
+              </View> */}
             </Card>
           </View>
           {posts.map((post, i) => (
