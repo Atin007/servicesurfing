@@ -2,7 +2,8 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Home from '../screens/Home.js';
+import SignUp from '../screens/SignUp';
+import Home from '../screens/Home';
 import FriendList from '../screens/FriendList';
 import MenuList from '../screens/MenuList';
 import NotificationList from '../screens/NotificationList';
@@ -57,7 +58,25 @@ export const Tabs = TabNavigator({
   },
 });
 
+export const SignUpStack = StackNavigator({
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      title: 'SignUp',
+    },
+  },
+},{
+  mode: 'modal',
+  headerMode: 'none',
+});
+
 export const Root = StackNavigator({
+  SignUp: {
+    screen: SignUpStack,
+    navigationOptions: {
+      headerBackTitle: null
+    },
+  },
   Tabs: {
     screen: Tabs,
   },
