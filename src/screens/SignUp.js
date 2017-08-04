@@ -45,8 +45,8 @@ class SignUp extends Component {
                 borderWidth: 2
               }}
             />
-            <Text style={styles.textStyle}>
-              Service Surfing
+            <Text style={{fontSize: 20, padding: 10}}>
+              ServiceSurfing
             </Text>
           </View>
           <View style={{paddingTop: 25}}>
@@ -84,7 +84,7 @@ class SignUp extends Component {
             <Button
               raised
               icon={{name: "logo-google", type: "ionicon", color: "#DB4437"}}
-              title="Continue using Google"
+              title="Continue with Google"
               color="#DB4437"
               backgroundColor="#FFF"
               borderRadius={5}
@@ -98,7 +98,7 @@ class SignUp extends Component {
             <Button
               raised
               icon={{name: 'logo-facebook', type: 'ionicon', color: "#1563A0"}}
-              title="Continue using facebook"
+              title="Continue with facebook"
               color="#1563A0"
               backgroundColor="#FFF"
               borderRadius={5}
