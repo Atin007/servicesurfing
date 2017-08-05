@@ -5,7 +5,9 @@ import {
   Image,
   ScrollView,
   TextInput,
-  Dimensions } from 'react-native';
+  Dimensions,
+  TouchableOpacity
+} from 'react-native';
 import {
   SearchBar,
   Card,
@@ -34,31 +36,20 @@ class Home extends Component {
             <Card>
               <View style={{flexDirection: 'row'}}>
                 <Avatar
-                  medium
+                  small
                   source={{uri: me.picture.large}}
                 />
-                <View style={{flex: 1, flexDirection: 'column', paddingLeft: 15}}>
-                  <TextInput
-                    placeholder="Share Something!"
-                    multiline={true}
-                    numberOfLines={6}
-                    style={{
-                      flex: 1,
-                      fontSize: 14,
-                      borderColor: '#F1F1F1',
-                      borderWidth: 1,
-                      padding: 5,
-                      alignSelf: 'stretch'
-                    }}
-                  />
+                <View style={{
+                  flex: 1,
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                  <TouchableOpacity>
+                    <Text style={{fontSize: 15}}>Share something with your friends!</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
-              {/* <View>
-                <Button
-                  raised
-                  // icon={{name: 'cached'}}
-                  title='Share' />
-              </View> */}
             </Card>
           </View>
           {posts.map((post, i) => (
@@ -74,13 +65,22 @@ class Home extends Component {
                   </Text>
                 </View>
               </View>
-              <View style={{flex: 1, paddingTop: 10}}>
+              <View style={{flex: 1, paddingTop: 10, paddingBottom: 10}}>
                 <Image
                   source={post.image}
                   resizeMode='cover'
                   style={{width: null, height: 0.5*window.width}}
                 />
                 <Text style={{paddingTop: 10}}>{post.caption}</Text>
+              </View>
+              <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+                <TouchableOpacity>
+                  <Text style={{
+                    color: '#999999'
+                  }}>
+                    Comments
+                  </Text>
+                </TouchableOpacity>
               </View>
             </Card>
           ))}
