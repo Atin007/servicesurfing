@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, Text, Dimensions, StyleSheet } from 'react-native';
-import { Icon, Divider } from 'react-native-elements';
+import {
+  View,
+  ScrollView,
+  Image,
+  Text,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity
+ } from 'react-native';
+import {
+  Icon,
+  Divider,
+  ButtonGroup,
+  Card,
+  Avatar
+} from 'react-native-elements';
 
+
+import { posts, me } from '../config/data';
 import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
 
 class UserProfile extends Component {
 
   render() {
+    const buttons = ['ABOUT', 'FRIENDS', 'PHOTOS'];
     const user = this.props.navigation.state.params;
     return (
       <ScrollView>
         <View
           style={
             {
-              flex: 1,
               backgroundColor: '#FFF',
               alignItems: 'center'
             }
@@ -44,66 +60,153 @@ class UserProfile extends Component {
                 borderWidth: 2
               }}
             />
-            <Text style={{padding:5, color: '#000', fontSize: 15}}>
+            <Text style={{padding:20, color: '#000', fontSize: 18}}>
               {toTitleCase(user.name.first)} {toTitleCase(user.name.last)}
             </Text>
             <View
               style={{
-                  margin: 10,
-                  paddingLeft: 10,
-                  paddingRight: 10,
-                  flexDirection: 'row',
+                borderTopWidth: StyleSheet.hairlineWidth,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderColor: '#8B9DC3',
+                flexDirection: 'row'
               }}>
               <Icon
                 name='ios-calendar'
                 type='ionicon'
-                color='#7F7F7F'
+                color='#397af8'
                 onPress={() => console.log('hello')}
                 size={35}
                 containerStyle={{
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  paddingLeft: 30,
-                  paddingRight: 30
+                  paddingLeft: 25,
+                  paddingRight: 25
                 }} />
               <Icon
                 name='ios-person-add'
                 type='ionicon'
-                color='#7F7F7F'
+                color='#397af8'
                 onPress={() => console.log('hello')}
                 size={40}
                 containerStyle={{
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  paddingLeft: 30,
-                  paddingRight: 30
+                  paddingLeft: 25,
+                  paddingRight: 25
                 }} />
               <Icon
                 name='ios-mail'
                 type='ionicon'
-                color='#7F7F7F'
+                color='#397af8'
                 onPress={() => console.log('hello')}
                 size={44}
                 containerStyle={{
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  paddingLeft: 30,
-                  paddingRight: 30
+                  paddingLeft: 25,
+                  paddingRight: 25
                 }} />
               <Icon
                 name='md-more'
                 type='ionicon'
-                color='#7F7F7F'
+                color='#397af8'
                 onPress={() => console.log('hello')}
-                size={38}
+                size={36}
                 containerStyle={{
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  paddingLeft: 30,
-                  paddingRight: 30
+                  paddingLeft: 25,
+                  paddingRight: 25
                 }} />
             </View>
           </View>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            paddingLeft: 30,
+            paddingRight: 30,
+            backgroundColor: '#FFF'
+            // borderBottomWidth: 1,
+            // borderColor: '#8B9DC3'
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='md-briefcase' type='ionicon' size={18} />
+            <Text style={{padding: 10, margin: 5}}>
+              Works at New York Dental Clinic
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='md-school' type='ionicon' size={18} />
+            <Text style={{padding: 10, margin: 5}}>
+              Studied at Princeton University
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='md-pin' type='ionicon' size={18} />
+            <Text style={{padding: 10, margin: 5}}>
+              Lives in New York
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='md-thumbs-up' type='ionicon' size={18} />
+            <Text style={{padding: 10, margin: 5}}>
+              Satisfaction score of 95
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='md-stats' type='ionicon' size={18} />
+            <Text style={{padding: 10, margin: 5}}>
+              Phd (h-index: 10)
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='md-cash' type='ionicon' size={18} />
+            <Text style={{padding: 10, margin: 5}}>
+              25 USD/hr
+            </Text>
+          </View>
+        </View>
+        <View style={{
+          flex: 1,
+          marginTop: 10,
+          // marginBottom: 10,
+          flexDirection: 'row',
+          backgroundColor: '#FFF',
+          justifyContent: 'center'
+        }}>
+          <TouchableOpacity>
+            <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
+              <Text>ABOUT</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
+              <Text>FRIENDS</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
+              <Text>PHOTOS</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View>
+          {posts.map((post, i) => (
+            <Card key={i}>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <Avatar
+                  small
+                  source={{uri: post.picture.thumbnail}}
+                />
+                <View style={{padding: 10}}>
+                  <Text>
+                    {`${toTitleCase(post.name.first)} ${toTitleCase(post.name.last)}`}
+                  </Text>
+                </View>
+              </View>
+              <View style={{flex: 1, paddingTop: 10}}>
+                <Image
+                  source={post.image}
+                  resizeMode='cover'
+                  style={{width: null, height: 0.5*window.width}}
+                />
+                <Text style={{paddingTop: 10}}>{post.caption}</Text>
+              </View>
+            </Card>
+          ))}
         </View>
       </ScrollView>
     );
