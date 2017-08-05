@@ -8,6 +8,7 @@ import FriendList from '../screens/FriendList';
 import MenuList from '../screens/MenuList';
 import NotificationList from '../screens/NotificationList';
 import UserProfile from '../screens/UserProfile';
+import Policy from '../screens/Policy';
 
 import { toTitleCase } from '../helpers';
 
@@ -70,6 +71,18 @@ export const SignUpStack = StackNavigator({
   headerMode: 'none',
 });
 
+export const PolicyStack = StackNavigator({
+  Policy: {
+    screen: Policy,
+    navigationOptions: {
+      title: 'Privacy Policy',
+    },
+  },
+},{
+  mode: 'modal',
+  headerMode: 'none',
+});
+
 export const Root = StackNavigator({
   SignUp: {
     screen: SignUpStack,
@@ -86,4 +99,7 @@ export const Root = StackNavigator({
       title: `${toTitleCase(navigation.state.params.name.first)} ${toTitleCase(navigation.state.params.name.last)}`,
     }),
   },
+  Policy: {
+    screen: PolicyStack
+  }
 },);

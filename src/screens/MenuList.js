@@ -13,47 +13,51 @@ class MenuList extends Component {
     this.props.navigation.navigate('UserProfile', { ...user });
   };
 
+  toPolicy = () => {
+    this.props.navigation.navigate('Policy');
+  }
+
   componentWillMount() {
     this.list = [
       {
         title: 'My Profile',
-        icon: 'ios-person-outline',
+        icon: 'ios-person',
         type: 'ionicon',
         onPress: () => this.toMyProfile(me)
       },
       {
         title: 'My Appointments',
-        icon: 'ios-calendar-outline',
+        icon: 'ios-calendar',
         type: 'ionicon',
         onPress: null
       },
       {
         title: 'Help Center',
-        icon: 'ios-help-circle-outline',
+        icon: 'ios-help-circle',
         type: 'ionicon',
         onPress: null
       },
       {
         title: 'Terms & Policies',
-        icon: 'ios-paper-outline',
+        icon: 'ios-paper',
         type: 'ionicon',
-        onPress: null
+        onPress: () => this.toPolicy()
       },
       {
         title: 'Report a Problem',
-        icon: 'ios-bug-outline',
+        icon: 'ios-bug',
         type: 'ionicon',
         onPress: null
       },
       {
         title: 'About',
-        icon: 'ios-information-circle-outline',
+        icon: 'ios-information-circle',
         type: 'ionicon',
         onPress: null
       },
       {
         title: 'Logout',
-        icon: 'ios-log-out-outline',
+        icon: 'ios-log-out',
         type: 'ionicon',
         onPress: null
       }
@@ -68,7 +72,7 @@ class MenuList extends Component {
             <ListItem
               key={item.title}
               title={item.title}
-              leftIcon={{name: item.icon, type: item.type}}
+              leftIcon={{name: item.icon, type: item.type, color: '#000'}}
               onPress={item.onPress}
             />
           ))}
