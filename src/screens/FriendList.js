@@ -11,7 +11,7 @@ import { toTitleCase} from '../helpers';
 
 class FriendList extends Component {
   onLearnMore = (user) => {
-    this.props.navigation.navigate('UserProfile', { ...user });
+    this.props.navigation.navigate('FriendProfile', { ...user });
   };
 
   render() {

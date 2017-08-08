@@ -10,7 +10,7 @@ import { users, me } from '../config/data';
 
 class MenuList extends Component {
   toMyProfile = (user) => {
-    this.props.navigation.navigate('UserProfile', { ...user });
+    this.props.navigation.navigate('MyProfile', { ...user });
   };
 
   toPolicy = () => {

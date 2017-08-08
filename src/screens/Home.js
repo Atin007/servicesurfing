@@ -6,7 +6,7 @@ import {
   ScrollView,
   TextInput,
   Dimensions,
-  TouchableOpacity
+  TouchableHighlight
 } from 'react-native';
 import {
   SearchBar,
@@ -20,10 +20,13 @@ import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
 
 class Home extends Component {
+  toUpdate = () => {
+    this.props.navigation.navigate('Share');
+  }
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <View>
           <SearchBar
             round
@@ -45,9 +48,12 @@ class Home extends Component {
                   justifyContent: 'center',
                   alignItems: 'center'
                 }}>
-                  <TouchableOpacity>
+                  <TouchableHighlight
+                    underlayColor='#FFF'
+                    onPress={() => this.toUpdate()}
+                    >
                     <Text style={{fontSize: 15}}>Share something with your friends!</Text>
-                  </TouchableOpacity>
+                  </TouchableHighlight>
                 </View>
               </View>
             </Card>
@@ -74,13 +80,13 @@ class Home extends Component {
                 <Text style={{paddingTop: 10}}>{post.caption}</Text>
               </View>
               <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <TouchableOpacity>
+                <TouchableHighlight>
                   <Text style={{
                     color: '#999999'
                   }}>
                     Comments
                   </Text>
-                </TouchableOpacity>
+                </TouchableHighlight>
               </View>
             </Card>
           ))}
