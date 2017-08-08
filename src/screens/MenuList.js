@@ -17,6 +17,10 @@ class MenuList extends Component {
     this.props.navigation.navigate('Policy');
   }
 
+  toSignUp = () => {
+    this.props.navigation.navigate('SignUp');
+  }
+
   componentWillMount() {
     this.list = [
       {
@@ -38,7 +42,7 @@ class MenuList extends Component {
         onPress: null
       },
       {
-        title: 'Terms & Policies',
+        title: 'Privacy Policy',
         icon: 'ios-paper',
         type: 'ionicon',
         onPress: () => this.toPolicy()
@@ -59,7 +63,7 @@ class MenuList extends Component {
         title: 'Logout',
         icon: 'ios-log-out',
         type: 'ionicon',
-        onPress: null
+        onPress: () => this.toSignUp()
       }
     ];
   }
