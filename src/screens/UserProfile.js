@@ -16,7 +16,7 @@ import {
   Avatar
 } from 'react-native-elements';
 
-
+import Posts from '../components/Posts';
 import { posts, me } from '../config/data';
 import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
@@ -183,31 +183,7 @@ class UserProfile extends Component {
             </View>
           </TouchableOpacity>
         </View>
-        <View>
-          {posts.map((post, i) => (
-            <Card key={i}>
-              <View style={{flex: 1, flexDirection: 'row'}}>
-                <Avatar
-                  small
-                  source={{uri: post.picture.thumbnail}}
-                />
-                <View style={{padding: 10}}>
-                  <Text>
-                    {`${toTitleCase(post.name.first)} ${toTitleCase(post.name.last)}`}
-                  </Text>
-                </View>
-              </View>
-              <View style={{flex: 1, paddingTop: 10}}>
-                <Image
-                  source={post.image}
-                  resizeMode='cover'
-                  style={{width: null, height: 0.5*window.width}}
-                />
-                <Text style={{paddingTop: 10}}>{post.caption}</Text>
-              </View>
-            </Card>
-          ))}
-        </View>
+        <Posts />
       </ScrollView>
     );
   }
