@@ -72,7 +72,7 @@ export const FriendStack = StackNavigator({
   Friend: {
     screen: FriendListStack,
     navigationOptions: {
-      title: 'Friends',
+      title: 'My Friends',
     },
   }, FriendProfile : {
       screen: UserProfileStack,
@@ -153,7 +153,6 @@ export const Tabs = TabNavigator({
     showLabel: false
   },
 });
-
 
 // Root Stack containing SignUp and containing SignUp and TabNavigator
 export const Root = StackNavigator({
