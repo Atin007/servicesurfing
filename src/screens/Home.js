@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-
 import {
+  Dimensions,
+  ScrollView,
   View,
   Text,
-  Image,
-  ScrollView,
-  TextInput,
-  Dimensions,
   TouchableHighlight
 } from 'react-native';
-
 import {
-  SearchBar,
   Card,
   Avatar,
   Button
@@ -29,36 +24,29 @@ class Home extends Component {
     return (
       <View style={{flex: 1}}>
         <View>
-          <SearchBar
-            round
-            lightTheme
-            placeholder="Search"
-          />
+          <Card>
+            <View style={{flexDirection: 'row'}}>
+              <Avatar
+                small
+                source={{uri: me.picture.large}}
+              />
+              <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <TouchableHighlight
+                  underlayColor='#FFF'
+                  onPress={() => this.toUpdate()}
+                  >
+                  <Text style={{fontSize: 15}}>Share something with your friends!</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Card>
         </View>
         <ScrollView>
-          <View>
-            <Card>
-              <View style={{flexDirection: 'row'}}>
-                <Avatar
-                  small
-                  source={{uri: me.picture.large}}
-                />
-                <View style={{
-                  flex: 1,
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}>
-                  <TouchableHighlight
-                    underlayColor='#FFF'
-                    onPress={() => this.toUpdate()}
-                    >
-                    <Text style={{fontSize: 15}}>Share something with your friends!</Text>
-                  </TouchableHighlight>
-                </View>
-              </View>
-            </Card>
-          </View>
           <Posts />
         </ScrollView>
       </View>
