@@ -20,11 +20,11 @@ class FriendList extends Component {
         <View>
           <SearchBar
             lightTheme
-            placeholder="Search Friends"
+            placeholder="Search"
           />
         </View>
         <ScrollView>
-          <List containerStyle={{marginTop: 0}}>
+          {/* <List containerStyle={{marginTop: 0}}>
             {users.map((user) => (
               <ListItem
                 key={user.login.username}
@@ -35,7 +35,7 @@ class FriendList extends Component {
                 onPress={() => this.onLearnMore(user)}
               />
             ))}
-          </List>
+          </List> */}
         </ScrollView>
       </View>
     );
