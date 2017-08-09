@@ -24,13 +24,13 @@ class MenuList extends Component {
   componentWillMount() {
     this.list = [
       {
-        title: 'My Profile',
+        title: 'View Profile',
         icon: 'ios-person',
         type: 'ionicon',
         onPress: () => this.toMyProfile(me)
       },
       {
-        title: 'My Appointments',
+        title: 'Appointments',
         icon: 'ios-calendar',
         type: 'ionicon',
         onPress: null
