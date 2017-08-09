@@ -6,7 +6,7 @@ import {
   Text,
   Dimensions,
   StyleSheet,
-  TouchableOpacity
+  TouchableHighlight
  } from 'react-native';
 import {
   Icon,
@@ -167,21 +167,21 @@ class UserProfile extends Component {
           backgroundColor: '#FFF',
           justifyContent: 'center'
         }}>
-          <TouchableOpacity>
+          <TouchableHighlight underlayColor='#FFF' onPress={null}>
             <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
               <Text>ABOUT</Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor='#FFF' onPress={null}>
             <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
               <Text>FRIENDS</Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor='#FFF' onPress={null}>
             <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
               <Text>PHOTOS</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
         <Posts />
       </ScrollView>
