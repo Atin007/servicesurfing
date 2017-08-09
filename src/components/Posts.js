@@ -16,7 +16,7 @@ import {
   Avatar,
   Button
  } from 'react-native-elements';
- 
+
 import { posts, me } from '../config/data';
 import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");

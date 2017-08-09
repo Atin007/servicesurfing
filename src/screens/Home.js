@@ -40,11 +40,14 @@ class Home extends Component {
                   underlayColor='#FFF'
                   onPress={() => this.toUpdate()}
                   >
-                  <Text style={{fontSize: 15}}>Share something with your friends!</Text>
+                  <Text style={{fontSize: 16}}>Share something with your friends!</Text>
                 </TouchableHighlight>
               </View>
             </View>
           </Card>
+          <View style={{padding: 15}}>
+            <Text style={{color: '#86939e', fontSize: 16}}>POSTS</Text>
+          </View>
         </View>
         <ScrollView>
           <Posts />
