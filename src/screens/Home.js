@@ -23,7 +23,7 @@ class Home extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View>
+        <View style={{paddingBottom: 10}}>
           <Card>
             <View style={{flexDirection: 'row'}}>
               <Avatar
@@ -45,11 +45,11 @@ class Home extends Component {
               </View>
             </View>
           </Card>
-          <View style={{padding: 15}}>
-            <Text style={{color: '#86939e', fontSize: 16}}>POSTS</Text>
-          </View>
         </View>
         <ScrollView>
+          <View style={{padding: 15, paddingBottom: 0}}>
+            <Text style={{color: '#86939e', fontSize: 16}}>POSTS</Text>
+          </View>
           <Posts />
         </ScrollView>
       </View>

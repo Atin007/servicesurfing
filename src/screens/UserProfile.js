@@ -77,9 +77,9 @@ class UserProfile extends Component {
               <Icon
                 name='ios-calendar'
                 type='ionicon'
-                color='#397af8'
+                color='#86939e'
                 onPress={() => console.log('hello')}
-                size={35}
+                size={30}
                 containerStyle={{
                   paddingLeft: 25,
                   paddingRight: 25
@@ -87,9 +87,9 @@ class UserProfile extends Component {
               <Icon
                 name='ios-person-add'
                 type='ionicon'
-                color='#397af8'
+                color='#86939e'
                 onPress={() => console.log('hello')}
-                size={40}
+                size={35}
                 containerStyle={{
                   paddingLeft: 25,
                   paddingRight: 25
@@ -97,9 +97,9 @@ class UserProfile extends Component {
               <Icon
                 name='ios-mail'
                 type='ionicon'
-                color='#397af8'
+                color='#86939e'
                 onPress={() => console.log('hello')}
-                size={44}
+                size={39}
                 containerStyle={{
                   paddingLeft: 25,
                   paddingRight: 25
@@ -107,9 +107,9 @@ class UserProfile extends Component {
               <Icon
                 name='md-more'
                 type='ionicon'
-                color='#397af8'
+                color='#86939e'
                 onPress={() => console.log('hello')}
-                size={36}
+                size={31}
                 containerStyle={{
                   paddingLeft: 25,
                   paddingRight: 25
@@ -123,8 +123,6 @@ class UserProfile extends Component {
             paddingLeft: 30,
             paddingRight: 30,
             backgroundColor: '#FFF'
-            // borderBottomWidth: 1,
-            // borderColor: '#8B9DC3'
           }}>
           <View style={{flexDirection: 'row'}}>
             <Icon name='md-briefcase' type='ionicon' size={18} />
@@ -166,26 +164,28 @@ class UserProfile extends Component {
         <View style={{
           flex: 1,
           marginTop: 10,
-          // marginBottom: 10,
           flexDirection: 'row',
           backgroundColor: '#FFF',
           justifyContent: 'center'
         }}>
-          <TouchableHighlight underlayColor='#FFF' onPress={null}>
-            <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
+          <View style={{paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10}}>
+            <TouchableHighlight underlayColor='#FFF' onPress={null}>
               <Text>ABOUT</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor='#FFF' onPress={() => this.toFriends(user)}>
-            <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
-              <Text>FRIENDS</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor='#FFF' onPress={null}>
-            <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
+            </TouchableHighlight>
+          </View>
+          <View style={{paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10}}>
+            <TouchableHighlight underlayColor='#FFF' onPress={null}>
               <Text>PHOTOS</Text>
-            </View>
-          </TouchableHighlight>
+            </TouchableHighlight>
+          </View>
+          <View style={{paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10}}>
+            <TouchableHighlight underlayColor='#FFF' onPress={() => this.toFriends(user)}>
+              <Text>FRIENDS</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+        <View style={{padding: 15, paddingBottom: 0}}>
+          <Text style={{color: '#86939e', fontSize: 16}}>POSTS</Text>
         </View>
         <Posts />
       </ScrollView>
