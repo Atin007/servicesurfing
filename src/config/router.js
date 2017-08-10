@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
@@ -25,7 +25,14 @@ export const Tabs = TabNavigator({
     screen: Home,
     navigationOptions: {
       title: 'Home',
-      headerLeft: null,
+      headerLeft: (
+        <View style={{paddingLeft: 15}}>
+          <Icon name="camera" type='entypo' size={22} color="#42424C" onPress={null} />
+        </View>),
+      headerRight: (
+        <View style={{paddingRight: 15}}>
+          <Icon name="message" type='entypo' size={24} color="#42424C" onPress={null} />
+        </View>),
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color={tintColor} />
       ),
