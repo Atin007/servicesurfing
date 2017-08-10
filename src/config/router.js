@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Icon } from 'react-native-elements';
 
 // Screens for the Tab Navigator
 import Home from '../screens/Home';
@@ -27,7 +27,7 @@ export const Tabs = TabNavigator({
       title: 'Home',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-home" : "ios-home-outline"} size={35} color={tintColor} />
+        <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color={tintColor} />
       ),
     },
   },
@@ -37,7 +37,7 @@ export const Tabs = TabNavigator({
       title: 'Search',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-search" : "ios-search-outline"} size={35} color={tintColor} />
+        <Icon name={focused ? "ios-search" : "ios-search-outline"} type='ionicon' size={35} color={tintColor} />
       ),
     },
   },
@@ -47,7 +47,7 @@ export const Tabs = TabNavigator({
       title: 'Notifications',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} size={35} color={tintColor} />
+        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} type='ionicon' size={35} color={tintColor} />
       ),
     },
   },
@@ -57,10 +57,14 @@ export const Tabs = TabNavigator({
       title: 'Menu',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} size={35} color={tintColor} />
+        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} type='ionicon' size={35} color={tintColor} />
       ),
     },
   },
+}, {
+    tabBarOptions: {
+      showLabel: false,
+    },
 });
 
 // Root StackNavigator containing all the Screen alongwith Tabs (TabNavigator)
