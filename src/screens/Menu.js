@@ -10,8 +10,8 @@ import { users, me } from '../config/data';
 
 class Menu extends Component {
 
-  toMyProfile = (user) => {
-    this.props.navigation.navigate('UserProfile', { ...user });
+  toMyProfile = (user, edit) => {
+    this.props.navigation.navigate('UserProfile', { ...user, ...edit });
   };
 
   toPrivacyPolicy = () => {
@@ -32,7 +32,7 @@ class Menu extends Component {
         title: 'View Profile',
         icon: 'ios-person',
         type: 'ionicon',
-        onPress: () => this.toMyProfile(me)
+        onPress: () => this.toMyProfile(me, {edit: true})
       },
       {
         title: 'Friends',

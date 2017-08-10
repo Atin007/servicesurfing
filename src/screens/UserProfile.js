@@ -6,7 +6,8 @@ import {
   Text,
   Dimensions,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  Button
  } from 'react-native';
 import {
   Icon,
@@ -27,9 +28,23 @@ class UserProfile extends Component {
     this.props.navigation.navigate('Friends', {...user});
   }
 
+  editText(edit) {
+    if (edit.edit) {
+      return (
+        <TouchableHighlight style={{paddingBottom: 15}}>
+          <Text style={{padding: 5, fontSize: 12, color: '#1563A0'}}>Edit Profile</Text>
+        </TouchableHighlight>
+      );
+    }
+
+    return null;
+  }
+
   render() {
     const buttons = ['ABOUT', 'FRIENDS', 'PHOTOS'];
     const user = this.props.navigation.state.params;
+    const edit = this.props.navigation.state.params;
+
     return (
       <ScrollView>
         <View
@@ -64,9 +79,10 @@ class UserProfile extends Component {
                 borderWidth: 2
               }}
             />
-            <Text style={{padding:20, color: '#000', fontSize: 18}}>
+            <Text style={{padding: 20, paddingBottom: (edit.edit ? 0 : 20), color: '#000', fontSize: 18}}>
               {toTitleCase(user.name.first)} {toTitleCase(user.name.last)}
             </Text>
+            {this.editText(edit)}
             <View
               style={{
                 borderTopWidth: StyleSheet.hairlineWidth,
