@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 
 // Screens for the Tab Navigator
 import Home from '../screens/Home';
@@ -101,8 +102,9 @@ export const Root = StackNavigator({
       },
   }, Share: {
       screen: Share,
-      navigationOptions: {
+      navigationOptions: ({ navigation }) => ({
         title: 'Share',
-      },
+        headerRight: <Button title="POST" onPress={() => navigation.goBack()} />
+      }),
     },
 },);
