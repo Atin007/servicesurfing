@@ -8,17 +8,22 @@ import { List, ListItem } from 'react-native-elements';
 
 import { users, me } from '../config/data';
 
-class MenuList extends Component {
+class Menu extends Component {
+
   toMyProfile = (user) => {
-    this.props.navigation.navigate('MyProfile', { ...user });
+    this.props.navigation.navigate('UserProfile', { ...user });
   };
 
-  toPolicy = () => {
-    this.props.navigation.navigate('Policy');
+  toPrivacyPolicy = () => {
+    this.props.navigation.navigate('PrivacyPolicy');
   }
 
-  toSignUp = () => {
-    this.props.navigation.navigate('SignUp');
+  toLogin = () => {
+    this.props.navigation.navigate('Login');
+  }
+
+  toMyFriends = (user) => {
+    this.props.navigation.navigate('Friends', {...user});
   }
 
   componentWillMount() {
@@ -28,6 +33,12 @@ class MenuList extends Component {
         icon: 'ios-person',
         type: 'ionicon',
         onPress: () => this.toMyProfile(me)
+      },
+      {
+        title: 'Friends',
+        icon: 'ios-contacts',
+        type: 'ionicon',
+        onPress: () => this.toMyFriends(me)
       },
       {
         title: 'Appointments',
@@ -45,7 +56,7 @@ class MenuList extends Component {
         title: 'Privacy Policy',
         icon: 'ios-paper',
         type: 'ionicon',
-        onPress: () => this.toPolicy()
+        onPress: () => this.toPrivacyPolicy()
       },
       {
         title: 'Report a Problem',
@@ -63,7 +74,7 @@ class MenuList extends Component {
         title: 'Logout',
         icon: 'ios-log-out',
         type: 'ionicon',
-        onPress: () => this.toSignUp()
+        onPress: () => this.toLogin()
       }
     ];
   }
@@ -86,4 +97,4 @@ class MenuList extends Component {
   }
 }
 
-export default MenuList;
+export default Menu;

@@ -3,20 +3,23 @@ import { Button } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-// import screens for setting up Navigation
-import SignUp from '../screens/SignUp';
+// Screens for the Tab Navigator
 import Home from '../screens/Home';
-import FriendList from '../screens/FriendList';
-import MenuList from '../screens/MenuList';
-import NotificationList from '../screens/NotificationList';
-import UserProfile from '../screens/UserProfile';
-import Policy from '../screens/Policy';
-import ShareUpdate from '../screens/ShareUpdate';
+import Search from '../screens/Search';
+import Notifications from '../screens/Notifications';
+import Menu from '../screens/Menu';
 
-// Convert a string to TitleCase (react native -> React Native, REACT NATIVE -> React Native, reAct nATive -> React Native)
+// Screens for the Root Navigator alongside the TabNavigator
+import Login from '../screens/Login';
+import UserProfile from '../screens/UserProfile';
+import Friends from '../screens/Friends';
+import PrivacyPolicy from '../screens/PrivacyPolicy';
+import Share from '../screens/Share';
+
+// Convert a string to TitleCase
 import { toTitleCase } from '../helpers';
 
-// Tab Navigator with 4 tabs (Home, Friends, Notifications, Menu)
+// Tab Navigator with 4 tabs (Home, Search, Notifications, Menu)
 export const Tabs = TabNavigator({
   Home: {
     screen: Home,
@@ -28,8 +31,8 @@ export const Tabs = TabNavigator({
       ),
     },
   },
-  Friends: {
-    screen: FriendList,
+  Search: {
+    screen: Search,
     navigationOptions: {
       title: 'Search',
       headerLeft: null,
@@ -39,7 +42,7 @@ export const Tabs = TabNavigator({
     },
   },
   Notifications: {
-    screen: NotificationList,
+    screen: Notifications,
     navigationOptions: {
       title: 'Notifications',
       headerLeft: null,
@@ -49,7 +52,7 @@ export const Tabs = TabNavigator({
     },
   },
   Menu: {
-    screen: MenuList,
+    screen: Menu,
     navigationOptions: {
       title: 'Menu',
       headerLeft: null,
@@ -58,16 +61,12 @@ export const Tabs = TabNavigator({
       ),
     },
   },
-// },  {
-//   tabBarOptions: {
-//     showLabel: false
-//   },
 });
 
-// Root Stack containing SignUp and containing SignUp and TabNavigator
+// Root StackNavigator containing all the Screen alongwith Tabs (TabNavigator)
 export const Root = StackNavigator({
-  SignUp: {
-    screen: SignUp,
+  Login: {
+    screen: Login,
     navigationOptions: {
       title: 'Login',
       headerLeft: null,
@@ -79,13 +78,18 @@ export const Root = StackNavigator({
       navigationOptions: ({ navigation }) => ({
         title: `${toTitleCase(navigation.state.params.name.first)} ${toTitleCase(navigation.state.params.name.last)}`,
       }),
-  }, Policy: {
-      screen: Policy,
+  }, Friends: {
+      screen: Friends,
+      navigationOptions: {
+        title: 'Friends',
+      },
+  }, PrivacyPolicy: {
+      screen: PrivacyPolicy,
       navigationOptions: {
         title: 'Privacy Policy',
       },
   }, Share: {
-      screen: ShareUpdate,
+      screen: Share,
       navigationOptions: {
         title: 'Share',
       },

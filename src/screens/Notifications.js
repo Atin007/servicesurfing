@@ -9,10 +9,7 @@ import { List, ListItem } from 'react-native-elements';
 import { notifications } from '../config/data';
 import { toTitleCase} from '../helpers';
 
-class NotificationList extends Component {
-  // onLearnMore = (user) => {
-  //   this.props.navigation.navigate('Details', { ...user });
-  // };
+class Notifications extends Component {
 
   render() {
     return (
@@ -24,8 +21,6 @@ class NotificationList extends Component {
               roundAvatar
               avatar={{ uri: notification.picture.thumbnail }}
               title={`${toTitleCase(notification.name.first)} ${toTitleCase(notification.name.last)} has sent you ${notification.type}`}
-              // subtitle={user.email}
-              // onPress={() => this.onLearnMore(user)}
               hideChevron
               titleNumberOfLines={2}
             />
@@ -36,4 +31,4 @@ class NotificationList extends Component {
   }
 }
 
-export default NotificationList;
+export default Notifications;

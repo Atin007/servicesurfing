@@ -5,7 +5,7 @@ import { Card } from 'react-native-elements';
 
 import { privacyPolicy } from '../config/data';
 
-class Policy extends Component {
+class PrivacyPolicy extends Component {
 
   render() {
     return (
@@ -19,4 +19,4 @@ class Policy extends Component {
 
 }
 
-export default Policy;
+export default PrivacyPolicy;

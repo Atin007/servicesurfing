@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
 
-class ShareUpdate extends Component {
+class Share extends Component {
 
   render() {
     return (
       <ScrollView>
-        <Text style={{textAlign: 'justify'}}>Hello</Text>
+        <Text style={{textAlign: 'justify'}}>Share something!</Text>
       </ScrollView>
     );
   }
 
 }
 
-export default ShareUpdate;
+export default Share;

@@ -23,6 +23,10 @@ const window = Dimensions.get("window");
 
 class UserProfile extends Component {
 
+  toFriends = (user) => {
+    this.props.navigation.navigate('Friends', {...user});
+  }
+
   render() {
     const buttons = ['ABOUT', 'FRIENDS', 'PHOTOS'];
     const user = this.props.navigation.state.params;
@@ -172,7 +176,7 @@ class UserProfile extends Component {
               <Text>ABOUT</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight underlayColor='#FFF' onPress={null}>
+          <TouchableHighlight underlayColor='#FFF' onPress={() => this.toFriends(user)}>
             <View style={{paddingLeft: 25, paddingRight: 25, paddingTop: 10, paddingBottom: 10}}>
               <Text>FRIENDS</Text>
             </View>

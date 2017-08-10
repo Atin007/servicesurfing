@@ -7,31 +7,21 @@ import {
   TextInput,
   Dimensions } from 'react-native';
 
-  const window = Dimensions.get("window");
+const window = Dimensions.get("window");
 
-  import {
+import {
     Tile,
     Button
-   } from 'react-native-elements';
+} from 'react-native-elements';
 
-class SignUp extends Component {
+class Login extends Component {
 
   render() {
     return (
       <ScrollView style={styles.containerStyle}>
         <View style={styles.coverPicContainer}>
-          {/* <Image
-            resizeMode='contain'
-            style={{height: 7*window.width/20}}
-            source={require('../assets/images/cover_pic.jpg')}
-          /> */}
           <View
             style={{
-              // transform: [
-              //   {
-              //     translateY: -window.width/16
-              //   }
-              // ],
               alignItems: 'center'
             }}>
             <Image
@@ -128,4 +118,4 @@ const styles = {
   }
 };
 
-export default SignUp;
+export default Login;
