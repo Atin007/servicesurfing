@@ -3,12 +3,12 @@ import {
   View,
   Text,
   ScrollView,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native';
 import {
   Avatar,
-  Card,
-  Button
+  Card
  } from 'react-native-elements';
 
 import { me } from '../config/data';
@@ -31,12 +31,17 @@ class Share extends Component {
               {toTitleCase(me.name.first)} {toTitleCase(me.name.last)}
             </Text>
           </View>
-          <TextInput
-            multiline={true}
-            style={{paddingTop: 15, fontSize: 18}}
-            placeholder="Share Something"
-            numberOfLines={10}
-          />
+          <View style={{flex: 1, height: 200}}>
+            <TextInput
+              multiline={true}
+              style={{paddingTop: 15, fontSize: 18}}
+              placeholder="Share Something"
+              numberOfLines={10}
+            />
+          </View>
+        </View>
+        <View style={{alignItems: 'flex-start', paddingLeft: 15}}>
+          <Button title="Add Image" onPress={() => {console.log('hello')}} />
         </View>
       </ScrollView>
     );
