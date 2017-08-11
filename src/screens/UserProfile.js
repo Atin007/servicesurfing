@@ -24,12 +24,16 @@ const window = Dimensions.get("window");
 
 class UserProfile extends Component {
 
-  toFriends = (user) => {
-    this.props.navigation.navigate('Friends', {...user});
+  toAbout = (user) => {
+    this.props.navigation.navigate('AboutUser', {...user});
   }
 
   toPhotos = (user) => {
     this.props.navigation.navigate('UserPhotos', {...user});
+  }
+
+  toFriends = (user) => {
+    this.props.navigation.navigate('Friends', {...user});
   }
 
   editText(edit) {
@@ -189,7 +193,7 @@ class UserProfile extends Component {
           justifyContent: 'center'
         }}>
           <View style={{paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10}}>
-            <TouchableHighlight underlayColor='#FFF' onPress={null}>
+            <TouchableHighlight underlayColor='#FFF' onPress={() => this.toAbout(user)}>
               <Text>ABOUT</Text>
             </TouchableHighlight>
           </View>

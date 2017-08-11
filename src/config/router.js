@@ -16,6 +16,7 @@ import UserProfile from '../screens/UserProfile';
 import Friends from '../screens/Friends';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
 import Share from '../screens/Share';
+import AboutUser from '../screens/AboutUser';
 import UserPhotos from '../screens/UserPhotos';
 
 // Convert a string to TitleCase
@@ -108,9 +109,14 @@ export const Root = StackNavigator({
         headerRight: <Button title="POST" onPress={() => navigation.goBack()} />
       }),
   }, UserPhotos: {
-        screen: UserPhotos,
-        navigationOptions: ({ navigation }) => ({
-          title: 'Photos',
-        }),
-      },
+      screen: UserPhotos,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Photos',
+      }),
+  }, AboutUser: {
+      screen: AboutUser,
+      navigationOptions: ({ navigation }) => ({
+        title: 'About',
+      }),
+  },
 },);
