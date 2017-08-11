@@ -48,9 +48,46 @@ class PostItem extends Component {
         <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
           <TouchableHighlight>
             <Text style={{
+              paddingRight: 10,
               color: '#999999'
             }}>
-              Comments
+              11 Likes
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Text style={{
+              paddingLeft: 5,
+              color: '#999999'
+            }}>
+              5 Comments
+            </Text>
+          </TouchableHighlight>
+        </View>
+        <View style={{
+          flexDirection: 'row',
+          flex: 1,
+          paddingTop: 15,
+          justifyContent: 'space-around',
+          alignItems: 'center'
+        }}>
+          <TouchableHighlight underlayColor="#FFF" onPress={() => {console.log('hello')}}>
+            <Text style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              paddingRight: 10,
+              color: '#000'
+            }}>
+              Like
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor="#FFF" onPress={() => {console.log('hello')}}>
+            <Text style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              paddingLeft: 10,
+              color: '#000'
+            }}>
+              Comment
             </Text>
           </TouchableHighlight>
         </View>
