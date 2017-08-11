@@ -28,6 +28,10 @@ class UserProfile extends Component {
     this.props.navigation.navigate('Friends', {...user});
   }
 
+  toPhotos = (user) => {
+    this.props.navigation.navigate('UserPhotos', {...user});
+  }
+
   editText(edit) {
     if (edit.edit) {
       return (
@@ -190,7 +194,7 @@ class UserProfile extends Component {
             </TouchableHighlight>
           </View>
           <View style={{paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10}}>
-            <TouchableHighlight underlayColor='#FFF' onPress={null}>
+            <TouchableHighlight underlayColor='#FFF' onPress={() => this.toPhotos(user)}>
               <Text>PHOTOS</Text>
             </TouchableHighlight>
           </View>
