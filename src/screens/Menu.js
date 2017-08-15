@@ -30,7 +30,7 @@ class Menu extends Component {
     this.list = [
       {
         title: 'View Profile',
-        icon: 'ios-person',
+        icon: 'ios-contact',
         type: 'ionicon',
         onPress: () => this.toMyProfile(me, {edit: true})
       },
