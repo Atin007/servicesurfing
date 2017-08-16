@@ -80,17 +80,22 @@ class UserProfile extends Component {
               ],
               alignItems: 'center'
             }}>
-            <Image
-              source={{uri: user.picture.large}}
-              resizeMode='cover'
-              style={{
-                height: window.width/4,
-                width: window.width/4,
-                paddingBottom: 0,
-                borderColor: '#FFF',
-                borderWidth: 2
-              }}
-            />
+            <View style={{
+              padding: 2,
+              backgroundColor: '#FFF',
+              borderColor: '#8B9DC3',
+              borderWidth: StyleSheet.hairlineWidth
+            }}>
+              <Image
+                source={{uri: user.picture.large}}
+                resizeMode='cover'
+                style={{
+                  height: window.width/4,
+                  width: window.width/4,
+                  paddingBottom: 0,
+                }}
+              />
+            </View>
             <Text style={{padding: 20, paddingBottom: (edit.edit ? 0 : 20), color: '#000', fontSize: 18}}>
               {toTitleCase(user.name.first)} {toTitleCase(user.name.last)}
             </Text>
