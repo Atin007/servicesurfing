@@ -24,6 +24,10 @@ const window = Dimensions.get("window");
 
 class UserProfile extends Component {
 
+  requestAppointment = (user) => {
+    this.props.navigation.navigate('BookAppointment', {...user});
+  }
+
   toAbout = (user) => {
     this.props.navigation.navigate('AboutUser', {...user});
   }
@@ -99,17 +103,17 @@ class UserProfile extends Component {
                 flexDirection: 'row'
               }}>
               <Icon
-                name='ios-calendar'
+                name='ios-calendar-outline'
                 type='ionicon'
                 color='#86939e'
-                onPress={() => console.log('hello')}
+                onPress={() => this.requestAppointment(user)}
                 size={30}
                 containerStyle={{
                   paddingLeft: 25,
                   paddingRight: 25
                 }} />
               <Icon
-                name='ios-person-add'
+                name='ios-person-add-outline'
                 type='ionicon'
                 color='#86939e'
                 onPress={() => console.log('hello')}
@@ -119,11 +123,11 @@ class UserProfile extends Component {
                   paddingRight: 25
                 }} />
               <Icon
-                name='ios-mail'
+                name='ios-chatbubbles-outline'
                 type='ionicon'
                 color='#86939e'
                 onPress={() => console.log('hello')}
-                size={39}
+                size={28}
                 containerStyle={{
                   paddingLeft: 25,
                   paddingRight: 25

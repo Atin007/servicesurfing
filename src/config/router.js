@@ -18,6 +18,7 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 import Share from '../screens/Share';
 import AboutUser from '../screens/AboutUser';
 import UserPhotos from '../screens/UserPhotos';
+import BookAppointment from '../screens/BookAppointment';
 
 // Convert a string to TitleCase
 import { toTitleCase } from '../helpers';
@@ -117,6 +118,11 @@ export const Root = StackNavigator({
       screen: AboutUser,
       navigationOptions: ({ navigation }) => ({
         title: 'About',
+      }),
+  }, BookAppointment: {
+      screen: BookAppointment,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Book an Appointment',
       }),
   },
 },);
