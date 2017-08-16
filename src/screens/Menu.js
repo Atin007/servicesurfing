@@ -26,6 +26,10 @@ class Menu extends Component {
     this.props.navigation.navigate('Friends', {...user});
   }
 
+  toMyAppointments = (user) => {
+    this.props.navigation.navigate('Appointments', {...user});
+  }
+
   componentWillMount() {
     this.list = [
       {
@@ -44,7 +48,7 @@ class Menu extends Component {
         title: 'Appointments',
         icon: 'ios-calendar',
         type: 'ionicon',
-        onPress: null
+        onPress: () => this.toMyAppointments(me)
       },
       {
         title: 'Help Center',

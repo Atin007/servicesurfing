@@ -19,6 +19,7 @@ import Share from '../screens/Share';
 import AboutUser from '../screens/AboutUser';
 import UserPhotos from '../screens/UserPhotos';
 import BookAppointment from '../screens/BookAppointment';
+import Appointments from '../screens/Appointments';
 
 // Convert a string to TitleCase
 import { toTitleCase } from '../helpers';
@@ -123,6 +124,11 @@ export const Root = StackNavigator({
       screen: BookAppointment,
       navigationOptions: ({ navigation }) => ({
         title: 'Book an Appointment',
+      }),
+  }, Appointments: {
+      screen: Appointments,
+      navigationOptions: ({ navigation }) => ({
+        title: 'My Appointments',
       }),
   },
 },);
