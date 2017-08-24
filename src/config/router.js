@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, TabBarBottom } from 'react-navigation';
 
 // Screens for the Tab Navigator
 import Home from '../screens/Home';
@@ -74,6 +74,8 @@ export const Tabs = TabNavigator({
     },
   },
 }, {
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: Platform.OS == 'ios' ? 'bottom' : 'top',
     tabBarOptions: {
       showLabel: false,
     },
