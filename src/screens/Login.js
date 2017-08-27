@@ -56,7 +56,7 @@ class Login extends Component {
               fontSize={16}
               buttonStyle={{borderWidth: 1, borderColor: "#2998E4"}}
               containerViewStyle={{flex: 1, padding: 10, paddingRight: 5}}
-              onPress={() => { this.props.navigation.navigate('Tabs') }}
+              onPress={() => { this.props.navigation.navigate('SignUpEmail') }}
             />
             <Button
               raised
@@ -67,7 +67,7 @@ class Login extends Component {
               backgroundColor="#FFF"
               buttonStyle={{borderWidth: 1, borderColor: "#2998E4"}}
               containerViewStyle={{flex: 1, padding: 10, paddingLeft: 5}}
-              onPress={() => { this.props.navigation.navigate('Tabs') }}
+              onPress={() => { this.props.navigation.navigate('SignInEmail') }}
             />
           </View>
           <View>

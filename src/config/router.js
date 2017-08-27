@@ -20,6 +20,8 @@ import AboutUser from '../screens/AboutUser';
 import UserPhotos from '../screens/UserPhotos';
 import BookAppointment from '../screens/BookAppointment';
 import Appointments from '../screens/Appointments';
+import SignUpEmail from '../screens/SignUpEmail';
+import SignInEmail from '../screens/SignInEmail';
 
 // Convert a string to TitleCase
 import { toTitleCase } from '../helpers';
@@ -88,6 +90,16 @@ export const Root = StackNavigator({
     navigationOptions: {
       title: 'Login',
       headerLeft: null,
+    },
+  }, SignUpEmail: {
+    screen: SignUpEmail,
+    navigationOptions: {
+      title: 'Sign up using Email',
+    },
+  }, SignInEmail: {
+    screen: SignInEmail,
+    navigationOptions: {
+      title: 'Login using Email',
     },
   }, Tabs: {
       screen: Tabs,
