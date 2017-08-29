@@ -24,6 +24,10 @@ const window = Dimensions.get("window");
 
 class UserProfile extends Component {
 
+  toEditProfile = (user) => {
+    this.props.navigation.navigate('EditProfile', {...user});
+  }
+
   requestAppointment = (user) => {
     this.props.navigation.navigate('BookAppointment', {...user});
   }
@@ -40,10 +44,10 @@ class UserProfile extends Component {
     this.props.navigation.navigate('Friends', {...user});
   }
 
-  editText(edit) {
+  editText(edit, user) {
     if (edit.edit) {
       return (
-        <TouchableHighlight style={{paddingBottom: 15}}>
+        <TouchableHighlight style={{paddingBottom: 15}} onPress={() => this.toEditProfile(user)}>
           <Text style={{padding: 5, fontSize: 12, color: '#1563A0'}}>Edit Profile</Text>
         </TouchableHighlight>
       );
@@ -99,7 +103,7 @@ class UserProfile extends Component {
             <Text style={{padding: 20, paddingBottom: (edit.edit ? 0 : 20), color: '#000', fontSize: 18}}>
               {toTitleCase(user.name.first)} {toTitleCase(user.name.last)}
             </Text>
-            {this.editText(edit)}
+            {this.editText(edit, user)}
             <View
               style={{
                 borderTopWidth: StyleSheet.hairlineWidth,
