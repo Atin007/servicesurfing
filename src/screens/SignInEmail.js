@@ -24,22 +24,18 @@ class SignInEmail extends Component {
     this.setState({ error: '', loading: true });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch(this.onLoginFail.bind(this));
-  }
-
-  onLoginFail() {
-    this.setState({ error: 'Incorrect username or password', loading: false });
-  }
-
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      loading: false,
-      error: ''
-    });
-    this.props.navigation.navigate('Tabs');
+      .then(() => {
+        this.setState({
+          email: '',
+          password: '',
+          loading: false,
+          error: ''
+        });
+        this.props.navigation.navigate('Tabs');
+      })
+      .catch((error) => {
+        this.setState({ error: error.code, loading: false });
+      });
   }
 
   render() {

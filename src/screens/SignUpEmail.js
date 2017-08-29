@@ -12,9 +12,38 @@ import {
   FormInput,
   FormValidationMessage
 } from 'react-native-elements';
+import firebase from 'firebase';
 import { toTitleCase } from '../helpers';
 
 class SignUpEmail extends Component {
+  state = {
+    firstName: '',
+    lastName: '',
+    mail: '',
+    password: '',
+    error: '',
+    loading: false
+  };
+
+  onButtonPress() {
+    const { firstName, lastName, email, password } = this.state;
+
+    this.setState({ error: '', loading: true });
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({
+          email: '',
+          password: '',
+          loading: false,
+          error: ''
+        });
+        this.props.navigation.navigate('SignInEmail');
+      })
+      .catch((error) => {
+        this.setState({ error: error.code, loading: false });
+      });
+  }
 
   render() {
     return (
@@ -24,15 +53,38 @@ class SignUpEmail extends Component {
       }}>
         <View style={{}}>
           <FormLabel>First Name</FormLabel>
-          <FormInput placeholder="John" />
+          <FormInput
+            placeholder="John"
+            autoCorrect={false}
+            value={this.state.firstName}
+            onChangeText={firstName => this.setState({ firstName })}
+          />
           <FormLabel>Last Name</FormLabel>
-          <FormInput placeholder="Doe" />
+          <FormInput
+            placeholder="Doe"
+            autoCorrect={false}
+            value={this.state.lastName}
+            onChangeText={lastName => this.setState({ lastName })}
+          />
           <FormLabel>Email</FormLabel>
-          <FormInput placeholder="john.doe@wxyz.com" />
+          <FormInput
+            placeholder="john.doe@wxyz.com"
+            autoCorrect={false}
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+          />
           <FormLabel>Password</FormLabel>
-          <FormInput placeholder="Password" />
-          <FormValidationMessage></FormValidationMessage>
-          <Button title="Sign up" onPress={() => console.log('hello')}/>
+          <FormInput
+            secureTextEntry={true}
+            placeholder="Password"
+            autoCorrect={false}
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+          />
+          <FormValidationMessage containerStyle={{alignItems: 'center'}}>
+            {this.state.error}
+          </FormValidationMessage>
+          <Button title="Sign up" onPress={this.onButtonPress.bind(this)} />
         </View>
       </ScrollView>
     );
