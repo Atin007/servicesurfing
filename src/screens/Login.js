@@ -6,7 +6,7 @@ import {
   ScrollView,
   TextInput,
   Dimensions } from 'react-native';
-
+import firebase from 'firebase';
 const window = Dimensions.get("window");
 
 import {
@@ -15,6 +15,17 @@ import {
 } from 'react-native-elements';
 
 class Login extends Component {
+
+  componentWillMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+        this.props.navigation.navigate('Tabs');
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
+  }
 
   render() {
     return (

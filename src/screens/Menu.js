@@ -4,6 +4,7 @@ import {
   View,
   ScrollView
 } from 'react-native';
+import firebase from 'firebase';
 import { List, ListItem } from 'react-native-elements';
 
 import { users, me } from '../config/data';
@@ -18,8 +19,12 @@ class Menu extends Component {
     this.props.navigation.navigate('PrivacyPolicy');
   }
 
-  toLogin = () => {
-    this.props.navigation.navigate('Login');
+  Logout = () => {
+    firebase.auth().signOut().then(() => {
+      this.props.navigation.navigate('Login');
+    }, function (error) {
+      console.log('Error');
+    });
   }
 
   toMyFriends = (user) => {
@@ -78,7 +83,7 @@ class Menu extends Component {
         title: 'Logout',
         icon: 'ios-log-out',
         type: 'ionicon',
-        onPress: () => this.toLogin()
+        onPress: () => this.Logout()
       }
     ];
   }
