@@ -47,45 +47,44 @@ class SignUpEmail extends Component {
 
   render() {
     return (
-      <ScrollView style={{
-        flex: 1,
-        backgroundColor: '#FFF'
-      }}>
-        <View style={{}}>
-          <FormLabel>First Name</FormLabel>
-          <FormInput
-            placeholder="John"
-            autoCorrect={false}
-            value={this.state.firstName}
-            onChangeText={firstName => this.setState({ firstName })}
-          />
-          <FormLabel>Last Name</FormLabel>
-          <FormInput
-            placeholder="Doe"
-            autoCorrect={false}
-            value={this.state.lastName}
-            onChangeText={lastName => this.setState({ lastName })}
-          />
-          <FormLabel>Email</FormLabel>
-          <FormInput
-            placeholder="john.doe@wxyz.com"
-            autoCorrect={false}
-            value={this.state.email}
-            onChangeText={email => this.setState({ email })}
-          />
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            secureTextEntry={true}
-            placeholder="Password"
-            autoCorrect={false}
-            value={this.state.password}
-            onChangeText={password => this.setState({ password })}
-          />
-          <FormValidationMessage containerStyle={{alignItems: 'center'}}>
-            {this.state.error}
-          </FormValidationMessage>
-          <Button title="Sign up" onPress={this.onButtonPress.bind(this)} />
-        </View>
+      <ScrollView style={styles.topLevelContainer}>
+        <FormLabel>First Name</FormLabel>
+        <FormInput
+          placeholder="John"
+          autoCorrect={false}
+          value={this.state.firstName}
+          onChangeText={firstName => this.setState({ firstName })}
+          style={styles.formInputStyle}
+        />
+        <FormLabel>Last Name</FormLabel>
+        <FormInput
+          placeholder="Doe"
+          autoCorrect={false}
+          value={this.state.lastName}
+          onChangeText={lastName => this.setState({ lastName })}
+          style={styles.formInputStyle}
+        />
+        <FormLabel>Email</FormLabel>
+        <FormInput
+          placeholder="john.doe@wxyz.com"
+          autoCorrect={false}
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
+          style={styles.formInputStyle}
+        />
+        <FormLabel>Password</FormLabel>
+        <FormInput
+          secureTextEntry={true}
+          placeholder="Password"
+          autoCorrect={false}
+          value={this.state.password}
+          onChangeText={password => this.setState({ password })}
+          style={styles.formInputStyle}
+        />
+        <FormValidationMessage containerStyle={{alignItems: 'center'}}>
+          {this.state.error}
+        </FormValidationMessage>
+        <Button title="Sign up" onPress={this.onButtonPress.bind(this)} />
       </ScrollView>
     );
   }
@@ -93,12 +92,14 @@ class SignUpEmail extends Component {
 }
 
 const styles = {
-  containerStyle: {
-
+  topLevelContainer: {
+    flex: 1,
+    backgroundColor: '#FFF'
   },
-  textStyle: {
-    fontSize: 16,
-    padding: 10
+  formInputStyle: {
+    margin: 4,
+    fontSize: 14,
+    color: '#000',
   }
 };
 

@@ -40,31 +40,28 @@ class SignInEmail extends Component {
 
   render() {
     return (
-      <ScrollView style={{
-        flex: 1,
-        backgroundColor: '#FFF'
-      }}>
-        <View style={{}}>
-          <FormLabel>Email</FormLabel>
-          <FormInput
-            placeholder="john.doe@wxyz.com"
-            autoCorrect={false}
-            value={this.state.email}
-            onChangeText={email => this.setState({ email })}
-          />
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            secureTextEntry={true}
-            placeholder="Password"
-            autoCorrect={false}
-            value={this.state.password}
-            onChangeText={password => this.setState({ password })}
-          />
-          <FormValidationMessage containerStyle={{alignItems: 'center'}}>
-              {this.state.error}
-          </FormValidationMessage>
-          <Button title="Login" onPress={this.onButtonPress.bind(this)}/>
-        </View>
+      <ScrollView style={styles.topLevelContainer}>
+        <FormLabel>Email</FormLabel>
+        <FormInput
+          placeholder="john.doe@wxyz.com"
+          autoCorrect={false}
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
+          style={styles.formInputStyle}
+        />
+        <FormLabel>Password</FormLabel>
+        <FormInput
+          secureTextEntry={true}
+          placeholder="Password"
+          autoCorrect={false}
+          value={this.state.password}
+          onChangeText={password => this.setState({ password })}
+          style={styles.formInputStyle}
+        />
+        <FormValidationMessage containerStyle={{alignItems: 'center'}}>
+            {this.state.error}
+        </FormValidationMessage>
+        <Button title="Login" onPress={this.onButtonPress.bind(this)}/>
       </ScrollView>
     );
   }
@@ -72,12 +69,14 @@ class SignInEmail extends Component {
 }
 
 const styles = {
-  containerStyle: {
-
+  topLevelContainer: {
+    flex: 1,
+    backgroundColor: '#FFF'
   },
-  textStyle: {
-    fontSize: 16,
-    padding: 10
+  formInputStyle: {
+    margin: 4,
+    fontSize: 14,
+    color: '#000',
   }
 };
 
