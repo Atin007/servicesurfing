@@ -1,116 +1,97 @@
 import React, { Component } from 'react';
 import {
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View
+  ScrollView
  } from 'react-native';
 import {
   Button,
   Card,
-  FormLabel,
-  FormInput,
-  FormValidationMessage
-} from 'react-native-elements';
-import ModalSelector from 'react-native-modal-selector';
-import DatePicker from 'react-native-datepicker';
+  CardSection,
+  Input,
+  InputDate,
+  Spinner
+} from '../components/common';
 
 class EditProfile extends Component {
+  state = {
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    description: '',
+    gender: '',
+    birthday: '',
+    country: '',
+    city: '',
+    industry: '',
+    position: '',
+    phd: '',
+    hIndex: '' ,
+    hourlyRate: '',
+    education: '',
+    work: ''
+  };
 
   render() {
-    let index = 0;
-    const data = [
-        { key: index++, section: true, label: 'Fruits' },
-        { key: index++, label: 'Red Apples' },
-        { key: index++, label: 'Cherries' },
-        { key: index++, label: 'Cranberries' },
-        { key: index++, label: 'Pink Grapefruit' },
-        { key: index++, label: 'Raspberries' },
-        { key: index++, section: true, label: 'Vegetables' },
-        { key: index++, label: 'Beets' },
-        { key: index++, label: 'Red Peppers' },
-        { key: index++, label: 'Radishes' },
-        { key: index++, label: 'Radicchio' },
-        { key: index++, label: 'Red Onions' },
-        { key: index++, label: 'Red Potatoes' },
-        { key: index++, label: 'Rhubarb' },
-        { key: index++, label: 'Tomatoes' }
-    ];
 
     return (
-      <ScrollView style={styles.topLevelContainer}>
-        <Card
-          title="About"
-          titleStyle={{alignSelf: 'flex-start'}}
-          >
-          <FormLabel>First Name</FormLabel>
-          <FormInput
-            placeholder="John"
-            autoCorrect={false}
-            style={styles.formInputStyle}
-          />
-          <FormLabel>Last Name</FormLabel>
-          <FormInput
-            placeholder="Doe"
-            autoCorrect={false}
-            style={styles.formInputStyle}
-          />
-          <FormLabel>Description</FormLabel>
-          <FormInput
-            multiline = {true}
-            numberOfLines = {4}
-            placeholder="Tell something about yourself"
-            autoCorrect={false}
-            style={styles.formInputStyle}
-          />
-          <FormLabel>Birthday</FormLabel>
-          <DatePicker
-            date=''
-            mode="date"
-            placeholder="YYYY-MM-DD"
-            format="YYYY-MM-DD"
-            minDate="2016-05-01"
-            maxDate="2017-06-01"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            showIcon={false}
-            customStyles={styles.customDateInputStyles}
-            // onDateChange={(date) => {this.setState({date: date});}}
-          />
-          <FormLabel>Gender</FormLabel>
-          <ModalSelector
-            data={data}
-            initValue="Select"
-          />
+      <ScrollView>
+        <Card>
+          <CardSection>
+            <Input
+              placeholder="john.doe@gmail.com"
+              label="Email"
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+              secureTextEntry
+              placeholder="password"
+              label="Password"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+            />
+          </CardSection>
+        </Card>
+        <Card>
+          <CardSection>
+            <Input
+              placeholder="John"
+              label="First Name"
+              value={this.state.firstName}
+              onChangeText={firstName => this.setState({ firstName })}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+              placeholder="Doe"
+              label="Last Name"
+              value={this.state.lastName}
+              onChangeText={lastName => this.setState({ lastName })}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+              placeholder="Male"
+              label="Gender"
+              value={this.state.gender}
+              onChangeText={gender => this.setState({ gender })}
+            />
+          </CardSection>
+          <CardSection>
+            <InputDate
+              placeholder="DD-MM-YYYY"
+              label="Birthday"
+              date={this.state.birthday}
+              onDateChange={(birthday) => {this.setState({birthday: birthday});}}
+            />
+          </CardSection>
         </Card>
       </ScrollView>
     );
   }
 
 }
-
-const styles = {
-  topLevelContainer: {
-    flex: 1
-  },
-  formInputStyle: {
-    margin: 4,
-    fontSize: 14,
-    color: '#000'
-  },
-  customDateInputStyles: {
-    dateInput: {
-      alignItems: 'flex-start',
-      borderWidth: 0,
-      borderBottomWidth: (Platform.OS === 'ios') ? StyleSheet.hairlineWidth : 0,
-      borderBottomColor: '#86939e',
-      height: 20,
-      marginLeft: 20,
-      marginRight: 20,
-      paddingLeft: 5
-    }
-  }
-};
 
 export default EditProfile;
