@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Platform, 
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,15 +13,31 @@ import {
   FormInput,
   FormValidationMessage
 } from 'react-native-elements';
+import ModalSelector from 'react-native-modal-selector';
 import DatePicker from 'react-native-datepicker';
 
 class EditProfile extends Component {
 
   render() {
-    const options = ['Male', 'Female'];
+    let index = 0;
+    const data = [
+        { key: index++, section: true, label: 'Fruits' },
+        { key: index++, label: 'Red Apples' },
+        { key: index++, label: 'Cherries' },
+        { key: index++, label: 'Cranberries' },
+        { key: index++, label: 'Pink Grapefruit' },
+        { key: index++, label: 'Raspberries' },
+        { key: index++, section: true, label: 'Vegetables' },
+        { key: index++, label: 'Beets' },
+        { key: index++, label: 'Red Peppers' },
+        { key: index++, label: 'Radishes' },
+        { key: index++, label: 'Radicchio' },
+        { key: index++, label: 'Red Onions' },
+        { key: index++, label: 'Red Potatoes' },
+        { key: index++, label: 'Rhubarb' },
+        { key: index++, label: 'Tomatoes' }
+    ];
 
-    // Labels is optional
-    const labels = ['Banana', 'Apple', 'Pear'];
     return (
       <ScrollView style={styles.topLevelContainer}>
         <Card
@@ -63,6 +79,10 @@ class EditProfile extends Component {
             // onDateChange={(date) => {this.setState({date: date});}}
           />
           <FormLabel>Gender</FormLabel>
+          <ModalSelector
+            data={data}
+            initValue="Select"
+          />
         </Card>
       </ScrollView>
     );
