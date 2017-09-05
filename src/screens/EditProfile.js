@@ -8,6 +8,7 @@ import {
   CardSection,
   Input,
   InputDate,
+  Select,
   Spinner
 } from '../components/common';
 
@@ -28,7 +29,8 @@ class EditProfile extends Component {
     hIndex: '' ,
     hourlyRate: '',
     education: '',
-    work: ''
+    work: '',
+    modalVisibility: false
   };
 
   render() {
@@ -72,11 +74,14 @@ class EditProfile extends Component {
             />
           </CardSection>
           <CardSection>
-            <Input
-              placeholder="Male"
+            <Select
               label="Gender"
-              value={this.state.gender}
-              onChangeText={gender => this.setState({ gender })}
+              options={["Male", "Female"]}
+              pickerValue={this.state.gender}
+              modalVisibility={this.state.modalVisibility}
+              showModal={()=>{this.setState({modalVisibility: true})}}
+              hideModal={()=>{this.setState({modalVisibility: false})}}
+              onValueChange={(gender) => {this.setState({gender: gender})}}
             />
           </CardSection>
           <CardSection>
@@ -84,7 +89,7 @@ class EditProfile extends Component {
               placeholder="DD-MM-YYYY"
               label="Birthday"
               date={this.state.birthday}
-              onDateChange={(birthday) => {this.setState({birthday: birthday});}}
+              onDateChange={(birthday) => {this.setState({birthday: birthday})}}
             />
           </CardSection>
         </Card>
