@@ -1,22 +1,31 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
-const Button = ({ onPress, children }) => {
+const Button = ({ onPress, children, buttonColor}) => {
   const { buttonStyle, textStyle } = styles;
+  const newStyle = {
+    backgroundColor: buttonColor==undefined ? '#007AFF' : buttonColor,
+    borderColor: buttonColor==undefined || buttonColor =='#FFF' ? '#999999' : buttonColor
+  };
+  const newTextStyle = {
+    color: buttonColor=='#FFF' ? '#000' : '#FFF'
+  };
 
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyle}>
-      <Text style={textStyle}>
-        {children}
-      </Text>
-    </TouchableOpacity>
+    <View style={[ buttonStyle, newStyle ]}>
+      <TouchableOpacity onPress={onPress} activeOpacity={0.5}>
+        <Text style={[textStyle, newTextStyle]}>
+          {children}
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = {
   textStyle: {
     alignSelf: 'center',
-    color: '#fff',
+    color: '#FFF',
     fontSize: 18,
     fontWeight: '600',
     paddingTop: 10,
@@ -24,12 +33,13 @@ const styles = {
   },
   buttonStyle: {
     flex: 1,
-    backgroundColor: '#007aff',
+    backgroundColor: '#007AFF',
     borderWidth: 1,
-    borderColor: '#007aff',
+    borderRadius: 5,
+    borderColor: '#007AFF',
     marginLeft: 15,
     marginRight: 15,
-    marginTop: 10
+    marginTop: 15
   }
 };
 
