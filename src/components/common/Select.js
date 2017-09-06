@@ -46,7 +46,7 @@ const styles = {
     flex: 2
   },
   buttonTextStyle: {
-    color: '#007AFF',
+    color: '#AA2200',
     fontSize: 18,
     lineHeight: 23
   },

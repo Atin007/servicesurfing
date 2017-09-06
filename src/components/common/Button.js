@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 const Button = ({ onPress, children, buttonColor}) => {
   const { buttonStyle, textStyle } = styles;
   const newStyle = {
-    backgroundColor: buttonColor==undefined ? '#007AFF' : buttonColor,
+    backgroundColor: buttonColor==undefined ? '#AA2200' : buttonColor,
     borderColor: buttonColor==undefined || buttonColor =='#FFF' ? '#999999' : buttonColor
   };
   const newTextStyle = {
@@ -33,10 +33,10 @@ const styles = {
   },
   buttonStyle: {
     flex: 1,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#AA2200',
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#007AFF',
+    borderColor: '#AA2200',
     marginLeft: 15,
     marginRight: 15,
     marginTop: 15
