@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 const InputDate = ({ label, date, onDateChange, placeholder }) => {
@@ -36,16 +36,16 @@ const styles = {
       borderWidth: 0
     },
     dateText: {
-      fontSize: 18,
-      lineHeight: 23
+      fontSize: 16,
+      lineHeight: 21
     },
     placeholderText: {
-      fontSize: 18,
-      lineHeight: 23
+      fontSize: 16,
+      lineHeight: 21
     }
   },
   labelStyle: {
-    fontSize: 18,
+    fontSize: 16,
     paddingLeft: 20,
     flex: 1
   },

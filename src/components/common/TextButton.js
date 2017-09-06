@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const TextButton = ({ onPress, children, buttonColor="#333", fontSize=18}) => {
+const TextButton = ({ onPress, children, buttonColor="#333", fontSize=16}) => {
   const { textStyle } = styles;
 
   const newTextStyle = {

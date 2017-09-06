@@ -80,8 +80,7 @@ class Login extends Component {
 
 const styles = {
   containerStyle: {
-    flex: 1,
-    backgroundColor: '#FFF'
+    flex: 1
   },
   headerStyle: {
     alignItems: 'center'
@@ -101,5 +100,3 @@ const styles = {
 };
 
 export default Login;
-
-color="#DB4437"

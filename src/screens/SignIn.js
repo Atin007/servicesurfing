@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  View,
   Text,
-  StyleSheet,
-  Image
+  View
 } from 'react-native';
 import {
   Button,
-  FormLabel,
-  FormInput,
-  FormValidationMessage
-} from 'react-native-elements';
+  Card,
+  CardSection,
+  Input,
+  Spinner,
+  TextButton
+} from '../components/common';
 import firebase from 'firebase';
 import { toTitleCase } from '../helpers';
 
@@ -39,29 +39,46 @@ class SignIn extends Component {
   }
 
   render() {
+    const { containerStyle, textStyle, footerStyle } = styles;
     return (
-      <ScrollView style={styles.topLevelContainer}>
-        <FormLabel>Email</FormLabel>
-        <FormInput
-          placeholder="john.doe@wxyz.com"
-          autoCorrect={false}
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-          style={styles.formInputStyle}
-        />
-        <FormLabel>Password</FormLabel>
-        <FormInput
-          secureTextEntry={true}
-          placeholder="Password"
-          autoCorrect={false}
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
-          style={styles.formInputStyle}
-        />
-        <FormValidationMessage containerStyle={{alignItems: 'center'}}>
-            {this.state.error}
-        </FormValidationMessage>
-        <Button title="Login" onPress={this.onButtonPress.bind(this)}/>
+      <ScrollView style={containerStyle}>
+        <View style={{paddingTop: 10, paddingBottom: 35}}>
+        <Button buttonColor="#FFF" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+          Continue with Google
+        </Button>
+        <Button buttonColor="#3B5998" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+          Continue with Facebook
+        </Button>
+        </View>
+        <Text style={textStyle}>
+          Sign in using your existing ServiceSurfing account
+        </Text>
+        <Card>
+          <CardSection>
+            <Input
+              placeholder="john.doe@gmail.com"
+              label="Email"
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+              secureTextEntry
+              placeholder="password"
+              label="Password"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+            />
+          </CardSection>
+        </Card>
+        <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
+        <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
+        Forgot Password?
+        </TextButton>
+        <Text style={footerStyle}>
+          By logging in you agree to ServiceSurfing's Terms of Service, Privacy Policy, Cookie policy and Content Policies
+        </Text>
       </ScrollView>
     );
   }
@@ -69,14 +86,24 @@ class SignIn extends Component {
 }
 
 const styles = {
-  topLevelContainer: {
-    flex: 1,
-    backgroundColor: '#FFF'
+  containerStyle: {
+    flex: 1
   },
-  formInputStyle: {
-    margin: 4,
-    fontSize: 14,
-    color: '#000',
+  textStyle: {
+    color: '#333',
+    fontSize: 16,
+    textAlign: 'center',
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15
+  },
+  footerStyle: {
+    color: '#333',
+    fontSize: 12,
+    textAlign: 'center',
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15
   }
 };
 

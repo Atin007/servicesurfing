@@ -47,8 +47,8 @@ const styles = {
   },
   buttonTextStyle: {
     color: '#AA2200',
-    fontSize: 18,
-    lineHeight: 23
+    fontSize: 16,
+    lineHeight: 21
   },
   doneButtonStyle: {
     padding: 10,
@@ -67,7 +67,7 @@ const styles = {
     alignItems: 'center'
   },
   labelStyle: {
-    fontSize: 18,
+    fontSize: 16,
     paddingLeft: 20,
     flex: 1
   },
