@@ -101,7 +101,7 @@ export const Root = StackNavigator({
       title: 'Sign up',
       headerLeft: (
         <View style={{paddingLeft: 15}}>
-          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.goBack()} />
+          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.navigate('Login')} />
         </View>),
     }),
   }, SignIn: {
@@ -110,7 +110,7 @@ export const Root = StackNavigator({
       title: 'Sign in',
       headerLeft: (
         <View style={{paddingLeft: 15}}>
-          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.goBack()} />
+          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.navigate('Login')} />
         </View>),
     }),
   }, Tabs: {

@@ -38,6 +38,21 @@ class SignIn extends Component {
       });
   }
 
+  renderButton() {
+    if (this.state.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <View>
+        <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
+        <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
+        Forgot Password?
+        </TextButton>
+      </View>
+    );
+  }
+
   render() {
     const { containerStyle, textStyle, footerStyle } = styles;
     return (
@@ -72,10 +87,7 @@ class SignIn extends Component {
             />
           </CardSection>
         </Card>
-        <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
-        <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
-        Forgot Password?
-        </TextButton>
+        {this.renderButton()}
         <Text style={footerStyle}>
           By logging in you agree to ServiceSurfing's Terms of Service, Privacy Policy, Cookie policy and Content Policies
         </Text>
