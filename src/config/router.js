@@ -43,7 +43,7 @@ export const Tabs = TabNavigator({
           <Icon name="message" type='entypo' size={24} color="#FFF" onPress={null} />
         </View>),
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color="#AA2200" />
+        <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
     },
   },
@@ -53,7 +53,7 @@ export const Tabs = TabNavigator({
       title: 'Search',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-search" : "ios-search-outline"} type='ionicon' size={35} color="#AA2200" />
+        <Icon name={focused ? "ios-search" : "ios-search-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
     },
   },
@@ -63,7 +63,7 @@ export const Tabs = TabNavigator({
       title: 'Notifications',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} type='ionicon' size={35} color="#AA2200" />
+        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
     },
   },
@@ -73,7 +73,7 @@ export const Tabs = TabNavigator({
       title: 'Menu',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} type='ionicon' size={35} color="#AA2200" />
+        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
     },
   },
@@ -102,7 +102,7 @@ export const Root = StackNavigator({
       title: 'Sign up',
       headerLeft: (
         <View style={{paddingLeft: 15}}>
-          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.navigate('Login')} />
+          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#06A0A2" onPress={() => navigation.navigate('Login')} />
         </View>),
     }),
   }, SignIn: {
@@ -111,7 +111,7 @@ export const Root = StackNavigator({
       title: 'Sign in',
       headerLeft: (
         <View style={{paddingLeft: 15}}>
-          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.navigate('Login')} />
+          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#06A0A2" onPress={() => navigation.navigate('Login')} />
         </View>),
     }),
   }, ForgotPassword: {
@@ -171,7 +171,7 @@ export const Root = StackNavigator({
 },{
   navigationOptions: {
     headerStyle: {
-      backgroundColor: "#AA2200",
+      backgroundColor: "#06A0A2",
     },
     headerTintColor: '#FFF',
   },

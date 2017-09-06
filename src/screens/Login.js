@@ -64,7 +64,7 @@ class Login extends Component {
           </Button>
         </View>
         <View style={buttonContainer}>
-          <Button buttonColor="#AA2200" onPress={() => { this.props.navigation.navigate('SignIn') }}>
+          <Button onPress={() => { this.props.navigation.navigate('SignIn') }}>
             Continue with Email
           </Button>
         </View>
