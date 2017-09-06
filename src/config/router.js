@@ -97,14 +97,22 @@ export const Root = StackNavigator({
     },
   }, SignUpEmail: {
     screen: SignUpEmail,
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
       title: 'Sign up',
-    },
+      headerLeft: (
+        <View style={{paddingLeft: 15}}>
+          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.goBack()} />
+        </View>),
+    }),
   }, SignInEmail: {
     screen: SignInEmail,
-    navigationOptions: {
-      title: 'Login',
-    },
+    navigationOptions: ({ navigation }) => ({
+      title: 'Sign in',
+      headerLeft: (
+        <View style={{paddingLeft: 15}}>
+          <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.goBack()} />
+        </View>),
+    }),
   }, Tabs: {
       screen: Tabs,
   }, UserProfile: {
