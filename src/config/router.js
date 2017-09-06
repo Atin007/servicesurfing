@@ -35,14 +35,14 @@ export const Tabs = TabNavigator({
       title: 'Home',
       headerLeft: (
         <View style={{paddingLeft: 15}}>
-          <Icon name="camera" type='entypo' size={22} color="#42424C" onPress={null} />
+          <Icon name="camera" type='entypo' size={22} color="#FFF" onPress={null} />
         </View>),
       headerRight: (
         <View style={{paddingRight: 15}}>
-          <Icon name="message" type='entypo' size={24} color="#42424C" onPress={null} />
+          <Icon name="message" type='entypo' size={24} color="#FFF" onPress={null} />
         </View>),
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color={tintColor} />
+        <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color="#AA2200" />
       ),
     },
   },
@@ -52,7 +52,7 @@ export const Tabs = TabNavigator({
       title: 'Search',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-search" : "ios-search-outline"} type='ionicon' size={35} color={tintColor} />
+        <Icon name={focused ? "ios-search" : "ios-search-outline"} type='ionicon' size={35} color="#AA2200" />
       ),
     },
   },
@@ -62,7 +62,7 @@ export const Tabs = TabNavigator({
       title: 'Notifications',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} type='ionicon' size={35} color={tintColor} />
+        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} type='ionicon' size={35} color="#AA2200" />
       ),
     },
   },
@@ -72,7 +72,7 @@ export const Tabs = TabNavigator({
       title: 'Menu',
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} type='ionicon' size={35} color={tintColor} />
+        <Icon name={focused ? "ios-menu" : "ios-menu-outline"} type='ionicon' size={35} color="#AA2200" />
       ),
     },
   },
@@ -81,6 +81,9 @@ export const Tabs = TabNavigator({
     tabBarPosition: Platform.OS == 'ios' ? 'bottom' : 'top',
     tabBarOptions: {
       showLabel: false,
+      style: {
+        backgroundColor: '#FFF',
+      },
     },
 });
 
@@ -151,4 +154,11 @@ export const Root = StackNavigator({
         title: 'Edit Profile',
       }),
   },
-},);
+},{
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: "#AA2200",
+    },
+    headerTintColor: '#FFF',
+  },
+});

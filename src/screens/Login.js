@@ -35,11 +35,12 @@ class Login extends Component {
             source={require('../assets/images/servicesurfing.png')}
             resizeMode='cover'
             style={{
-              height: 2*window.width/10,
-              width: 2*window.width/10,
+              height: window.width/4,
+              width: window.width/4,
               marginTop: 30,
               borderColor: '#FFF',
-              borderWidth: 2
+              borderWidth: 2,
+              borderRadius: 15
             }}
           />
           <Text style={textStyle}>

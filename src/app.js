@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StatusBar, View } from 'react-native';
 import { Root } from './config/router';
 import firebase from 'firebase';
 
@@ -18,7 +19,10 @@ class App extends Component {
 
   render() {
     return (
+      <View style={{flex: 1}}>
+        <StatusBar barStyle="light-content" />
         <Root />
+      </View>
     );
   }
 };
