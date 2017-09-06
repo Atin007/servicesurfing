@@ -10,7 +10,8 @@ import firebase from 'firebase';
 const window = Dimensions.get("window");
 
 import {
-  Button
+  Button,
+  TextButton
 } from '../components/common';
 
 class Login extends Component {
@@ -63,9 +64,14 @@ class Login extends Component {
           </Button>
         </View>
         <View style={buttonContainer}>
-          <Button buttonColor="#AA2200" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+          <Button buttonColor="#AA2200" onPress={() => { this.props.navigation.navigate('SignInEmail') }}>
             Continue with Email
           </Button>
+        </View>
+        <View style={buttonContainer}>
+          <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUpEmail') }}>
+            New to ServiceSurfing? Sign up.
+          </TextButton>
         </View>
       </ScrollView>
     );

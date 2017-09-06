@@ -5,3 +5,4 @@ export * from './Input';
 export * from './InputDate';
 export * from './Select';
 export * from './Spinner';
+export * from './TextButton';

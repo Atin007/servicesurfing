@@ -92,18 +92,18 @@ export const Root = StackNavigator({
   Login: {
     screen: Login,
     navigationOptions: {
-      title: 'Login',
+      title: 'ServiceSurfing',
       headerLeft: null,
     },
   }, SignUpEmail: {
     screen: SignUpEmail,
     navigationOptions: {
-      title: 'Sign up using Email',
+      title: 'Sign up',
     },
   }, SignInEmail: {
     screen: SignInEmail,
     navigationOptions: {
-      title: 'Login using Email',
+      title: 'Login',
     },
   }, Tabs: {
       screen: Tabs,

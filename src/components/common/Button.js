@@ -1,14 +1,16 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const Button = ({ onPress, children, buttonColor}) => {
+const Button = ({ onPress, children, buttonColor='#AA2200', borderColor='#333', textColor='#333', fontSize=18}) => {
   const { buttonStyle, textStyle } = styles;
   const newStyle = {
-    backgroundColor: buttonColor==undefined ? '#AA2200' : buttonColor,
-    borderColor: buttonColor==undefined || buttonColor =='#FFF' ? '#999999' : buttonColor
+    backgroundColor: buttonColor,
+    borderWidth: buttonColor=='#FFF' ? 1 : 0,
+    borderColor: borderColor
   };
   const newTextStyle = {
-    color: buttonColor=='#FFF' ? '#000' : '#FFF'
+    color: buttonColor!='#FFF' ? '#FFF' : textColor,
+    fontSize: fontSize
   };
 
   return (
@@ -25,18 +27,13 @@ const Button = ({ onPress, children, buttonColor}) => {
 const styles = {
   textStyle: {
     alignSelf: 'center',
-    color: '#FFF',
-    fontSize: 18,
     fontWeight: '600',
     paddingTop: 10,
     paddingBottom: 10
   },
   buttonStyle: {
     flex: 1,
-    backgroundColor: '#AA2200',
-    borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#AA2200',
     marginLeft: 15,
     marginRight: 15,
     marginTop: 15
