@@ -64,12 +64,12 @@ class Login extends Component {
           </Button>
         </View>
         <View style={buttonContainer}>
-          <Button buttonColor="#AA2200" onPress={() => { this.props.navigation.navigate('SignInEmail') }}>
+          <Button buttonColor="#AA2200" onPress={() => { this.props.navigation.navigate('SignIn') }}>
             Continue with Email
           </Button>
         </View>
         <View style={buttonContainer}>
-          <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUpEmail') }}>
+          <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
             New to ServiceSurfing? Sign up.
           </TextButton>
         </View>

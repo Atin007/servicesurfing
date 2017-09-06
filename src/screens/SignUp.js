@@ -15,7 +15,7 @@ import {
 import firebase from 'firebase';
 import { toTitleCase } from '../helpers';
 
-class SignUpEmail extends Component {
+class SignUp extends Component {
   state = {
     firstName: '',
     lastName: '',
@@ -103,4 +103,4 @@ const styles = {
   }
 };
 
-export default SignUpEmail;
+export default SignUp;

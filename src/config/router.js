@@ -20,8 +20,8 @@ import AboutUser from '../screens/AboutUser';
 import UserPhotos from '../screens/UserPhotos';
 import BookAppointment from '../screens/BookAppointment';
 import Appointments from '../screens/Appointments';
-import SignUpEmail from '../screens/SignUpEmail';
-import SignInEmail from '../screens/SignInEmail';
+import SignUp from '../screens/SignUp';
+import SignIn from '../screens/SignIn';
 import EditProfile from '../screens/EditProfile';
 
 // Convert a string to TitleCase
@@ -95,8 +95,8 @@ export const Root = StackNavigator({
       title: 'ServiceSurfing',
       headerLeft: null,
     },
-  }, SignUpEmail: {
-    screen: SignUpEmail,
+  }, SignUp: {
+    screen: SignUp,
     navigationOptions: ({ navigation }) => ({
       title: 'Sign up',
       headerLeft: (
@@ -104,8 +104,8 @@ export const Root = StackNavigator({
           <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.goBack()} />
         </View>),
     }),
-  }, SignInEmail: {
-    screen: SignInEmail,
+  }, SignIn: {
+    screen: SignIn,
     navigationOptions: ({ navigation }) => ({
       title: 'Sign in',
       headerLeft: (

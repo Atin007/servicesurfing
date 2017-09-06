@@ -15,7 +15,7 @@ import {
 import firebase from 'firebase';
 import { toTitleCase } from '../helpers';
 
-class SignInEmail extends Component {
+class SignIn extends Component {
   state = { email: '', password: '', error: '', loading: false };
 
   onButtonPress() {
@@ -80,4 +80,4 @@ const styles = {
   }
 };
 
-export default SignInEmail;
+export default SignIn;
