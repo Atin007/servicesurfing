@@ -46,7 +46,7 @@ class SignIn extends Component {
     return (
       <View>
         <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
-        <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
+        <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('ForgotPassword') }}>
         Forgot Password?
         </TextButton>
       </View>

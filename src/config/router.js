@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Button, Platform } from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { Platform, View } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { NavigationActions, TabBarBottom } from 'react-navigation';
 
@@ -12,6 +12,9 @@ import Menu from '../screens/Menu';
 
 // Screens for the Root Navigator alongside the TabNavigator
 import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
+import SignIn from '../screens/SignIn';
+import ForgotPassword from '../screens/ForgotPassword';
 import UserProfile from '../screens/UserProfile';
 import Friends from '../screens/Friends';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
@@ -20,8 +23,6 @@ import AboutUser from '../screens/AboutUser';
 import UserPhotos from '../screens/UserPhotos';
 import BookAppointment from '../screens/BookAppointment';
 import Appointments from '../screens/Appointments';
-import SignUp from '../screens/SignUp';
-import SignIn from '../screens/SignIn';
 import EditProfile from '../screens/EditProfile';
 
 // Convert a string to TitleCase
@@ -113,6 +114,11 @@ export const Root = StackNavigator({
           <Icon name="cross" type='entypo' size={25} color="#FFF" underlayColor="#AA2200" onPress={() => navigation.navigate('Login')} />
         </View>),
     }),
+  }, ForgotPassword: {
+    screen: ForgotPassword,
+    navigationOptions: {
+      title: 'Forgot Password?',
+    },
   }, Tabs: {
       screen: Tabs,
   }, UserProfile: {
@@ -134,7 +140,7 @@ export const Root = StackNavigator({
       screen: Share,
       navigationOptions: ({ navigation }) => ({
         title: 'Share',
-        headerRight: <Button title="POST" onPress={() => navigation.goBack()} />
+        // headerRight: <Button title="POST" onPress={() => navigation.goBack()} />
       }),
   }, UserPhotos: {
       screen: UserPhotos,
