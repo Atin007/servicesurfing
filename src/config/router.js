@@ -88,8 +88,8 @@ export const Tabs = TabNavigator({
     },
 });
 
-// Root StackNavigator containing all the Screen alongwith Tabs (TabNavigator)
-export const Root = StackNavigator({
+// UserAuth Stack navigator (if the user is not logged in)
+export const UserAuth = StackNavigator({
   Login: {
     screen: Login,
     navigationOptions: {
@@ -119,7 +119,19 @@ export const Root = StackNavigator({
     navigationOptions: {
       title: 'Forgot Password?',
     },
-  }, Tabs: {
+  }
+}, {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#06A0A2",
+      },
+      headerTintColor: '#FFF',
+    },
+});
+
+// Root StackNavigator containing all the Screen alongwith Tabs (TabNavigator) (if the user is logged in)
+export const Root = StackNavigator({
+  Tabs: {
       screen: Tabs,
   }, UserProfile: {
       screen: UserProfile,
@@ -168,11 +180,11 @@ export const Root = StackNavigator({
         title: 'Edit Profile',
       }),
   },
-},{
-  navigationOptions: {
-    headerStyle: {
-      backgroundColor: "#06A0A2",
-    },
-    headerTintColor: '#FFF',
+}, {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#06A0A2",
+      },
+      headerTintColor: '#FFF',
   },
 });

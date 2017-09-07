@@ -19,14 +19,6 @@ class Menu extends Component {
     this.props.navigation.navigate('PrivacyPolicy');
   }
 
-  Logout = () => {
-    firebase.auth().signOut().then(() => {
-      this.props.navigation.navigate('Login');
-    }, function (error) {
-      console.log('Error');
-    });
-  }
-
   toMyFriends = (user) => {
     this.props.navigation.navigate('Friends', {...user});
   }
@@ -83,7 +75,7 @@ class Menu extends Component {
         title: 'Logout',
         icon: 'ios-log-out',
         type: 'ionicon',
-        onPress: () => this.Logout()
+        onPress: () => firebase.auth().signOut()
       }
     ];
   }

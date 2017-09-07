@@ -16,17 +16,6 @@ import {
 
 class Login extends Component {
 
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-        this.props.navigation.navigate('Tabs');
-      } else {
-        this.setState({ loggedIn: false });
-      }
-    });
-  }
-
   render() {
     const { containerStyle, headerStyle, textStyle, textContainer, buttonContainer } = styles;
     return (
@@ -39,8 +28,6 @@ class Login extends Component {
               height: window.width/4,
               width: window.width/4,
               marginTop: 30,
-              borderColor: '#FFF',
-              borderWidth: 2,
               borderRadius: 15
             }}
           />
