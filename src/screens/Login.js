@@ -54,7 +54,7 @@ class Login extends Component {
           </View>
         </View>
         <View style={buttonContainer}>
-          <Button buttonColor="#FFF" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+          <Button buttonColor="#C71610" onPress={() => { this.props.navigation.navigate('Tabs') }}>
             Continue with Google
           </Button>
         </View>

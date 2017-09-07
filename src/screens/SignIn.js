@@ -58,7 +58,7 @@ class SignIn extends Component {
     return (
       <ScrollView style={containerStyle}>
         <View style={{paddingTop: 10, paddingBottom: 35}}>
-        <Button buttonColor="#FFF" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+        <Button buttonColor="#C71610" onPress={() => { this.props.navigation.navigate('Tabs') }}>
           Continue with Google
         </Button>
         <Button buttonColor="#3B5998" onPress={() => { this.props.navigation.navigate('Tabs') }}>
