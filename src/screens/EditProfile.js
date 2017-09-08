@@ -12,6 +12,7 @@ import {
   Select,
   Spinner
 } from '../components/common';
+import firebase from 'firebase';
 
 class EditProfile extends Component {
   state = {
@@ -33,6 +34,50 @@ class EditProfile extends Component {
     work: '',
     modalVisibility: 0
   };
+
+  componentWillMount() {
+    const { currentUser } = firebase.auth();
+
+    firebase.database().ref(`/UserProfile/${currentUser.uid}`)
+      .on('value', (snapshot) => {
+        this.setState(snapshot.val());
+      });
+  }
+
+  onButtonPress() {
+    const { currentUser } = firebase.auth();
+
+    const {
+      email,
+      password,
+      firstName,
+      lastName,
+      description,
+      gender,
+      birthday,
+      country,
+      city,
+      industry,
+      position,
+      hIndex
+    } = this.state;
+
+    this.setState({ error: '', loading: true });
+    var userData = firebase.database().ref(`/UserProfile/${currentUser.uid}`);
+    userData.update(this.state).then(() => {
+      this.setState({ error: '', loading: false });
+    });
+  }
+
+  renderButton() {
+    if (this.state.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>Submit</Button>
+    );
+  }
 
   render() {
 
@@ -149,7 +194,7 @@ class EditProfile extends Component {
             />
           </CardSection>
         </Card>
-        <Button>Save</Button>
+        {this.renderButton()}
       </View>
       </ScrollView>
     );

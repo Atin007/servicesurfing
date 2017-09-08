@@ -13,7 +13,6 @@ import {
   TextButton
 } from '../components/common';
 import firebase from 'firebase';
-import { toTitleCase } from '../helpers';
 
 class SignIn extends Component {
   state = { email: '', password: '', error: '', loading: false };
@@ -58,10 +57,10 @@ class SignIn extends Component {
     return (
       <ScrollView style={containerStyle}>
         <View style={{paddingTop: 10, paddingBottom: 35}}>
-        <Button buttonColor="#C71610" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+        <Button buttonColor="#C71610" onPress={() => {}}>
           Continue with Google
         </Button>
-        <Button buttonColor="#3B5998" onPress={() => { this.props.navigation.navigate('Tabs') }}>
+        <Button buttonColor="#3B5998" onPress={() => {}}>
           Continue with Facebook
         </Button>
         </View>
