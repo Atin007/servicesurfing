@@ -19,19 +19,23 @@ class SignUp extends Component {
   state = {
     firstName: '',
     lastName: '',
-    mail: '',
+    email: '',
+    displayPic: '',
+    coverPic: '',
     password: '',
     error: '',
     loading: false
   };
 
   onButtonPress() {
-    const { firstName, lastName, email, password } = this.state;
+    const { firstName, lastName, email, password, displayPic, coverPic } = this.state;
 
     this.setState({ error: '', loading: true });
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
+        const uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('/UserProfile').child(uid).set({firstName, lastName, email, displayPic, coverPic});
         this.setState({
           firstName: '',
           lastName: '',
@@ -40,7 +44,6 @@ class SignUp extends Component {
           loading: false,
           error: ''
         });
-        this.props.navigation.navigate('SignIn');
       })
       .catch((error) => {
         this.setState({ error: error.code, loading: false });

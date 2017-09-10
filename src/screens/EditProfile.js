@@ -17,17 +17,14 @@ import firebase from 'firebase';
 class EditProfile extends Component {
   state = {
     email: '',
-    password: '',
     firstName: '',
     lastName: '',
-    description: '',
     gender: '',
     birthday: '',
     country: '',
     city: '',
     industry: '',
     position: '',
-    phd: '',
     hIndex: '' ,
     hourlyRate: '',
     education: '',
@@ -47,24 +44,14 @@ class EditProfile extends Component {
   onButtonPress() {
     const { currentUser } = firebase.auth();
 
-    const {
-      email,
-      password,
-      firstName,
-      lastName,
-      description,
-      gender,
-      birthday,
-      country,
-      city,
-      industry,
-      position,
-      hIndex
-    } = this.state;
+    const { email, firstName, lastName, gender, birthday, country, city, industry, position, hIndex } = this.state;
+    const updatedUserData = { email, firstName, lastName, gender, birthday, country, city, industry, position, hIndex };
 
     this.setState({ error: '', loading: true });
+
+
     var userData = firebase.database().ref(`/UserProfile/${currentUser.uid}`);
-    userData.update(this.state).then(() => {
+    userData.update(updatedUserData).then(() => {
       this.setState({ error: '', loading: false });
     });
   }
@@ -87,6 +74,7 @@ class EditProfile extends Component {
         <Card>
           <CardSection>
             <Input
+              editable={false}
               placeholder="john.doe@gmail.com"
               label="Email"
               value={this.state.email}
@@ -95,17 +83,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
-              secureTextEntry
-              placeholder="password"
-              label="Password"
-              value={this.state.password}
-              onChangeText={password => this.setState({ password })}
-            />
-          </CardSection>
-        </Card>
-        <Card>
-          <CardSection>
-            <Input
+              editable={false}
               placeholder="John"
               label="First Name"
               value={this.state.firstName}
@@ -114,21 +92,24 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              editable={false}
               placeholder="Doe"
               label="Last Name"
               value={this.state.lastName}
               onChangeText={lastName => this.setState({ lastName })}
             />
           </CardSection>
+        </Card>
+        <Card>
           <CardSection>
             <Select
               label="Gender"
-              options={["Male", "Female"]}
+              options={["Select", "Male", "Female"]}
               pickerValue={this.state.gender}
               modalVisibility={this.state.modalVisibility==1}
               showModal={()=>{this.setState({modalVisibility: 1})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(gender) => {this.setState({gender: gender})}}
+              onValueChange={(gender) => {if (gender != "Select") {this.setState({gender: gender})} else {this.setState({gender: ''})}}}
             />
           </CardSection>
           <CardSection>
@@ -142,23 +123,23 @@ class EditProfile extends Component {
           <CardSection>
             <Select
               label="Country"
-              options={["Turkey", "United States", "India"]}
+              options={["Select", "Turkey", "United States", "India"]}
               pickerValue={this.state.country}
               modalVisibility={this.state.modalVisibility==2}
               showModal={()=>{this.setState({modalVisibility: 2})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(country) => {this.setState({country: country})}}
+              onValueChange={(country) => {if (country != "Select") {this.setState({country: country})} else {this.setState({country: ''})}}}
             />
           </CardSection>
           <CardSection>
             <Select
               label="City"
-              options={["Ankara", "Istanbul", "Newyork", "Chicago", "Boston", "Delhi", "Bangalore", "Pune"]}
+              options={["Select", "Ankara", "Istanbul", "Newyork", "Chicago", "Boston", "Delhi", "Bangalore", "Pune"]}
               pickerValue={this.state.city}
               modalVisibility={this.state.modalVisibility==3}
               showModal={()=>{this.setState({modalVisibility: 3})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(city) => {this.setState({city: city})}}
+              onValueChange={(city) => {if (city != "Select") {this.setState({city: city})} else {this.setState({city: ''})}}}
             />
           </CardSection>
         </Card>
@@ -166,23 +147,23 @@ class EditProfile extends Component {
           <CardSection>
             <Select
               label="Industry"
-              options={["Agriculture", "Accounting", "Engineering", "Teaching", "Medical", "Law", "Sales and Marketing"]}
+              options={["Select", "Agriculture", "Accounting", "Engineering", "Teaching", "Medical", "Law", "Sales and Marketing"]}
               pickerValue={this.state.industry}
               modalVisibility={this.state.modalVisibility==4}
               showModal={()=>{this.setState({modalVisibility: 4})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(industry) => {this.setState({industry: industry})}}
+              onValueChange={(industry) => {if (industry != "Select") {this.setState({industry: industry})} else {this.setState({industry: ''})}}}
             />
           </CardSection>
           <CardSection>
             <Select
               label="Position"
-              options={["Farmer", "Accountant", "Engineer", "Teacher", "Doctor", "Lawyer", "Marketing Director"]}
+              options={["Select", "Farmer", "Accountant", "Engineer", "Teacher", "Doctor", "Lawyer", "Marketing Director"]}
               pickerValue={this.state.position}
               modalVisibility={this.state.modalVisibility==5}
               showModal={()=>{this.setState({modalVisibility: 5})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(position) => {this.setState({position: position})}}
+              onValueChange={(position) => {if (position != "Select") {this.setState({position: position})} else {this.setState({position: ''})}}}
             />
           </CardSection>
           <CardSection>
