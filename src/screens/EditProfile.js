@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
+  Text,
   View
  } from 'react-native';
 import {
   Button,
   Card,
   CardSection,
+  CardTitle,
   Input,
   InputDate,
   Select,
@@ -23,12 +25,21 @@ class EditProfile extends Component {
     birthday: '',
     country: '',
     city: '',
+    institution: '',
+    startWork: '',
+    endWork: '',
     industry: '',
     position: '',
+    university: '',
+    faculty: '',
+    startUniv: '',
+    endUniv: '',
+    phd: 'false',
     hIndex: '' ,
     hourlyRate: '',
-    education: '',
-    work: '',
+    currency: '',
+    satisfactionScore: '',
+    lastUpdated: '',
     modalVisibility: 0
   };
 
@@ -44,11 +55,13 @@ class EditProfile extends Component {
   onButtonPress() {
     const { currentUser } = firebase.auth();
 
-    const { email, firstName, lastName, gender, birthday, country, city, industry, position, hIndex } = this.state;
-    const updatedUserData = { email, firstName, lastName, gender, birthday, country, city, industry, position, hIndex };
+    const lastUpdated = new Date().toLocaleString();
+
+    const { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore } = this.state;
+
+    const updatedUserData = { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore, lastUpdated };
 
     this.setState({ error: '', loading: true });
-
 
     var userData = firebase.database().ref(`/UserProfile/${currentUser.uid}`);
     userData.update(updatedUserData).then(() => {
@@ -68,10 +81,15 @@ class EditProfile extends Component {
 
   render() {
 
+    const { footerStyle } = styles;
+
     return (
       <ScrollView>
       <View style={{flex: 1, marginBottom: 10}}>
         <Card>
+          <CardSection>
+            <CardTitle label="Profile Info" />
+          </CardSection>
           <CardSection>
             <Input
               editable={false}
@@ -101,6 +119,9 @@ class EditProfile extends Component {
           </CardSection>
         </Card>
         <Card>
+          <CardSection>
+            <CardTitle label="Basic Info" />
+          </CardSection>
           <CardSection>
             <Select
               label="Gender"
@@ -145,6 +166,33 @@ class EditProfile extends Component {
         </Card>
         <Card>
           <CardSection>
+            <CardTitle label="Work" />
+          </CardSection>
+          <CardSection>
+            <Input
+              placeholder=""
+              label="Institution"
+              value={this.state.institution}
+              onChangeText={institution => this.setState({ institution })}
+            />
+          </CardSection>
+          <CardSection>
+            <InputDate
+              placeholder="DD-MM-YYYY"
+              label="Start Date"
+              date={this.state.startWork}
+              onDateChange={(startWork) => {this.setState({startWork: startWork})}}
+            />
+          </CardSection>
+          <CardSection>
+            <InputDate
+              placeholder="DD-MM-YYYY"
+              label="End Date"
+              date={this.state.endWork}
+              onDateChange={(endWork) => {this.setState({endWork: endWork})}}
+            />
+          </CardSection>
+          <CardSection>
             <Select
               label="Industry"
               options={["Select", "Agriculture", "Accounting", "Engineering", "Teaching", "Medical", "Law", "Sales and Marketing"]}
@@ -166,6 +214,48 @@ class EditProfile extends Component {
               onValueChange={(position) => {if (position != "Select") {this.setState({position: position})} else {this.setState({position: ''})}}}
             />
           </CardSection>
+        </Card>
+        <Card>
+          <CardSection>
+            <CardTitle label="Education" />
+          </CardSection>
+          <CardSection>
+            <Input
+              placeholder=""
+              label="University"
+              value={this.state.university}
+              onChangeText={university => this.setState({ university })}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+              placeholder=""
+              label="Faculty"
+              value={this.state.faculty}
+              onChangeText={faculty => this.setState({ faculty })}
+            />
+          </CardSection>
+          <CardSection>
+            <InputDate
+              placeholder="DD-MM-YYYY"
+              label="Start Date"
+              date={this.state.startUniv}
+              onDateChange={(startUniv) => {this.setState({startUniv: startUniv})}}
+            />
+          </CardSection>
+          <CardSection>
+            <InputDate
+              placeholder="DD-MM-YYYY"
+              label="End Date"
+              date={this.state.endUniv}
+              onDateChange={(endUniv) => {this.setState({endUniv: endUniv})}}
+            />
+          </CardSection>
+        </Card>
+        <Card>
+          <CardSection>
+            <CardTitle label="Price Info" />
+          </CardSection>
           <CardSection>
             <Input
               placeholder="10"
@@ -174,13 +264,54 @@ class EditProfile extends Component {
               onChangeText={hIndex => this.setState({ hIndex })}
             />
           </CardSection>
+          <CardSection>
+            <Input
+              placeholder="10"
+              label="Hourly Rate"
+              value={this.state.hourlyRate}
+              onChangeText={hourlyRate => this.setState({ hourlyRate })}
+            />
+          </CardSection>
+          <CardSection>
+            <Select
+              label="Currency"
+              options={["Select", "TRY", "USD", "INR"]}
+              pickerValue={this.state.currency}
+              modalVisibility={this.state.modalVisibility==6}
+              showModal={()=>{this.setState({modalVisibility: 6})}}
+              hideModal={()=>{this.setState({modalVisibility: 0})}}
+              onValueChange={(currency) => {if (currency != "Select") {this.setState({currency: currency})} else {this.setState({currency: ''})}}}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+              placeholder="10"
+              label="Satisfaction Score"
+              value={this.state.satisfactionScore}
+              editable={false}
+            />
+          </CardSection>
         </Card>
         {this.renderButton()}
+        <Text style={footerStyle}>
+          Last updated on {this.state.lastUpdated}
+        </Text>
       </View>
       </ScrollView>
     );
   }
 
 }
+
+const styles = {
+  footerStyle: {
+    color: '#333',
+    fontSize: 12,
+    textAlign: 'center',
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15
+  }
+};
 
 export default EditProfile;

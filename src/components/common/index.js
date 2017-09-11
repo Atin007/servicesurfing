@@ -1,6 +1,7 @@
 export * from './Button';
 export * from './Card';
 export * from './CardSection';
+export * from './CardTitle';
 export * from './Input';
 export * from './InputDate';
 export * from './Select';
