@@ -2,6 +2,8 @@ export * from './Button';
 export * from './Card';
 export * from './CardSection';
 export * from './CardTitle';
+export * from './CoverPic';
+export * from './DisplayPic';
 export * from './Input';
 export * from './InputDate';
 export * from './Select';
