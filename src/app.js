@@ -5,7 +5,7 @@ import { Spinner } from './components/common';
 import firebase from 'firebase';
 
 class App extends Component {
-  state = { loggedIn: null };
+  state = { loggedIn: null, user: null, userID: null };
 
   componentWillMount() {
     firebase.initializeApp({
@@ -19,6 +19,9 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        this.setState({userID: user.uid})
+        firebase.database().ref(`/UserProfile/${user.uid}`)
+          .on('value', snapshot => this.setState({user: snapshot.val()}));
         this.setState({ loggedIn: true });
       } else {
         this.setState({ loggedIn: false });
@@ -29,7 +32,7 @@ class App extends Component {
   renderContent() {
     switch (this.state.loggedIn) {
       case true:
-        return <Root />;
+        return <Root screenProps={{user: this.state.user, userID: this.state.userID}} />;
       case false:
         return <UserAuth />;
       default:
