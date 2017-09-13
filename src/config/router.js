@@ -136,7 +136,7 @@ export const Root = StackNavigator({
   }, UserProfile: {
       screen: UserProfile,
       navigationOptions: ({ navigation }) => ({
-        title: `${toTitleCase(navigation.state.params.name.first)} ${toTitleCase(navigation.state.params.name.last)}`,
+        title: navigation.state.params.title,
       }),
   }, Friends: {
       screen: Friends,
@@ -150,35 +150,34 @@ export const Root = StackNavigator({
       },
   }, Share: {
       screen: Share,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: 'Share',
-        // headerRight: <Button title="POST" onPress={() => navigation.goBack()} />
-      }),
+      },
   }, UserPhotos: {
       screen: UserPhotos,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: 'Photos',
-      }),
+      },
   }, AboutUser: {
       screen: AboutUser,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: 'About',
-      }),
+      },
   }, BookAppointment: {
       screen: BookAppointment,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: 'Book an Appointment',
-      }),
+      },
   }, Appointments: {
       screen: Appointments,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: 'My Appointments',
-      }),
+      },
   }, EditProfile: {
       screen: EditProfile,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: 'Edit Profile',
-      }),
+      },
   },
 }, {
     navigationOptions: {

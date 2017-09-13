@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import firebase from 'firebase';
 import { Icon } from 'react-native-elements';
 import { CoverPic, DisplayPic, TextButton, Spinner } from '../components/common';
-
 import Posts from '../components/Posts';
-import { posts, me } from '../config/data';
 import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
 
 class UserProfile extends Component {
-  state = { userID: '', user: '', profileID: '', profile: '' };
+  state = { profile: null, edit: null, loading: null };
 
   componentWillMount() {
-    const { user, userID } = this.props.screenProps;
-    this.setState({user: user, userID: userID});
-    this.setState({profileID: userID, profile: user});
+    this.setState({loading: true, profile: null});
+
+    const { currentUser } = firebase.auth();
+    const { profileID } = this.props.navigation.state.params;
+    this.setState({edit: currentUser.uid == profileID ? true : false});
+    this.setState({edit: false});
+    
+    firebase.database().ref(`/UserProfile/${profileID}`)
+      .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
   }
 
-  renderIcons(edit) {
+  renderIcons() {
     const { iconContainerStyle } = styles;
 
-    if (edit.edit) {
+    if (this.state.edit) {
       return (
         <TextButton fontSize={12} buttonColor={'#1563A0'} onPress={() => this.props.navigation.navigate('EditProfile')}>
           Edit Profile
@@ -34,28 +39,28 @@ class UserProfile extends Component {
             name='ios-calendar-outline'
             type='ionicon'
             color='#333'
-            onPress={() => this.requestAppointment(user)}
+            onPress={() => {}}
             size={30}
             containerStyle={iconContainerStyle} />
           <Icon
             name='ios-person-add-outline'
             type='ionicon'
             color='#333'
-            onPress={() => console.log('hello')}
+            onPress={() => {}}
             size={35}
             containerStyle={iconContainerStyle} />
           <Icon
             name='ios-chatbubbles-outline'
             type='ionicon'
             color='#333'
-            onPress={() => console.log('hello')}
+            onPress={() => {}}
             size={28}
             containerStyle={iconContainerStyle} />
           <Icon
             name='md-more'
             type='ionicon'
             color='#333'
-            onPress={() => console.log('hello')}
+            onPress={() => {}}
             size={31}
             containerStyle={iconContainerStyle} />
         </View>
@@ -115,9 +120,8 @@ class UserProfile extends Component {
 
   renderContent() {
     const { topContainer, dpContainer, profileTitleStyle, actionIconContainer, profileSummaryStyle, actionButtonContainer, buttonStyle } = styles;
-    const edit = this.props.navigation.state.params;
 
-    if (this.state.profile) {
+    if (!this.state.loading) {
       return (
         <ScrollView>
           <View style={topContainer}>
@@ -129,7 +133,7 @@ class UserProfile extends Component {
               </Text>
             </View>
             <View style={actionIconContainer}>
-              {this.renderIcons(edit)}
+              {this.renderIcons()}
             </View>
           </View>
           <View style={profileSummaryStyle}>
@@ -158,13 +162,15 @@ class UserProfile extends Component {
         </ScrollView>
       );
     } else {
-        <Spinner size="large" />
+        return (
+          <Spinner size="large" />
+        );
     }
   }
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         {this.renderContent()}
       </View>
     );

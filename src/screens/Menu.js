@@ -11,41 +11,27 @@ import { users, me } from '../config/data';
 
 class Menu extends Component {
 
-  toMyProfile = (user, edit) => {
-    this.props.navigation.navigate('UserProfile', { ...user, ...edit });
-  };
-
-  toPrivacyPolicy = () => {
-    this.props.navigation.navigate('PrivacyPolicy');
-  }
-
-  toMyFriends = (user) => {
-    this.props.navigation.navigate('Friends', {...user});
-  }
-
-  toMyAppointments = (user) => {
-    this.props.navigation.navigate('Appointments', {...user});
-  }
-
   componentWillMount() {
+
+    const { currentUser } = firebase.auth();
     this.list = [
       {
         title: 'View Profile',
         icon: 'ios-contact',
         type: 'ionicon',
-        onPress: () => this.toMyProfile(me, {edit: true})
+        onPress: () => this.props.navigation.navigate('UserProfile', {profileID: currentUser.uid})
       },
       {
         title: 'Friends',
         icon: 'ios-contacts',
         type: 'ionicon',
-        onPress: () => this.toMyFriends(me)
+        onPress: () => this.props.navigation.navigate('Friends', {...me})
       },
       {
         title: 'Appointments',
         icon: 'ios-calendar',
         type: 'ionicon',
-        onPress: () => this.toMyAppointments(me)
+        onPress: () => this.props.navigation.navigate('Appointments', {...me})
       },
       {
         title: 'Help Center',
@@ -57,7 +43,7 @@ class Menu extends Component {
         title: 'Privacy Policy',
         icon: 'ios-paper',
         type: 'ionicon',
-        onPress: () => this.toPrivacyPolicy()
+        onPress: () => this.props.navigation.navigate('PrivacyPolicy')
       },
       {
         title: 'Report a Problem',
