@@ -16,8 +16,7 @@ class UserProfile extends Component {
     const { currentUser } = firebase.auth();
     const { profileID } = this.props.navigation.state.params;
     this.setState({edit: currentUser.uid == profileID ? true : false});
-    this.setState({edit: false});
-    
+
     firebase.database().ref(`/UserProfile/${profileID}`)
       .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
   }
@@ -120,14 +119,16 @@ class UserProfile extends Component {
 
   renderContent() {
     const { topContainer, dpContainer, profileTitleStyle, actionIconContainer, profileSummaryStyle, actionButtonContainer, buttonStyle } = styles;
-
+    const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
+    const defaultCoverPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/antalya.jpg?alt=media&token=6069a6b6-d4e6-4f00-a474-e95a4ab438d5';
+    
     if (!this.state.loading) {
       return (
         <ScrollView>
           <View style={topContainer}>
-            <CoverPic source="" window={window} />
+            <CoverPic source={this.state.profile.coverPic || defaultCoverPic} window={window} />
             <View style={dpContainer}>
-              <DisplayPic source={{uri: this.state.profile.displayPic}} window={window} />
+              <DisplayPic source={this.state.profile.displayPic || defaultDisplayPic} window={window} />
               <Text style={profileTitleStyle}>
                 {toTitleCase(this.state.profile.firstName)} {toTitleCase(this.state.profile.lastName)}
               </Text>

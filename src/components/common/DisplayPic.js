@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 
 const DisplayPic = ({ source, window }) => {
   const displayPicStyle =  {
@@ -16,11 +16,13 @@ const DisplayPic = ({ source, window }) => {
   };
 
   return (
-    <Image
-      source={source}
-      resizeMode='cover'
-      style={displayPicStyle}
-    />
+    <View style={{backgroundColor: '#ddd'}}>
+      <Image
+        source={{uri: source}}
+        resizeMode='cover'
+        style={displayPicStyle}
+      />
+    </View>
   );
 };
 

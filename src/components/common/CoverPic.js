@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 
 const CoverPic = ({ source, window }) => {
   const coverPicStyle =  {
@@ -8,11 +8,13 @@ const CoverPic = ({ source, window }) => {
   };
 
   return (
-    <Image
-      source={require("/Users/mathuratin/Desktop/projects/code-repo/servicesurfing/src/assets/images/antalya.jpg")}
-      resizeMode='cover'
-      style={coverPicStyle}
-    />
+    <View style={{backgroundColor: '#ddd'}}>
+      <Image
+        source={{uri: source}}
+        resizeMode='cover'
+        style={coverPicStyle}
+      />
+    </View>
   );
 };
 
