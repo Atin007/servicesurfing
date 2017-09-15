@@ -6,6 +6,7 @@ export * from './CoverPic';
 export * from './DisplayPic';
 export * from './Input';
 export * from './InputDate';
+export * from './SearchBar';
 export * from './Select';
 export * from './Spinner';
 export * from './TextButton';
