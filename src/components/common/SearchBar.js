@@ -43,7 +43,7 @@ const styles = {
     marginRight: 15
   },
   inputStyle: {
-    color: '#333',
+    color: '#06A0A2',
     flex: 1,
     fontSize: 16,
     lineHeight: 21,
