@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, TextInput, View } from 'react-native';
-import { SearchBar } from '../components/common';
+import { List, ListItem, SearchBar } from '../components/common';
 import firebase from 'firebase';
 
 class Search extends Component {
@@ -35,21 +35,17 @@ class Search extends Component {
             onChangeText={searchText => this.setState({'searchText': searchText})}
             onChange={this.handleChange(this.UsersRef)}
           />
-          <View style={{backgroundColor: '#FFF'}}>
+          <List>
             {this.searchResults.map((user, i) => (
-              <View key={i} style={{flexDirection: 'row', padding: 5, borderBottomWidth: 1, justifyContent: 'flex-start', borderColor: '#ddd'}}>
+              <ListItem key={i}>
                 <Text>{user.firstName} {user.lastName}</Text>
-              </View>
+              </ListItem>
             ))}
-          </View>
+          </List>
         </View>
       </ScrollView>
     );
   }
 }
-
-const styles = {
-
-};
 
 export default Search;
