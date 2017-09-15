@@ -1,11 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 const ListItem = (props) => {
   return (
-    <View style={styles.containerStyle}>
-      {props.children}
-    </View>
+    <TouchableOpacity onPress={props.onPress} activeOpacity={0.7}>
+      <View style={styles.containerStyle}>
+        {props.children}
+      </View>
+    </TouchableOpacity>
   );
 };
 
