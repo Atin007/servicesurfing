@@ -1,44 +1,68 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  ScrollView
-} from 'react-native';
-import { List, ListItem, SearchBar } from 'react-native-elements';
+import { ScrollView, Text, View } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import { List, ListItem, SearchBar } from '../components/common';
+import firebase from 'firebase';
 
 import { users } from '../config/data';
 import { toTitleCase} from '../helpers';
 
 class Friends extends Component {
-  onLearnMore = (user) => {
-    this.props.navigation.navigate('UserProfile', { ...user });
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchText: ''
+    };
+    this.UsersRef = firebase.database().ref("/UserProfile");
+    this.searchResults = [];
+    this.resultKeys = [];
+  }
+
+  handleChange(UsersRef) {
+    this.searchResults = [];
+    this.resultKeys = [];
+    UsersRef.orderByKey().on("child_added", snapshot => {
+      name = snapshot.val().firstName + ' ' + snapshot.val().lastName;
+      if (name.indexOf(this.state.searchText) >= 0) {
+        this.searchResults = [ ...this.searchResults, snapshot.val() ];
+        this.resultKeys = [ ...this.resultKeys, snapshot.key];
+      }
+    });
+  }
 
   render() {
-    return (
-      <View>
-        <View>
-          <SearchBar
-            lightTheme
-            placeholder="Search"
-          />
-        </View>
+      const { textStyle } = styles;
+      const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
+      return (
         <ScrollView>
-          <List containerStyle={{marginTop: 0}}>
-            {users.map((user) => (
-              <ListItem
-                key={user.login.username}
-                roundAvatar
-                avatar={{ uri: user.picture.thumbnail }}
-                title={`${toTitleCase(user.name.first)} ${toTitleCase(user.name.last)}`}
-                onPress={() => this.onLearnMore(user)}
-              />
-            ))}
-          </List>
+          <View style={{flex: 1}}>
+            <SearchBar
+              placeholder="Start typing..."
+              searchText={this.state.searchText}
+              onChangeText={searchText => this.setState({'searchText': searchText})}
+              onChange={this.handleChange(this.UsersRef)}
+            />
+            <List>
+              {this.searchResults.map((user, i) => (
+                <ListItem key={i} onPress={() => this.props.navigation.navigate('UserProfile', {profileID: this.resultKeys[i]})}>
+                  <Avatar small rounded source={{uri:user.displayPic || defaultDisplayPic}} />
+                  <Text style={textStyle}>{user.firstName} {user.lastName}</Text>
+                </ListItem>
+              ))}
+            </List>
+          </View>
         </ScrollView>
-      </View>
-    );
+      );
   }
 }
+
+const styles = {
+  textStyle: {
+    alignSelf: 'center',
+    color:'#333',
+    fontSize: 16,
+    marginLeft: 10
+  }
+};
 
 export default Friends;
