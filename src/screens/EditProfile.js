@@ -69,6 +69,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder="John"
               label="First Name"
               value={this.state.firstName}
@@ -77,6 +78,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder="Doe"
               label="Last Name"
               value={this.state.lastName}
@@ -136,6 +138,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder=""
               label="Institution"
               value={this.state.institution}
@@ -171,6 +174,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder=""
               label="Position"
               value={this.state.position}
@@ -195,6 +199,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder=""
               label="Faculty"
               value={this.state.faculty}
@@ -224,6 +229,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              keyboardType="numeric"
               placeholder="10"
               label="H-Index"
               value={this.state.hIndex}
@@ -232,6 +238,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              keyboardType="numeric"
               placeholder="10"
               label="Hourly Rate"
               value={this.state.hourlyRate}
