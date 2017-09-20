@@ -15,6 +15,7 @@ const SearchBar = ({ placeholder, searchText, onChangeText, onChange, filter=fal
         <Icon name="search" type='font-awesome' size={20} color="#ddd" />
       </View>
       <TextInput
+        autoCapitalize="words"
         placeholder={placeholder}
         autoCorrect={false}
         style={inputStyle}

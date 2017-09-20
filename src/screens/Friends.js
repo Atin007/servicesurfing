@@ -4,9 +4,6 @@ import { Avatar } from 'react-native-elements';
 import { List, ListItem, SearchBar } from '../components/common';
 import firebase from 'firebase';
 
-import { users } from '../config/data';
-import { toTitleCase} from '../helpers';
-
 class Friends extends Component {
   constructor(props) {
     super(props);
