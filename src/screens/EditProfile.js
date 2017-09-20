@@ -1,47 +1,15 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  Text,
-  View
- } from 'react-native';
-import {
-  Button,
-  Card,
-  CardSection,
-  CardTitle,
-  Input,
-  InputDate,
-  Select,
-  Spinner
-} from '../components/common';
+import { ScrollView, Text, View } from 'react-native';
+import { Button, Card, CardSection, CardTitle, Input, InputDate, Select, Spinner } from '../components/common';
 import firebase from 'firebase';
+import { Countries, CitiesByCountry, Currencies, Industries, Universities } from '../choices';
 
 class EditProfile extends Component {
-  state = {
-    email: '',
-    firstName: '',
-    lastName: '',
-    gender: '',
-    birthday: '',
-    country: '',
-    city: '',
-    institution: '',
-    startWork: '',
-    endWork: '',
-    industry: '',
-    position: '',
-    university: '',
-    faculty: '',
-    startUniv: '',
-    endUniv: '',
-    phd: 'false',
-    hIndex: '' ,
-    hourlyRate: '',
-    currency: '',
-    satisfactionScore: '',
-    lastUpdated: '',
-    modalVisibility: 0
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: 'false', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', lastUpdated: '', modalVisibility: 0 };
+  }
 
   componentWillMount() {
     const { currentUser } = firebase.auth();
@@ -101,7 +69,6 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
-              editable={false}
               placeholder="John"
               label="First Name"
               value={this.state.firstName}
@@ -110,7 +77,6 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
-              editable={false}
               placeholder="Doe"
               label="Last Name"
               value={this.state.lastName}
@@ -144,18 +110,18 @@ class EditProfile extends Component {
           <CardSection>
             <Select
               label="Country"
-              options={["Select", "Turkey", "United States", "India"]}
+              options={Countries}
               pickerValue={this.state.country}
               modalVisibility={this.state.modalVisibility==2}
               showModal={()=>{this.setState({modalVisibility: 2})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(country) => {if (country != "Select") {this.setState({country: country})} else {this.setState({country: ''})}}}
+              onValueChange={(country) => {this.setState({city: ''}); if (country != "Select") {this.setState({country: country})} else {this.setState({country: ''})}}}
             />
           </CardSection>
           <CardSection>
             <Select
               label="City"
-              options={["Select", "Ankara", "Istanbul", "Newyork", "Chicago", "Boston", "Delhi", "Bangalore", "Pune"]}
+              options={CitiesByCountry[this.state.country]}
               pickerValue={this.state.city}
               modalVisibility={this.state.modalVisibility==3}
               showModal={()=>{this.setState({modalVisibility: 3})}}
@@ -195,7 +161,7 @@ class EditProfile extends Component {
           <CardSection>
             <Select
               label="Industry"
-              options={["Select", "Agriculture", "Accounting", "Engineering", "Teaching", "Medical", "Law", "Sales and Marketing"]}
+              options={Industries}
               pickerValue={this.state.industry}
               modalVisibility={this.state.modalVisibility==4}
               showModal={()=>{this.setState({modalVisibility: 4})}}
@@ -204,14 +170,11 @@ class EditProfile extends Component {
             />
           </CardSection>
           <CardSection>
-            <Select
+            <Input
+              placeholder=""
               label="Position"
-              options={["Select", "Farmer", "Accountant", "Engineer", "Teacher", "Doctor", "Lawyer", "Marketing Director"]}
-              pickerValue={this.state.position}
-              modalVisibility={this.state.modalVisibility==5}
-              showModal={()=>{this.setState({modalVisibility: 5})}}
-              hideModal={()=>{this.setState({modalVisibility: 0})}}
-              onValueChange={(position) => {if (position != "Select") {this.setState({position: position})} else {this.setState({position: ''})}}}
+              value={this.state.position}
+              onChangeText={position => this.setState({ position })}
             />
           </CardSection>
         </Card>
@@ -220,11 +183,14 @@ class EditProfile extends Component {
             <CardTitle label="Education" />
           </CardSection>
           <CardSection>
-            <Input
-              placeholder=""
+            <Select
               label="University"
-              value={this.state.university}
-              onChangeText={university => this.setState({ university })}
+              options={Universities}
+              pickerValue={this.state.university}
+              modalVisibility={this.state.modalVisibility==5}
+              showModal={()=>{this.setState({modalVisibility: 5})}}
+              hideModal={()=>{this.setState({modalVisibility: 0})}}
+              onValueChange={(university) => {if (university != "Select") {this.setState({university: university})} else {this.setState({university: ''})}}}
             />
           </CardSection>
           <CardSection>
@@ -275,7 +241,7 @@ class EditProfile extends Component {
           <CardSection>
             <Select
               label="Currency"
-              options={["Select", "TRY", "USD", "INR"]}
+              options={Currencies}
               pickerValue={this.state.currency}
               modalVisibility={this.state.modalVisibility==6}
               showModal={()=>{this.setState({modalVisibility: 6})}}
