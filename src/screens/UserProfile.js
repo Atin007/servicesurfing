@@ -4,7 +4,6 @@ import firebase from 'firebase';
 import { Icon } from 'react-native-elements';
 import { CoverPic, DisplayPic, TextButton, Spinner } from '../components/common';
 import Posts from '../components/Posts';
-import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
 
 class UserProfile extends Component {
@@ -121,7 +120,7 @@ class UserProfile extends Component {
     const { topContainer, dpContainer, profileTitleStyle, actionIconContainer, profileSummaryStyle, actionButtonContainer, buttonStyle } = styles;
     const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
     const defaultCoverPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/antalya.jpg?alt=media&token=6069a6b6-d4e6-4f00-a474-e95a4ab438d5';
-    
+
     if (!this.state.loading) {
       return (
         <ScrollView>
@@ -130,7 +129,7 @@ class UserProfile extends Component {
             <View style={dpContainer}>
               <DisplayPic source={this.state.profile.displayPic || defaultDisplayPic} window={window} />
               <Text style={profileTitleStyle}>
-                {toTitleCase(this.state.profile.firstName)} {toTitleCase(this.state.profile.lastName)}
+                {this.state.profile.firstName} {this.state.profile.lastName}
               </Text>
             </View>
             <View style={actionIconContainer}>

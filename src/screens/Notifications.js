@@ -7,7 +7,7 @@ import {
 import { List, ListItem } from 'react-native-elements';
 
 import { notifications } from '../config/data';
-import { toTitleCase} from '../helpers';
+// import { toTitleCase} from '../helpers';
 
 class Notifications extends Component {
 
@@ -20,7 +20,7 @@ class Notifications extends Component {
               key={notification.id}
               roundAvatar
               avatar={{ uri: notification.picture.thumbnail }}
-              title={`${toTitleCase(notification.name.first)} ${toTitleCase(notification.name.last)} has sent you ${notification.type}`}
+              // title={`${toTitleCase(notification.name.first)} ${toTitleCase(notification.name.last)} has sent you ${notification.type}`}
               hideChevron
               titleNumberOfLines={2}
             />

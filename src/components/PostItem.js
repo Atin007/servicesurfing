@@ -16,7 +16,7 @@ import {
   Button
  } from 'react-native-elements';
 
-import { toTitleCase } from '../helpers';
+// import { toTitleCase } from '../helpers';
 const window = Dimensions.get("window");
 
 class PostItem extends Component {
@@ -33,7 +33,7 @@ class PostItem extends Component {
           />
           <View style={{padding: 10}}>
             <Text>
-              {`${toTitleCase(post.name.first)} ${toTitleCase(post.name.last)}`}
+              {/* {`${toTitleCase(post.name.first)} ${toTitleCase(post.name.last)}`} */}
             </Text>
           </View>
         </View>
