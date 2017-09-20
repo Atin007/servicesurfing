@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dimensions, Picker, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 
-const Select = ({ label, options, pickerValue, modalVisibility, hideModal, showModal, onValueChange}) => {
+const Select = ({ label, options=[], pickerValue, modalVisibility, hideModal, showModal, onValueChange}) => {
     const { buttonStyle, buttonTextStyle, doneButtonStyle, pickerStyle, modalStyle, modalBoxStyle, containerStyle, labelStyle } = styles;
 
     return (

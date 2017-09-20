@@ -1,35 +1,16 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  Text,
-  View
-} from 'react-native';
-import {
-  Button,
-  Card,
-  CardSection,
-  Input,
-  Spinner,
-  TextButton
-} from '../components/common';
+import { ScrollView, Text, View } from 'react-native';
+import { Button, Card, CardSection, Input, Spinner, TextButton } from '../components/common';
 import firebase from 'firebase';
-import { toTitleCase } from '../helpers';
 
 class SignUp extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    displayPic: '',
-    coverPic: '',
-    password: '',
-    error: '',
-    loading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { firstName: '', lastName: '', email: '', displayPic: '', coverPic: '', password: '', error: '', loading: false };
+  }
 
   onButtonPress() {
     const { firstName, lastName, email, password, displayPic, coverPic } = this.state;
-
     this.setState({ error: '', loading: true });
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -83,6 +64,7 @@ class SignUp extends Component {
         <Card>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder="John"
               label="First Name"
               value={this.state.firstName}
@@ -91,6 +73,7 @@ class SignUp extends Component {
           </CardSection>
           <CardSection>
             <Input
+              autoCapitalize="words"
               placeholder="Doe"
               label="Last Name"
               value={this.state.lastName}
@@ -99,6 +82,7 @@ class SignUp extends Component {
           </CardSection>
           <CardSection>
             <Input
+              keyboardType="email-address"
               placeholder="john.doe@gmail.com"
               label="Email"
               value={this.state.email}

@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  Text,
-  View
-} from 'react-native';
-import {
-  Button,
-  Card,
-  CardSection,
-  Input,
-  Spinner,
-  TextButton
-} from '../components/common';
+import { ScrollView, Text, View } from 'react-native';
+import { Button, Card, CardSection, Input, Spinner, TextButton } from '../components/common';
 import firebase from 'firebase';
 
 class SignIn extends Component {
-  state = { email: '', password: '', error: '', loading: false };
+  constructor(props) {
+    super(props);
+    this.state = { email: '', password: '', error: '', loading: false };
+  }
 
   onButtonPress() {
     const { email, password } = this.state;
-
     this.setState({ error: '', loading: true });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -30,7 +21,6 @@ class SignIn extends Component {
           loading: false,
           error: ''
         });
-        this.props.navigation.navigate('Tabs');
       })
       .catch((error) => {
         this.setState({ error: error.code, loading: false });
@@ -70,6 +60,7 @@ class SignIn extends Component {
         <Card>
           <CardSection>
             <Input
+              keyboardType="email-address"
               placeholder="john.doe@gmail.com"
               label="Email"
               value={this.state.email}
