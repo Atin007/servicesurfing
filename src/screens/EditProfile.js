@@ -228,7 +228,19 @@ class EditProfile extends Component {
             <CardTitle label="Price Info" />
           </CardSection>
           <CardSection>
+            <Select
+              label="Phd"
+              options={["Select", "Yes", "No"]}
+              pickerValue={this.state.phd}
+              modalVisibility={this.state.modalVisibility==6}
+              showModal={()=>{this.setState({modalVisibility: 6})}}
+              hideModal={()=>{this.setState({modalVisibility: 0})}}
+              onValueChange={(phd) => {if (phd != "Select") {this.setState({phd: phd})} else {this.setState({phd: ""})}}}
+            />
+          </CardSection>
+          <CardSection>
             <Input
+              editable={this.state.phd=="Yes" ? true : false}
               keyboardType="numeric"
               placeholder="10"
               label="H-Index"
@@ -250,8 +262,8 @@ class EditProfile extends Component {
               label="Currency"
               options={Currencies}
               pickerValue={this.state.currency}
-              modalVisibility={this.state.modalVisibility==6}
-              showModal={()=>{this.setState({modalVisibility: 6})}}
+              modalVisibility={this.state.modalVisibility==7}
+              showModal={()=>{this.setState({modalVisibility: 7})}}
               hideModal={()=>{this.setState({modalVisibility: 0})}}
               onValueChange={(currency) => {if (currency != "Select") {this.setState({currency: currency})} else {this.setState({currency: ''})}}}
             />

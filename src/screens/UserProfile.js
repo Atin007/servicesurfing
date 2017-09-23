@@ -138,7 +138,7 @@ class UserProfile extends Component {
             {this.state.profile.position || this.state.profile.industry ? this.renderSummary("Industry") : null}
             {this.state.profile.institution ? this.renderSummary("Work") : null}
             {this.state.profile.faculty || this.state.profile.university ? this.renderSummary("Education") : null}
-            {this.state.profile.phd=="true" ? this.renderSummary("Phd") : null}
+            {this.state.profile.phd=="Yes" ? this.renderSummary("Phd") : null}
             {this.state.profile.satisfactionScore ? this.renderSummary("Score") : null}
             {this.state.profile.hourlyRate || this.state.profile.currency ? this.renderSummary("Price") : null}
           </View>

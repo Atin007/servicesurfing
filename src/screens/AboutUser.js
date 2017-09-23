@@ -189,7 +189,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Phd"
-                value={this.state.phd=="true" ? "Phd - " + this.state.hIndex : "No"}
+                value={this.state.phd=="Yes" ? "Phd (H-index: " + this.state.hIndex + ")" : "No"}
               />
             </CardSection>
             <CardSection>
