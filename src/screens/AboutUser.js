@@ -1,42 +1,224 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
-import { Card } from 'react-native-elements';
-import { toTitleCase } from '../helpers';
+import { ScrollView, Text, View } from 'react-native';
+import { Card, CardSection, CardTitle, Input, Spinner } from '../components/common';
+import firebase from 'firebase';
 
 class AboutUser extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    const { profile } = this.props.navigation.state.params;
+    this.setState(profile);
+  }
 
   render() {
-    const user = this.props.navigation.state.params;
-
     return (
       <ScrollView>
-        <Card>
-          <View>
-            <Text style={{fontSize: 15, fontWeight: 'bold', paddingBottom: 10}}>ABOUT</Text>
-            <Text style={{padding: 5}}>Name: {toTitleCase(user.name.first)} {toTitleCase(user.name.last)}</Text>
-            <Text style={{padding: 5}}>City: {toTitleCase(user.location.city)}</Text>
-            <Text style={{padding: 5}}>State: {toTitleCase(user.location.state)}</Text>
-            <Text style={{padding: 5}}>Projects: 0</Text>
-          </View>
-        </Card>
-        <Card>
-          <View>
-            <Text style={{fontSize: 15, fontWeight: 'bold', paddingBottom: 10}}>WORK</Text>
-            <Text style={{padding: 5}}>No Work Experience to display</Text>
-          </View>
-        </Card>
-        <Card>
-          <View>
-            <Text style={{fontSize: 15, fontWeight: 'bold', paddingBottom: 10}}>EDUCATION</Text>
-            <Text style={{padding: 5}}>No Educational qualifications to display</Text>
-          </View>
-        </Card>
-        <Card>
-          <View>
-            <Text style={{fontSize: 15, fontWeight: 'bold', paddingBottom: 10}}>PROJECTS</Text>
-            <Text style={{padding: 5}}>No Projects to display</Text>
-          </View>
-        </Card>
+        <View style={{flex: 1, marginBottom: 10}}>
+          <Card>
+            <CardSection>
+              <CardTitle label="Profile Info" />
+            </CardSection>
+            <CardSection>
+              <Input
+                editable={false}
+                placeholder=""
+                label="Email"
+                value={this.state.email}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="First Name"
+                value={this.state.firstName}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Last Name"
+                value={this.state.lastName}
+              />
+            </CardSection>
+          </Card>
+          <Card>
+            <CardSection>
+              <CardTitle label="Basic Info" />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Gender"
+                value={this.state.gender}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Birthday"
+                value={this.state.birthday}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Country"
+                value={this.state.country}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="City"
+                value={this.state.city}
+              />
+            </CardSection>
+          </Card>
+          <Card>
+            <CardSection>
+              <CardTitle label="Work" />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Institution"
+                value={this.state.institution}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Start Date"
+                value={this.state.startWork}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="End Date"
+                value={this.state.endWork}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Industry"
+                value={this.state.industry}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Position"
+                value={this.state.position}
+              />
+            </CardSection>
+          </Card>
+          <Card>
+            <CardSection>
+              <CardTitle label="Education" />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="University"
+                value={this.state.university}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Faculty"
+                value={this.state.faculty}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Start Date"
+                value={this.state.startUniv}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="End Date"
+                value={this.state.endUniv}
+              />
+            </CardSection>
+          </Card>
+          <Card>
+            <CardSection>
+              <CardTitle label="Price Info" />
+            </CardSection>
+            <CardSection>
+              <Input
+                editable={false}
+                placeholder=""
+                label="Phd"
+                value={this.state.phd=="true" ? "Phd - " + this.state.hIndex : "No"}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                editable={false}
+                placeholder=""
+                label="Hourly Rate"
+                value={this.state.hourlyRate}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                autoCapitalize="words"
+                editable={false}
+                placeholder=""
+                label="Currency"
+                value={this.state.currency}
+              />
+            </CardSection>
+            <CardSection>
+              <Input
+                editable={false}
+                placeholder=""
+                label="Satisfaction Score"
+                value={this.state.satisfactionScore}
+              />
+            </CardSection>
+          </Card>
+        </View>
       </ScrollView>
     );
   }

@@ -44,7 +44,7 @@ class Search extends Component {
           />
           <List>
             {this.searchResults.map((user, i) => (
-              <ListItem key={i} onPress={() => this.props.navigation.navigate('UserProfile', {profileID: this.resultKeys[i]})}>
+              <ListItem key={i} onPress={() => this.props.navigation.navigate('UserProfile', {profileID: this.resultKeys[i], title: user.firstName + ' ' + user.lastName})}>
                 <Avatar small rounded source={{uri:user.displayPic || defaultDisplayPic}} />
                 <Text style={textStyle}>{user.firstName} {user.lastName}</Text>
               </ListItem>

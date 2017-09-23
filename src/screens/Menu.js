@@ -19,7 +19,7 @@ class Menu extends Component {
         title: 'View Profile',
         icon: 'ios-contact',
         type: 'ionicon',
-        onPress: () => this.props.navigation.navigate('UserProfile', {profileID: currentUser.uid})
+        onPress: () => this.props.navigation.navigate('UserProfile', {profileID: currentUser.uid, title: 'My Profile'})
       },
       {
         title: 'Friends',

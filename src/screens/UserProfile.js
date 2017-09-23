@@ -7,13 +7,17 @@ import Posts from '../components/Posts';
 const window = Dimensions.get("window");
 
 class UserProfile extends Component {
-  state = { profile: null, edit: null, loading: null };
+  constructor(props) {
+    super(props);
+    this.state = { edit: null, loading: null, profile: null, profileID: null };
+  }
 
   componentWillMount() {
     this.setState({loading: true, profile: null});
 
     const { currentUser } = firebase.auth();
     const { profileID } = this.props.navigation.state.params;
+    this.setState({profileID: profileID});
     this.setState({edit: currentUser.uid == profileID ? true : false});
 
     firebase.database().ref(`/UserProfile/${profileID}`)
@@ -37,7 +41,7 @@ class UserProfile extends Component {
             name='ios-calendar-outline'
             type='ionicon'
             color='#333'
-            onPress={() => {}}
+            onPress={() => {this.props.navigation.navigate('BookAppointment', {profileID: this.state.profileID})}}
             size={30}
             containerStyle={iconContainerStyle} />
           <Icon
@@ -53,13 +57,6 @@ class UserProfile extends Component {
             color='#333'
             onPress={() => {}}
             size={28}
-            containerStyle={iconContainerStyle} />
-          <Icon
-            name='md-more'
-            type='ionicon'
-            color='#333'
-            onPress={() => {}}
-            size={31}
             containerStyle={iconContainerStyle} />
         </View>
       );
@@ -147,13 +144,13 @@ class UserProfile extends Component {
           </View>
           <View style={actionButtonContainer}>
             <View style={buttonStyle}>
-              <TextButton>ABOUT</TextButton>
+              <TextButton onPress={() => this.props.navigation.navigate('AboutUser', {profile: this.state.profile})}>ABOUT</TextButton>
             </View>
             <View style={buttonStyle}>
-              <TextButton>PHOTOS</TextButton>
+              <TextButton onPress={() => this.props.navigation.navigate('UserPhotos', {profileID: this.state.profileID})}>PHOTOS</TextButton>
             </View>
             <View style={buttonStyle}>
-              <TextButton>FRIENDS</TextButton>
+              <TextButton onPress={() => this.props.navigation.navigate('Friends', {profileID: this.state.profileID})}>FRIENDS</TextButton>
             </View>
           </View>
           <View style={{marginBottom: 10}}>
@@ -202,8 +199,8 @@ const styles = {
     paddingRight: 5
   },
   iconContainerStyle: {
-    paddingLeft: 25,
-    paddingRight: 25
+    paddingLeft: 35,
+    paddingRight: 35
   },
   profileSummaryStyle: {
     backgroundColor: '#FFF',
