@@ -41,7 +41,7 @@ class UserProfile extends Component {
             name='ios-calendar-outline'
             type='ionicon'
             color='#333'
-            onPress={() => {this.props.navigation.navigate('BookAppointment', {profileID: this.state.profileID})}}
+            onPress={() => {this.props.navigation.navigate('BookAppointment', {profileID: this.state.profileID, profile: this.state.profile})}}
             size={30}
             containerStyle={iconContainerStyle} />
           <Icon
