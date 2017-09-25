@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { List, ListItem } from '../components/common';
 import firebase from 'firebase';
@@ -45,11 +45,9 @@ class Menu extends Component {
       <ScrollView>
         <List>
           {this.MenuList.map((item, i) => (
-            <ListItem key={i}>
+            <ListItem key={i} onPress={item.onPress}>
               <Icon name={item.icon} type={item.type} size={22} color="#999" />
-              <TouchableOpacity onPress={item.onPress} activeOpacity={0.5}>
-                <Text style={textStyle}>{item.title}</Text>
-              </TouchableOpacity>
+              <Text style={textStyle}>{item.title}</Text>
             </ListItem>
           ))}
         </List>
