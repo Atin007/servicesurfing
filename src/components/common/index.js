@@ -9,6 +9,7 @@ export * from './InputDate';
 export * from './InputTime'
 export * from './List';
 export * from './ListItem';
+export * from './PostItem';
 export * from './SearchBar';
 export * from './Select';
 export * from './Spinner';

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
-import firebase from 'firebase';
+import { CoverPic, DisplayPic, Spinner, TextButton } from '../components/common';
 import { Icon } from 'react-native-elements';
-import { CoverPic, DisplayPic, TextButton, Spinner } from '../components/common';
-import Posts from '../components/Posts';
+import firebase from 'firebase';
 const window = Dimensions.get("window");
 
 class UserProfile extends Component {
@@ -154,7 +153,6 @@ class UserProfile extends Component {
             </View>
           </View>
           <View style={{marginBottom: 10}}>
-            <Posts />
           </View>
         </ScrollView>
       );

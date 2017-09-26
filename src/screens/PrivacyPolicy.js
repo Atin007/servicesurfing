@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-
 import { Card } from 'react-native-elements';
-
-import { privacyPolicy } from '../config/data';
 
 class PrivacyPolicy extends Component {
 
@@ -11,7 +8,7 @@ class PrivacyPolicy extends Component {
     return (
       <ScrollView>
         <Card>
-          <Text style={{textAlign: 'justify'}}>{privacyPolicy.text}</Text>
+          <Text style={{textAlign: 'justify'}}>Here is the PrivacyPolicy</Text>
         </Card>
       </ScrollView>
     );

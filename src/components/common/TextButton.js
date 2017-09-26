@@ -1,12 +1,13 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const TextButton = ({ onPress, children, buttonColor="#333", fontSize=16}) => {
+const TextButton = ({ onPress, children, buttonColor="#333", fontSize=16, fontWeight="300"}) => {
   const { textStyle } = styles;
 
   const newTextStyle = {
     color: buttonColor,
-    fontSize: fontSize
+    fontSize: fontSize,
+    fontWeight: fontWeight
   };
 
   return (
@@ -21,7 +22,6 @@ const TextButton = ({ onPress, children, buttonColor="#333", fontSize=16}) => {
 const styles = {
   textStyle: {
     alignSelf: 'center',
-    fontWeight: '600',
     paddingTop: 10,
     paddingBottom: 10
   }
