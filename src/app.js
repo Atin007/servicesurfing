@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar, View } from 'react-native';
-import { Root, UserAuth } from './config/router';
+import { Root, UserAuth } from './router';
 import { Spinner } from './components/common';
 import firebase from 'firebase';
 

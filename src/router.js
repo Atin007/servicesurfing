@@ -5,25 +5,25 @@ import { Icon } from 'react-native-elements';
 import { NavigationActions, TabBarBottom } from 'react-navigation';
 
 // Screens for the Tab Navigator
-import Home from '../screens/Home';
-import Search from '../screens/Search';
-import Notifications from '../screens/Notifications';
-import Menu from '../screens/Menu';
+import Home from './screens/Home';
+import Search from './screens/Search';
+import Notifications from './screens/Notifications';
+import Menu from './screens/Menu';
 
 // Screens for the Root Navigator alongside the TabNavigator
-import Login from '../screens/Login';
-import SignUp from '../screens/SignUp';
-import SignIn from '../screens/SignIn';
-import ForgotPassword from '../screens/ForgotPassword';
-import UserProfile from '../screens/UserProfile';
-import Friends from '../screens/Friends';
-import PrivacyPolicy from '../screens/PrivacyPolicy';
-import Share from '../screens/Share';
-import AboutUser from '../screens/AboutUser';
-import UserPhotos from '../screens/UserPhotos';
-import BookAppointment from '../screens/BookAppointment';
-import Appointments from '../screens/Appointments';
-import EditProfile from '../screens/EditProfile';
+import Login from './screens/Login';
+import SignUp from './screens/SignUp';
+import SignIn from './screens/SignIn';
+import ForgotPassword from './screens/ForgotPassword';
+import UserProfile from './screens/UserProfile';
+import Friends from './screens/Friends';
+import PrivacyPolicy from './screens/PrivacyPolicy';
+import Share from './screens/Share';
+import AboutUser from './screens/AboutUser';
+import UserPhotos from './screens/UserPhotos';
+import BookAppointment from './screens/BookAppointment';
+import Appointments from './screens/Appointments';
+import EditProfile from './screens/EditProfile';
 
 // Tab Navigator with 4 tabs (Home, Search, Notifications, Menu)
 export const Tabs = TabNavigator({
