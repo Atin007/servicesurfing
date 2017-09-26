@@ -10,7 +10,6 @@ import {
   Avatar,
   Card
  } from 'react-native-elements';
-// import { me } from '../config/data';
 
 class Share extends Component {
 

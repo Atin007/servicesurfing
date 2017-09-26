@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  Text,
-  View
-   } from 'react-native';
+import { Dimensions, Image, ScrollView, Text, View } from 'react-native';
+import { Button, TextButton } from '../components/common';
 import firebase from 'firebase';
 const window = Dimensions.get("window");
-
-import {
-  Button,
-  TextButton
-} from '../components/common';
 
 class Login extends Component {
 
@@ -37,7 +27,7 @@ class Login extends Component {
           <View style={textContainer}>
             <Text style={textStyle}>Hire Professionals around the world</Text>
             <Text style={textStyle}>Share articles, videos and images</Text>
-            <Text style={textStyle}>Invite your facebook friends</Text>
+            <Text style={textStyle}>Invite your Friends</Text>
           </View>
         </View>
         <View style={buttonContainer}>

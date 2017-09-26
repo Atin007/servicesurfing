@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { Card } from 'react-native-elements';
+import { ScrollView, Text, View } from 'react-native';
 
 class PrivacyPolicy extends Component {
 
   render() {
     return (
       <ScrollView>
-        <Card>
-          <Text style={{textAlign: 'justify'}}>Here is the PrivacyPolicy</Text>
-        </Card>
       </ScrollView>
     );
   }
