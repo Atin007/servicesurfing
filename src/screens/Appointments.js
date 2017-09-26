@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
-
 import Swiper from 'react-native-swiper';
-
 import { users } from '../config/data';
-import { toTitleCase} from '../helpers';
 
 class Appointments extends Component {
 

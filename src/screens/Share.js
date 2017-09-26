@@ -10,11 +10,7 @@ import {
   Avatar,
   Card
  } from 'react-native-elements';
-
 import { me } from '../config/data';
-
-// Convert a string to TitleCase
-import { toTitleCase } from '../helpers';
 
 class Share extends Component {
 

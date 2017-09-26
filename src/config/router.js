@@ -25,9 +25,6 @@ import BookAppointment from '../screens/BookAppointment';
 import Appointments from '../screens/Appointments';
 import EditProfile from '../screens/EditProfile';
 
-// Convert a string to TitleCase
-import { toTitleCase } from '../helpers';
-
 // Tab Navigator with 4 tabs (Home, Search, Notifications, Menu)
 export const Tabs = TabNavigator({
   Home: {
