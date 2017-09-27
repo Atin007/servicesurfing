@@ -7,7 +7,7 @@ import { NavigationActions, TabBarBottom } from 'react-navigation';
 // Screens for the Tab Navigator
 import Home from './screens/Home';
 import Search from './screens/Search';
-import Notifications from './screens/Notifications';
+import Messages from './screens/Messages';
 import Menu from './screens/Menu';
 
 // Screens for the Root Navigator alongside the TabNavigator
@@ -25,20 +25,12 @@ import BookAppointment from './screens/BookAppointment';
 import Appointments from './screens/Appointments';
 import EditProfile from './screens/EditProfile';
 
-// Tab Navigator with 4 tabs (Home, Search, Notifications, Menu)
+// Tab Navigator with 4 tabs (Home, Search, Messages, Menu)
 export const Tabs = TabNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
       title: 'Home',
-      headerLeft: (
-        <View style={{paddingLeft: 15}}>
-          <Icon name="camera" type='entypo' size={22} color="#FFF" onPress={null} />
-        </View>),
-      headerRight: (
-        <View style={{paddingRight: 15}}>
-          <Icon name="message" type='entypo' size={24} color="#FFF" onPress={null} />
-        </View>),
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon name={focused ? "ios-home" : "ios-home-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
@@ -48,19 +40,17 @@ export const Tabs = TabNavigator({
     screen: Search,
     navigationOptions: {
       title: 'Search',
-      headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon name={focused ? "ios-search" : "ios-search-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
     },
   },
-  Notifications: {
-    screen: Notifications,
+  Messages: {
+    screen: Messages,
     navigationOptions: {
-      title: 'Notifications',
-      headerLeft: null,
+      title: 'Messages',
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name={focused ? "ios-notifications" : "ios-notifications-outline"} type='ionicon' size={35} color="#06A0A2" />
+        <Icon name={focused ? "ios-mail" : "ios-mail-outline"} type='ionicon' size={40} color="#06A0A2" />
       ),
     },
   },
@@ -68,7 +58,6 @@ export const Tabs = TabNavigator({
     screen: Menu,
     navigationOptions: {
       title: 'Menu',
-      headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon name={focused ? "ios-menu" : "ios-menu-outline"} type='ionicon' size={35} color="#06A0A2" />
       ),
