@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView, TextInput, Dimensions, TouchableHighlight } from 'react-native';
-import { Button, Card, CardSection, TextButton } from './';
-import { Avatar} from 'react-native-elements';
+import { Dimensions, Image, Text, TextInput, View } from 'react-native';
+import { Button, Card, TextButton } from './';
+import { Avatar } from 'react-native-elements';
 const window = Dimensions.get("window");
 
-const PostItem = ({userID, avatarImage, userName, postText="", onPress}) => {
+const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', onPress, postLikes=0, postComments=0}) => {
+  const { postContainerStyle, postTextStyle, lineStyle, imageContainerStyle } = styles;
+
   return (
     <Card>
-      <CardSection>
-        <View style={{flex: 1, flexDirection:'row', height: 40, alignItems: 'center'}}>
+      <View style={postContainerStyle}>
+        <View style={lineStyle}>
           <View style={{padding: 10}}>
             <Avatar small source={{uri: avatarImage}} onPress={onPress} />
           </View>
@@ -16,79 +18,49 @@ const PostItem = ({userID, avatarImage, userName, postText="", onPress}) => {
             <TextButton onPress={onPress}>{userName}</TextButton>
           </View>
         </View>
-      </CardSection>
-      <CardSection>
-        <Text>{postText}</Text>
-      </CardSection>
+        <View style={lineStyle}>
+          <Text style={postTextStyle}>{postText}</Text>
+        </View>
+        {postImageURL=='' ? <View></View> : <View style={imageContainerStyle}><Image
+          source={{uri: postImageURL}}
+          resizeMode='cover'
+          style={{width: null, height: 0.5*window.width}}
+        /></View>}
+        <View style={lineStyle}>
+          <Text style={postTextStyle}>{postLikes} Likes</Text>
+          <Text style={postTextStyle}>{postComments} Comments</Text>
+        </View>
+      </View>
     </Card>
   );
 };
 
-export { PostItem };
+const styles = {
+  postContainerStyle: {
+    backgroundColor: '#FFF',
+    padding: 5,
+    position: 'relative'
+  },
+  lineStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 40,
+    alignItems: 'center'
+  },
+  imageContainerStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+    backgroundColor: '#ddd'
+  },
+  postTextStyle: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    fontSize: 16
+  }
+}
 
-//
-// <View style={{flex: 1, flexDirection: 'row'}}>
-//   <Avatar
-//     small
-//     source={{uri: post.picture.thumbnail}}
-//   />
-//   <View style={{padding: 10}}>
-//     <Text>
-//       {/* {`${toTitleCase(post.name.first)} ${toTitleCase(post.name.last)}`} */}
-//     </Text>
-//   </View>
-// </View>
-// <View style={{flex: 1, paddingTop: 10, paddingBottom: 10}}>
-//   <Image
-//     source={post.image}
-//     resizeMode='cover'
-//     style={{width: null, height: 0.5*window.width}}
-//   />
-//   <Text style={{paddingTop: 10}}>{post.caption}</Text>
-// </View>
-// <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-//   <TouchableHighlight>
-//     <Text style={{
-//       paddingRight: 10,
-//       color: '#999999'
-//     }}>
-//       11 Likes
-//     </Text>
-//   </TouchableHighlight>
-//   <TouchableHighlight>
-//     <Text style={{
-//       paddingLeft: 5,
-//       color: '#999999'
-//     }}>
-//       5 Comments
-//     </Text>
-//   </TouchableHighlight>
-// </View>
-// <View style={{
-//   flexDirection: 'row',
-//   flex: 1,
-//   paddingTop: 15,
-//   justifyContent: 'space-around',
-//   alignItems: 'center'
-// }}>
-//   <TouchableHighlight underlayColor="#FFF" onPress={() => {console.log('hello')}}>
-//     <Text style={{
-//       fontSize: 16,
-//       fontWeight: 'bold',
-//       paddingRight: 10,
-//       color: '#000'
-//     }}>
-//       Like
-//     </Text>
-//   </TouchableHighlight>
-//   <TouchableHighlight underlayColor="#FFF" onPress={() => {console.log('hello')}}>
-//     <Text style={{
-//       fontSize: 16,
-//       fontWeight: 'bold',
-//       paddingLeft: 10,
-//       color: '#000'
-//     }}>
-//       Comment
-//     </Text>
-//   </TouchableHighlight>
-// </View>
+export { PostItem };

@@ -23,7 +23,7 @@ class Home extends Component {
       userLastName: 'Mathur',
       userDisplayPic: '',
       postText: 'I am feeling happy today',
-      postImageURL: '',
+      postImageURL: 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/antalya.jpg?alt=media&token=6069a6b6-d4e6-4f00-a474-e95a4ab438d5',
       likes: 10,
       comments: 20
     }];
@@ -55,6 +55,8 @@ class Home extends Component {
                 avatarImage={post.userDisplayPic || defaultDisplayPic}
                 userName={post.userFirstName + ' ' + post.userLastName}
                 onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
+                postText={post.postText}
+                postImageURL={post.postImageURL}
               />
             ))}
           </ScrollView>
