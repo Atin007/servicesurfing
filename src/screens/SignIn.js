@@ -79,7 +79,7 @@ class SignIn extends Component {
         </Card>
         {this.renderButton()}
         <Text style={footerStyle}>
-          By logging in you agree to ServiceSurfing's Terms of Service, Privacy Policy, Cookie policy and Content Policies
+          By logging in you agree to ServiceSurfing's Terms of Service and Privacy Policy
         </Text>
       </ScrollView>
     );
