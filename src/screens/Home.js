@@ -14,7 +14,7 @@ class Home extends Component {
     this.setState({loading: true, profile: null});
     const { currentUser } = firebase.auth();
 
-    firebase.database().ref(`/UserProfile/${currentUser.uid}`)
+    firebase.database().ref(`/UserProfiles/${currentUser.uid}`)
       .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
 
     this.posts = [{

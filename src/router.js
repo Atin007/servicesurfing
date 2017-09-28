@@ -17,7 +17,6 @@ import SignIn from './screens/SignIn';
 import ForgotPassword from './screens/ForgotPassword';
 import UserProfile from './screens/UserProfile';
 import Friends from './screens/Friends';
-import PrivacyPolicy from './screens/PrivacyPolicy';
 import Share from './screens/Share';
 import AboutUser from './screens/AboutUser';
 import UserPhotos from './screens/UserPhotos';
@@ -134,11 +133,6 @@ export const Root = StackNavigator({
       screen: Friends,
       navigationOptions: {
         title: 'Friends',
-      },
-  }, PrivacyPolicy: {
-      screen: PrivacyPolicy,
-      navigationOptions: {
-        title: 'Privacy Policy',
       },
   }, Share: {
       screen: Share,

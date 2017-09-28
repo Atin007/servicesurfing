@@ -16,7 +16,7 @@ class SignUp extends Component {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
         const uid = firebase.auth().currentUser.uid;
-        firebase.database().ref('/UserProfile').child(uid).set({firstName, lastName, email, displayPic, coverPic});
+        firebase.database().ref('/UserProfiles').child(uid).set({firstName, lastName, email, displayPic, coverPic});
         this.setState({
           firstName: '',
           lastName: '',

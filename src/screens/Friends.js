@@ -10,7 +10,7 @@ class Friends extends Component {
     this.state = {
       searchText: ''
     };
-    this.UsersRef = firebase.database().ref("/UserProfile");
+    this.UsersRef = firebase.database().ref("/UserProfiles");
     this.searchResults = [];
     this.resultKeys = [];
   }

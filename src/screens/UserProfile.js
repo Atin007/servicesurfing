@@ -19,7 +19,7 @@ class UserProfile extends Component {
     this.setState({profileID: profileID});
     this.setState({edit: currentUser.uid == profileID ? true : false});
 
-    firebase.database().ref(`/UserProfile/${profileID}`)
+    firebase.database().ref(`/UserProfiles/${profileID}`)
       .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
   }
 

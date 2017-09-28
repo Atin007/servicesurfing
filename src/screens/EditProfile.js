@@ -8,21 +8,18 @@ class EditProfile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: 'false', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', lastUpdated: '', modalVisibility: 0 };
+    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: '', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', lastUpdated: '', modalVisibility: 0 };
   }
 
   componentWillMount() {
     const { currentUser } = firebase.auth();
-
-    firebase.database().ref(`/UserProfile/${currentUser.uid}`)
-      .on('value', (snapshot) => {
-        this.setState(snapshot.val());
-      });
+    this.UserRef = firebase.database().ref(`/UserProfiles/${currentUser.uid}`);
+    this.UserRef.on('value', (snapshot) => {
+      this.setState(snapshot.val());
+    });
   }
 
   onButtonPress() {
-    const { currentUser } = firebase.auth();
-
     const lastUpdated = new Date().toLocaleString();
 
     const { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore } = this.state;
@@ -31,8 +28,7 @@ class EditProfile extends Component {
 
     this.setState({ error: '', loading: true });
 
-    var userData = firebase.database().ref(`/UserProfile/${currentUser.uid}`);
-    userData.update(updatedUserData).then(() => {
+    this.UserRef.update(updatedUserData).then(() => {
       this.setState({ error: '', loading: false });
     });
   }
@@ -279,7 +275,7 @@ class EditProfile extends Component {
         </Card>
         {this.renderButton()}
         <Text style={footerStyle}>
-          Last updated on {this.state.lastUpdated}
+          {this.state.lastUpdated!='' ? `Last updated on ${this.state.lastUpdated}` : ''}
         </Text>
       </View>
       </ScrollView>
