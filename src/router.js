@@ -24,6 +24,7 @@ import UserPhotos from './screens/UserPhotos';
 import BookAppointment from './screens/BookAppointment';
 import Appointments from './screens/Appointments';
 import EditProfile from './screens/EditProfile';
+import PDFView from './screens/PDFView';
 
 // Tab Navigator with 4 tabs (Home, Search, Messages, Menu)
 export const Tabs = TabNavigator({
@@ -105,7 +106,12 @@ export const UserAuth = StackNavigator({
     navigationOptions: {
       title: 'Forgot Password?',
     },
-  }
+  }, PDFScreen: {
+      screen: PDFView,
+      navigationOptions: ({ navigation }) => ({
+        title: navigation.state.params.title,
+      }),
+  },
 }, {
     navigationOptions: {
       headerStyle: {
@@ -164,6 +170,11 @@ export const Root = StackNavigator({
       navigationOptions: {
         title: 'Edit Profile',
       },
+  }, PDFView: {
+      screen: PDFView,
+      navigationOptions: ({ navigation }) => ({
+        title: navigation.state.params.title,
+      }),
   },
 }, {
     navigationOptions: {

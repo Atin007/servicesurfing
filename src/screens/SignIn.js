@@ -43,7 +43,11 @@ class SignIn extends Component {
   }
 
   render() {
-    const { containerStyle, textStyle, footerStyle } = styles;
+    const { containerStyle, textStyle, footerStyle, hyperlinkStyle } = styles;
+
+    this.ToS = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/ToS.pdf?alt=media&token=11c14fcb-caf8-4184-865c-664294ee7969';
+    this.PP = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/PP.pdf?alt=media&token=e7aa68ae-aa26-4743-9781-b4eb1ac28d77';
+
     return (
       <ScrollView style={containerStyle}>
         <View style={{paddingTop: 10, paddingBottom: 35}}>
@@ -79,7 +83,7 @@ class SignIn extends Component {
         </Card>
         {this.renderButton()}
         <Text style={footerStyle}>
-          By logging in you agree to ServiceSurfing's Terms of Service and Privacy Policy
+          By logging in you agree to ServiceSurfing's <Text style={hyperlinkStyle} onPress={() => this.props.navigation.navigate('PDFScreen', {fileURL: this.ToS, title: 'Terms of Service'})}>Terms of Service</Text> and <Text style={hyperlinkStyle} onPress={() => this.props.navigation.navigate('PDFScreen', {fileURL: this.PP, title: 'Privacy Policy'})}>Privacy Policy</Text>
         </Text>
       </ScrollView>
     );
@@ -106,6 +110,9 @@ const styles = {
     marginLeft: 15,
     marginRight: 15,
     marginTop: 15
+  },
+  hyperlinkStyle: {
+    textDecorationLine: 'underline'
   }
 };
 
