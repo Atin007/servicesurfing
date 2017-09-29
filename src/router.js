@@ -25,6 +25,9 @@ import Appointments from './screens/Appointments';
 import EditProfile from './screens/EditProfile';
 import PDFView from './screens/PDFView';
 
+// Verify User screen
+import VerifyUser from './screens/VerifyUser';
+
 // Tab Navigator with 4 tabs (Home, Search, Messages, Menu)
 export const Tabs = TabNavigator({
   Home: {
@@ -73,6 +76,23 @@ export const Tabs = TabNavigator({
       },
     },
 });
+
+// For showing VerifyUser screen
+export const VerifyUserAuth = StackNavigator({
+  VerifyUser: {
+    screen: VerifyUser,
+    navigationOptions: {
+      title: 'ServiceSurfing',
+    },
+  },
+}, {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#06A0A2",
+      },
+      headerTintColor: '#FFF',
+    },
+})
 
 // UserAuth Stack navigator (if the user is not logged in)
 export const UserAuth = StackNavigator({

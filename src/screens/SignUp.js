@@ -13,9 +13,22 @@ class SignUp extends Component {
     const { firstName, lastName, email, password, displayPic, coverPic } = this.state;
     this.setState({ error: '', loading: true });
 
+    if ( firstName == '' || lastName == '') {
+      this.setState({error: 'Empty First Name or Last Name', loading: false});
+      return;
+    }
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
-        const uid = firebase.auth().currentUser.uid;
+        this.currentUser = firebase.auth().currentUser;
+        this.currentUser.updateProfile({
+          displayName: firstName + ' ' + lastName
+        });
+        this.currentUser.sendEmailVerification()
+          .then(() => {
+            // Email Sent
+        });
+        const uid = this.currentUser.uid;
         firebase.database().ref('/UserProfiles').child(uid).set({firstName, lastName, email, displayPic, coverPic});
         this.setState({
           firstName: '',

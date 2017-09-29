@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { StatusBar, View } from 'react-native';
-import { Root, UserAuth } from './router';
+import { Root, UserAuth, VerifyUserAuth } from './router';
 import { Spinner } from './components/common';
 import firebase from 'firebase';
 
 class App extends Component {
-  state = { loggedIn: null };
+  state = { loggedIn: null, emailVerified: null };
 
   componentWillMount() {
     firebase.initializeApp({
@@ -19,7 +19,7 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ loggedIn: true });
+        this.setState({ loggedIn: true, emailVerified: user.emailVerified });
       } else {
         this.setState({ loggedIn: false });
       }
@@ -29,7 +29,7 @@ class App extends Component {
   renderContent() {
     switch (this.state.loggedIn) {
       case true:
-        return <Root />;
+        return this.state.emailVerified ? <Root /> : <VerifyUserAuth />;
       case false:
         return <UserAuth />;
       default:
