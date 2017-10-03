@@ -14,3 +14,4 @@ export * from './SearchBar';
 export * from './Select';
 export * from './Spinner';
 export * from './TextButton';
+export * from './ThumbnailImage';

@@ -11,7 +11,7 @@ class Menu extends Component {
 
   componentWillMount() {
     const { currentUser } = firebase.auth();
-    
+
     this.ToS = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/ToS.pdf?alt=media&token=11c14fcb-caf8-4184-865c-664294ee7969';
     this.PP = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/PP.pdf?alt=media&token=e7aa68ae-aa26-4743-9781-b4eb1ac28d77';
 
@@ -20,7 +20,7 @@ class Menu extends Component {
         title: 'View Profile',
         icon: 'ios-contact',
         type: 'ionicon',
-        onPress: () => this.props.navigation.navigate('UserProfile', {profileID: currentUser.uid, title: 'My Profile'})
+        onPress: () => this.props.navigation.navigate('UserProfile', {profileID: currentUser.uid, title: currentUser.displayName})
       },
       {
         title: 'Friends',
