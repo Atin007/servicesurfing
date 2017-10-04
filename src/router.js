@@ -21,6 +21,7 @@ import Share from './screens/Share';
 import AboutUser from './screens/AboutUser';
 import UserPhotos from './screens/UserPhotos';
 import BookAppointment from './screens/BookAppointment';
+import ChatView from './screens/ChatView';
 import Appointments from './screens/Appointments';
 import EditProfile from './screens/EditProfile';
 import PDFView from './screens/PDFView';
@@ -133,6 +134,7 @@ export const UserAuth = StackNavigator({
   },
 }, {
     navigationOptions: {
+      headerBackTitle: 'Back',
       headerStyle: {
         backgroundColor: "#06A0A2",
       },
@@ -174,6 +176,11 @@ export const Root = StackNavigator({
       navigationOptions: {
         title: 'Book an Appointment',
       },
+  }, ChatView: {
+      screen: ChatView,
+      navigationOptions: ({ navigation }) => ({
+        title: navigation.state.params.title,
+      }),
   }, Appointments: {
       screen: Appointments,
       navigationOptions: {
@@ -192,6 +199,7 @@ export const Root = StackNavigator({
   },
 }, {
     navigationOptions: {
+      headerBackTitle: 'Back',
       headerStyle: {
         backgroundColor: "#06A0A2",
       },
