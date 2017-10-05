@@ -10,8 +10,16 @@ class ForgotPassword extends Component {
   }
 
   onButtonPress() {
-    const { email } = this.state;
-    this.setState({ error: '', loading: true });
+    if(this.state.email != '') {
+      this.setState({ error: '', loading: true });
+      var auth = firebase.auth();
+      auth.sendPasswordResetEmail(this.state.email).then(() => {
+        this.setState({error: '', loading: false});
+      }).catch((error) => {
+        this.setState({error: error.code, loading: false});
+        this.props.navigation.navigate('SignIn');
+      });
+    }
   }
 
   renderButton() {
