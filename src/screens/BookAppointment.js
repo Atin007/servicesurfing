@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Dimensions, ScrollView, Text, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { Button, Card, CardSection, CardTitle, Input, InputDate, InputTime, Select, Spinner } from '../components/common';
+import { DEFAULT_DISPLAY_PIC } from '../defaults';
 import firebase from 'firebase';
 const window = Dimensions.get("window");
 
@@ -54,8 +55,6 @@ class RequestAppointment extends Component {
   }
 
   render() {
-    const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
-
     return (
       <ScrollView>
       <View style={{flex: 1}}>
@@ -64,7 +63,7 @@ class RequestAppointment extends Component {
             <Avatar
               large
               rounded
-              source={{uri: this.state.displayPic || defaultDisplayPic}}
+              source={{uri: this.state.displayPic || DEFAULT_DISPLAY_PIC}}
             />
           </View>
           <CardSection>

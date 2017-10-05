@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, Text, TextInput, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { List, ListItem, SearchBar } from '../components/common';
+import { DEFAULT_DISPLAY_PIC } from '../defaults';
 import firebase from 'firebase';
 
 class Search extends Component {
@@ -30,7 +31,6 @@ class Search extends Component {
 
   render() {
     const { textStyle } = styles;
-    const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
     return (
       <ScrollView>
         <View style={{flex: 1}}>
@@ -45,7 +45,7 @@ class Search extends Component {
           <List>
             {this.searchResults.map((user, i) => (
               <ListItem key={i} onPress={() => this.props.navigation.navigate('UserProfile', {profileID: this.resultKeys[i], title: user.firstName + ' ' + user.lastName})}>
-                <Avatar small rounded source={{uri:user.displayPic || defaultDisplayPic}} />
+                <Avatar small rounded source={{uri:user.displayPic || DEFAULT_DISPLAY_PIC}} />
                 <Text style={textStyle}>{user.firstName} {user.lastName}</Text>
               </ListItem>
             ))}

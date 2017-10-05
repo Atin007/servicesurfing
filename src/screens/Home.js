@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { Button, Card, CardSection, PostItem, Spinner, TextButton } from '../components/common';
+import { DEFAULT_DISPLAY_PIC } from '../defaults';
 import { Avatar } from 'react-native-elements';
 import firebase from 'firebase';
 
@@ -30,8 +31,6 @@ class Home extends Component {
   }
 
   renderContent() {
-    const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
-
     if(!this.state.loading) {
       return (
         <View style={{flex: 1}}>
@@ -39,7 +38,7 @@ class Home extends Component {
             <CardSection>
               <View style={{flex: 1, flexDirection:'row', height: 40, alignItems: 'center'}}>
                 <View style={{padding: 10}}>
-                  <Avatar small source={{uri: this.state.profile.displayPic || defaultDisplayPic}} />
+                  <Avatar small source={{uri: this.state.profile.displayPic || DEFAULT_DISPLAY_PIC}} />
                 </View>
                 <View style={{paddingRight: 5}}>
                   <TextButton onPress={() => this.props.navigation.navigate('Share')}>Share something with your friends!</TextButton>
@@ -52,7 +51,7 @@ class Home extends Component {
               <PostItem
                 key={i}
                 userID={post.userID}
-                avatarImage={post.userDisplayPic || defaultDisplayPic}
+                avatarImage={post.userDisplayPic || DEFAULT_DISPLAY_PIC}
                 userName={post.userFirstName + ' ' + post.userLastName}
                 onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
                 postText={post.postText}

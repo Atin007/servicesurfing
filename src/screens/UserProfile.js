@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CoverPic, DisplayPic, Spinner, TextButton } from '../components/common';
+import { DEFAULT_DISPLAY_PIC, DEFAULT_COVER_PIC } from '../defaults';
 import { Icon } from 'react-native-elements';
 import firebase from 'firebase';
 const window = Dimensions.get("window");
@@ -114,16 +115,13 @@ class UserProfile extends Component {
 
   renderContent() {
     const { topContainer, dpContainer, profileTitleStyle, actionIconContainer, profileSummaryStyle, actionButtonContainer, buttonStyle } = styles;
-    const defaultDisplayPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/default-user.png?alt=media&token=899dcd9f-6951-4a61-b072-0818054a0840';
-    const defaultCoverPic = 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/antalya.jpg?alt=media&token=6069a6b6-d4e6-4f00-a474-e95a4ab438d5';
-
     if (!this.state.loading) {
       return (
         <ScrollView>
           <View style={topContainer}>
-            <CoverPic source={this.state.profile.coverPic || defaultCoverPic} window={window} />
+            <CoverPic source={this.state.profile.coverPic || DEFAULT_COVER_PIC} window={window} />
             <View style={dpContainer}>
-              <DisplayPic source={this.state.profile.displayPic || defaultDisplayPic} window={window} />
+              <DisplayPic source={this.state.profile.displayPic || DEFAULT_DISPLAY_PIC} window={window} />
               <Text style={profileTitleStyle}>
                 {this.state.profile.firstName} {this.state.profile.lastName}
               </Text>
