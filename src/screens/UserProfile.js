@@ -55,7 +55,7 @@ class UserProfile extends Component {
             name='ios-chatbubbles-outline'
             type='ionicon'
             color='#333'
-            onPress={() => {this.props.navigation.navigate('ChatView', {title: this.state.profile.firstName, profileID: this.state.profileID})}}
+            onPress={() => {this.props.navigation.navigate('ChatView', {title: this.state.profile.firstName + ' ' + this.state.profile.lastName, profileID: this.state.profileID})}}
             size={28}
             containerStyle={iconContainerStyle} />
         </View>
