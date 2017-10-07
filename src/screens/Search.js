@@ -39,7 +39,7 @@ class Search extends Component {
             searchText={this.state.searchText}
             onChangeText={searchText => this.setState({'searchText': searchText})}
             onChange={this.handleChange(this.UsersRef)}
-            filter={true}
+            // filter={true}
             // onFilterPress={() => {console.log('filter press')}}
           />
           <List>
