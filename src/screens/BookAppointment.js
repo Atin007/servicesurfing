@@ -14,13 +14,14 @@ class RequestAppointment extends Component {
       appointmentTime: '',
       error: null,
       loading: null
-    }
+    };
+    this.currentUser = firebase.auth().currentUser;
+    this.AppointmentsRef = firebase.database().ref('/Appointments');
   }
 
   componentWillMount() {
     const { profile, profileID } = this.props.navigation.state.params;
-    this.setState(profile);
-    this.UserNotificationsRef = firebase.database().ref(`/UserNotifications/${profileID}`);
+    this.setState({'profile': profile, profileID: profileID});
   }
 
   onButtonPress() {
@@ -29,19 +30,20 @@ class RequestAppointment extends Component {
       this.setState({error: 'Add appointment date & time', loading: false});
       return;
     }
-
-    const { currentUser } = firebase.auth();
     const appointmentData = {
-      senderID: currentUser.uid,
-      type: 'Appointment',
+      from: this.currentUser.uid,
+      to: this.state.profileID,
+      status: 'pending',
       appointmentDate: this.state.appointmentDate,
       appointmentTime: this.state.appointmentTime
     };
-    this.UserNotificationsRef.push(appointmentData)
+    this.AppointmentsRef.child(this.currentUser.uid).push(appointmentData)
       .then(() => {
-        this.setState({ error: '', loading: false });
-        this.props.navigation.goBack();
-      });
+        this.AppointmentsRef.child(this.state.profileID).push(appointmentData).then(() => {
+          this.setState({ error: '', loading: false });
+          this.props.navigation.goBack();
+        });
+    });
   }
 
   renderButton() {
@@ -63,7 +65,7 @@ class RequestAppointment extends Component {
             <Avatar
               large
               rounded
-              source={{uri: this.state.displayPic || DEFAULT_DISPLAY_PIC}}
+              source={{uri: this.state.profile.displayPic || DEFAULT_DISPLAY_PIC}}
             />
           </View>
           <CardSection>
@@ -72,7 +74,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Name"
-              value={this.state.firstName + ' ' + this.state.lastName}
+              value={this.state.profile.firstName + ' ' + this.state.profile.lastName}
             />
           </CardSection>
           <CardSection>
@@ -81,7 +83,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Industry"
-              value={this.state.industry}
+              value={this.state.profile.industry}
             />
           </CardSection>
           <CardSection>
@@ -90,7 +92,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Position"
-              value={this.state.position}
+              value={this.state.profile.position}
             />
           </CardSection>
           <CardSection>
@@ -98,7 +100,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Hourly Rate"
-              value={this.state.hourlyRate}
+              value={this.state.profile.hourlyRate}
             />
           </CardSection>
           <CardSection>
@@ -107,7 +109,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Currency"
-              value={this.state.currency}
+              value={this.state.profile.currency}
             />
           </CardSection>
           <CardSection>

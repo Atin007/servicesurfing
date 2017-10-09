@@ -9,19 +9,48 @@ const window = Dimensions.get("window");
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = { edit: null, loading: null, profile: null, profileID: null };
+    this.state = { currentUser: null, edit: null, friend: null, loading: null, profile: null, profileID: null };
+    this.currentUser = firebase.auth().currentUser;
+    this.UserProfilesRef = firebase.database().ref('/UserProfiles');
+    this.FriendsRef = firebase.database().ref('/Friends');
   }
 
   componentWillMount() {
     this.setState({loading: true, profile: null});
 
-    const { currentUser } = firebase.auth();
     const { profileID } = this.props.navigation.state.params;
     this.setState({profileID: profileID});
-    this.setState({edit: currentUser.uid == profileID ? true : false});
+    this.setState({edit: this.currentUser.uid == profileID ? true : false});
 
-    firebase.database().ref(`/UserProfiles/${profileID}`)
-      .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
+    this.FriendsRef.child(this.currentUser.uid).orderByChild('userID').equalTo(profileID).on('child_added', snapshot => {
+      var status = snapshot.val().status;
+      if(status == 'pending') {
+        this.setState({'friend': false});
+      } else if(status == 'accepted') {
+        this.setState({friend: true})
+      }
+    });
+
+    this.UserProfilesRef.child(this.currentUser.uid).on('value', snapshot => this.setState({currentUser: snapshot.val()}));
+
+    this.UserProfilesRef.child(profileID).on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
+  }
+
+  sendFriendRequest() {
+    this.setState({friend: false});
+    this.FriendsRef.child(this.state.profileID).push({
+      from: this.currentUser.uid,
+      to: this.state.profileID,
+      userID: this.currentUser.uid,
+      status: 'pending'
+    }).then(() => {
+        this.FriendsRef.child(this.currentUser.uid).push({
+          from: this.currentUser.uid,
+          to: this.state.profileID,
+          userID: this.state.profileID,
+          status: 'pending'
+        });
+    });
   }
 
   renderIcons() {
@@ -45,10 +74,10 @@ class UserProfile extends Component {
             size={30}
             containerStyle={iconContainerStyle} />
           <Icon
-            name='ios-person-add-outline'
+            name={this.state.friend==null ? 'ios-person-add-outline' : 'ios-person-outline'}
             type='ionicon'
-            color='#333'
-            onPress={() => {}}
+            color={this.state.friend ? '#06A0A2' : '#333'}
+            onPress={this.state.friend==null ? () => {this.sendFriendRequest()} : () => {}}
             size={35}
             containerStyle={iconContainerStyle} />
           <Icon
