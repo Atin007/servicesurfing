@@ -9,12 +9,12 @@ class App extends Component {
 
   componentWillMount() {
     firebase.initializeApp({
-      apiKey: "AIzaSyD4dw4Ydfn3OxAlwby9537udBK1c6_kMYU",
-      authDomain: "servicesurfing-e6cbc.firebaseapp.com",
-      databaseURL: "https://servicesurfing-e6cbc.firebaseio.com",
-      projectId: "servicesurfing-e6cbc",
-      storageBucket: "servicesurfing-e6cbc.appspot.com",
-      messagingSenderId: "389029720680"
+      apiKey: "AIzaSyApKljlSBIQG3dtJzzA4aKQs51cyyGAJV8",
+      authDomain: "servicesurfing-d6831.firebaseapp.com",
+      databaseURL: "https://servicesurfing-d6831.firebaseio.com",
+      projectId: "servicesurfing-d6831",
+      storageBucket: "servicesurfing-d6831.appspot.com",
+      messagingSenderId: "891571143291"
     });
 
     firebase.auth().onAuthStateChanged((user) => {
