@@ -20,7 +20,7 @@ class EditProfile extends Component {
   }
 
   onButtonPress() {
-    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
     var timestamp = new Date().toLocaleString('en-US', options);
 
     const { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore } = this.state;

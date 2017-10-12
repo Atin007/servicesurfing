@@ -67,12 +67,14 @@ class ChatView extends Component {
   }
 
   handleSendPress() {
+    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+
     if(this.state.message != '') {
       this.MessagesRef.push({
         from: this.currentUser.uid,
         to: this.friendID,
         message: this.state.message,
-        timestamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString('en-US', options)
       });
       this.setState({message: ''});
     }
