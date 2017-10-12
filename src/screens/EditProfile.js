@@ -39,7 +39,7 @@ class EditProfile extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>Submit</Button>
+      <Button onPress={() => this.onButtonPress()}>Submit</Button>
     );
   }
 
