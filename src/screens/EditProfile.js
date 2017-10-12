@@ -8,7 +8,7 @@ class EditProfile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: '', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', lastUpdated: '', modalVisibility: 0 };
+    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: '', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', timestamp: '', modalVisibility: 0 };
   }
 
   componentWillMount() {
@@ -20,11 +20,12 @@ class EditProfile extends Component {
   }
 
   onButtonPress() {
-    const lastUpdated = new Date().toLocaleString();
+    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    var timestamp = new Date().toLocaleString('en-US', options);
 
     const { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore } = this.state;
 
-    const updatedUserData = { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore, lastUpdated };
+    const updatedUserData = { email, firstName, lastName, gender, birthday, country, city, institution, startWork, endWork, industry, position, university, faculty, startUniv, endUniv, phd, hIndex , hourlyRate, currency, satisfactionScore, timestamp };
 
     this.setState({ error: '', loading: true });
 
@@ -275,7 +276,7 @@ class EditProfile extends Component {
         </Card>
         {this.renderButton()}
         <Text style={footerStyle}>
-          {this.state.lastUpdated!='' ? `Last updated on ${this.state.lastUpdated}` : ''}
+          {this.state.timestamp!='' ? `Last updated on ${this.state.timestamp}` : ''}
         </Text>
       </View>
       </ScrollView>
