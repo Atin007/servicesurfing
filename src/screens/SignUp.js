@@ -10,6 +10,8 @@ class SignUp extends Component {
   }
 
   onButtonPress() {
+    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    
     const { firstName, lastName, email, password, displayPic, coverPic } = this.state;
     this.setState({ error: '', loading: true });
 
@@ -29,7 +31,7 @@ class SignUp extends Component {
             // Email Sent
         });
         const uid = this.currentUser.uid;
-        firebase.database().ref('/UserProfiles').child(uid).set({firstName, lastName, email, displayPic, coverPic});
+        firebase.database().ref('/UserProfiles').child(uid).set({firstName, lastName, email, displayPic, coverPic, timestamp: new Date().toLocaleString('en-US', options)});
         this.setState({
           firstName: '',
           lastName: '',
