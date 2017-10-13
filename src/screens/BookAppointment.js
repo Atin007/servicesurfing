@@ -6,7 +6,7 @@ import { DEFAULT_DISPLAY_PIC } from '../defaults';
 import firebase from 'firebase';
 const window = Dimensions.get("window");
 
-class RequestAppointment extends Component {
+class BookAppointment extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,7 +83,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Industry"
-              value={this.state.profile.industry}
+              value={this.state.profile.industry || '-'}
             />
           </CardSection>
           <CardSection>
@@ -92,7 +92,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Position"
-              value={this.state.profile.position}
+              value={this.state.profile.position || '-'}
             />
           </CardSection>
           <CardSection>
@@ -100,7 +100,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Hourly Rate"
-              value={this.state.profile.hourlyRate}
+              value={this.state.profile.hourlyRate || '-'}
             />
           </CardSection>
           <CardSection>
@@ -109,7 +109,7 @@ class RequestAppointment extends Component {
               editable={false}
               placeholder=""
               label="Currency"
-              value={this.state.profile.currency}
+              value={this.state.profile.currency || '-'}
             />
           </CardSection>
           <CardSection>
@@ -148,4 +148,4 @@ const styles = {
   }
 };
 
-export default RequestAppointment;
+export default BookAppointment;

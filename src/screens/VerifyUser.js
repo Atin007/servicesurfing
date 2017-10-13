@@ -14,6 +14,7 @@ class VerifyUser extends Component {
       <View style={{flex: 1}}>
         <Text style={textStyle}>Please verify your email address!</Text>
         <TextButton onPress={() => firebase.auth().signOut()}>If you have already verified, press here</TextButton>
+        <TextButton onPress={() => firebase.auth().currentUser.sendEmailVerification()}>Not received the email yet? Resend verification email</TextButton>
       </View>
     );
   }

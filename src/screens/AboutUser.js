@@ -58,7 +58,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Gender"
-                value={this.state.gender}
+                value={this.state.gender || '-'}
               />
             </CardSection>
             <CardSection>
@@ -67,7 +67,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Birthday"
-                value={this.state.birthday}
+                value={this.state.birthday || '-'}
               />
             </CardSection>
             <CardSection>
@@ -76,7 +76,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Country"
-                value={this.state.country}
+                value={this.state.country || '-'}
               />
             </CardSection>
             <CardSection>
@@ -85,7 +85,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="City"
-                value={this.state.city}
+                value={this.state.city || '-'}
               />
             </CardSection>
           </Card>
@@ -99,7 +99,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Institution"
-                value={this.state.institution}
+                value={this.state.institution || '-'}
               />
             </CardSection>
             <CardSection>
@@ -108,7 +108,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Start Date"
-                value={this.state.startWork}
+                value={this.state.startWork || '-'}
               />
             </CardSection>
             <CardSection>
@@ -117,7 +117,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="End Date"
-                value={this.state.endWork}
+                value={this.state.endWork || '-'}
               />
             </CardSection>
             <CardSection>
@@ -126,7 +126,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Industry"
-                value={this.state.industry}
+                value={this.state.industry || '-'}
               />
             </CardSection>
             <CardSection>
@@ -135,7 +135,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Position"
-                value={this.state.position}
+                value={this.state.position || '-'}
               />
             </CardSection>
           </Card>
@@ -149,7 +149,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="University"
-                value={this.state.university}
+                value={this.state.university || '-'}
               />
             </CardSection>
             <CardSection>
@@ -158,7 +158,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Faculty"
-                value={this.state.faculty}
+                value={this.state.faculty || '-'}
               />
             </CardSection>
             <CardSection>
@@ -167,7 +167,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Start Date"
-                value={this.state.startUniv}
+                value={this.state.startUniv || '-'}
               />
             </CardSection>
             <CardSection>
@@ -176,7 +176,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="End Date"
-                value={this.state.endUniv}
+                value={this.state.endUniv || '-'}
               />
             </CardSection>
           </Card>
@@ -197,7 +197,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Hourly Rate"
-                value={this.state.hourlyRate}
+                value={this.state.hourlyRate || '-'}
               />
             </CardSection>
             <CardSection>
@@ -206,7 +206,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Currency"
-                value={this.state.currency}
+                value={this.state.currency || '-'}
               />
             </CardSection>
             <CardSection>
@@ -214,7 +214,7 @@ class AboutUser extends Component {
                 editable={false}
                 placeholder=""
                 label="Satisfaction Score"
-                value={this.state.satisfactionScore}
+                value={this.state.satisfactionScore || '-'}
               />
             </CardSection>
           </Card>

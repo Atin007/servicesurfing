@@ -66,6 +66,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              editable={false}
               autoCapitalize="words"
               placeholder="John"
               label="First Name"
@@ -75,6 +76,7 @@ class EditProfile extends Component {
           </CardSection>
           <CardSection>
             <Input
+              editable={false}
               autoCapitalize="words"
               placeholder="Doe"
               label="Last Name"
