@@ -26,10 +26,10 @@ const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', 
           resizeMode='cover'
           style={{width: null, height: 0.5*window.width}}
         /></View>}
-        <View style={lineStyle}>
+        {/* <View style={lineStyle}>
           <Text style={postTextStyle}>{postLikes} Likes</Text>
           <Text style={postTextStyle}>{postComments} Comments</Text>
-        </View>
+        </View> */}
       </View>
     </Card>
   );
