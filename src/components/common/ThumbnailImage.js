@@ -15,7 +15,7 @@ const ThumbnailImage = ({ source, onPress }) => {
 
 const styles = {
   containerStyle: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#ddd',
     height: 80,
     width: WIDTH/3
   },
