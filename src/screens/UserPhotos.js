@@ -45,8 +45,6 @@ class UserPhotos extends Component {
     for(var i=0;i<this.thumbnails.length;i++) {
       this.gallery.push({source: this.thumbnails[i]});
     }
-
-    console.log(this.thumbnails, this.gallery);
   }
 
   render() {

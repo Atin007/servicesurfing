@@ -30,7 +30,7 @@ class Login extends Component {
             <Text style={textStyle}>Invite your Friends</Text>
           </View>
         </View>
-        <View style={buttonContainer}>
+        {/* <View style={buttonContainer}>
           <Button buttonColor="#C71610" onPress={() => { this.props.navigation.navigate('Tabs') }}>
             Continue with Google
           </Button>
@@ -39,10 +39,10 @@ class Login extends Component {
           <Button buttonColor="#3B5998" onPress={() => { this.props.navigation.navigate('Tabs') }}>
             Continue with Facebook
           </Button>
-        </View>
+        </View> */}
         <View style={buttonContainer}>
           <Button onPress={() => { this.props.navigation.navigate('SignIn') }}>
-            Continue with Email
+            Login with Email
           </Button>
         </View>
         <View style={buttonContainer}>

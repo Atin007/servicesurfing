@@ -62,14 +62,14 @@ class SignUp extends Component {
     const { containerStyle, textStyle } = styles;
     return (
       <ScrollView style={styles.topLevelContainer}>
-        <View style={{paddingTop: 10, paddingBottom: 35}}>
+        {/* <View style={{paddingTop: 10, paddingBottom: 35}}>
         <Button buttonColor="#C71610" onPress={() => { this.props.navigation.navigate('Tabs') }}>
           Continue with Google
         </Button>
         <Button buttonColor="#3B5998" onPress={() => { this.props.navigation.navigate('Tabs') }}>
           Continue with Facebook
         </Button>
-        </View>
+        </View> */}
         <Text style={textStyle}>
           Sign up using email
         </Text>

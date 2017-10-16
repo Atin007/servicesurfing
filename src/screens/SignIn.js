@@ -50,14 +50,14 @@ class SignIn extends Component {
 
     return (
       <ScrollView style={containerStyle}>
-        <View style={{paddingTop: 10, paddingBottom: 35}}>
+        {/* <View style={{paddingTop: 10, paddingBottom: 35}}>
         <Button buttonColor="#C71610" onPress={() => {}}>
           Continue with Google
         </Button>
         <Button buttonColor="#3B5998" onPress={() => {}}>
           Continue with Facebook
         </Button>
-        </View>
+        </View> */}
         <Text style={textStyle}>
           Sign in using your existing ServiceSurfing account
         </Text>
