@@ -8,35 +8,58 @@ import firebase from 'firebase';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {profile: null, loading: null};
+    this.state = {profile: null, loading: null, Posts: []};
+    this.currentUser = firebase.auth().currentUser;
+    this.UserProfilesRef = firebase.database().ref('/UserProfiles');
+    this.FriendsRef = firebase.database().ref('/Friends');
+    this.PostsRef = firebase.database().ref('/Posts');
+    this.Posts = [];
   }
 
   componentWillMount() {
     this.setState({loading: true, profile: null});
-    const { currentUser } = firebase.auth();
 
-    firebase.database().ref(`/UserProfiles/${currentUser.uid}`)
+    this.UserProfilesRef.child(this.currentUser.uid)
       .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
 
-    this.posts = [{
-      userID: currentUser.uid,
-      userFirstName: 'Atin',
-      userLastName: 'Mathur',
-      userDisplayPic: '',
-      postText: 'I am feeling happy today',
-      postImageURL: 'https://firebasestorage.googleapis.com/v0/b/servicesurfing-e6cbc.appspot.com/o/antalya.jpg?alt=media&token=6069a6b6-d4e6-4f00-a474-e95a4ab438d5',
-      likes: 10,
-      comments: 20
-    }];
+    this.FriendsRef.child(this.currentUser.uid).on('child_added', snapshot => {
+      this.PostsRef.orderByChild('userID').equalTo(snapshot.val().userID).on('child_added', snapshot => {
+        this.Posts = [ snapshot.val(), ...this.Posts ];
+        this.Posts.sort(function(a, b) {
+          return a.timeMS - b.timeMS;
+        });
+        this.setState({Posts: this.Posts});
+      });
+    });
+
+  }
+
+  renderPosts() {
+    return(
+      <View>
+        {this.state.Posts.map((post, i) => (
+          <PostItem
+            key={i}
+            userID={post.userID}
+            avatarImage={post.userPic || DEFAULT_DISPLAY_PIC}
+            userName={post.userName}
+            onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
+            postText={post.postText}
+            postImageURL={post.imageURL}
+          />
+        ))}
+      </View>
+    );
   }
 
   renderContent() {
+    const { containerStyle, shareCardStyle, subTitleStyle } = styles;
     if(!this.state.loading) {
       return (
-        <View style={{flex: 1}}>
+        <View style={containerStyle}>
           <Card>
             <CardSection>
-              <View style={{flex: 1, flexDirection:'row', height: 40, alignItems: 'center'}}>
+              <View style={shareCardStyle}>
                 <View style={{padding: 10}}>
                   <Avatar small source={{uri: this.state.profile.displayPic || DEFAULT_DISPLAY_PIC}} />
                 </View>
@@ -47,17 +70,10 @@ class Home extends Component {
             </CardSection>
           </Card>
           <ScrollView>
-            {this.posts.map((post, i) => (
-              <PostItem
-                key={i}
-                userID={post.userID}
-                avatarImage={post.userDisplayPic || DEFAULT_DISPLAY_PIC}
-                userName={post.userFirstName + ' ' + post.userLastName}
-                onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
-                postText={post.postText}
-                postImageURL={post.postImageURL}
-              />
-            ))}
+            <View style={{marginBottom: 10}}>
+              <Text style={subTitleStyle}>New Posts</Text>
+              {this.renderPosts()}
+            </View>
           </ScrollView>
         </View>
       );
@@ -74,6 +90,24 @@ class Home extends Component {
         {this.renderContent()}
       </View>
     );
+  }
+}
+
+const styles = {
+  containerStyle: {
+    flex: 1
+  },
+  shareCardStyle: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection:'row',
+    height: 40
+  },
+  subTitleStyle: {
+    backgroundColor: 'transparent',
+    color: '#333',
+    fontSize: 18,
+    margin: 15
   }
 }
 

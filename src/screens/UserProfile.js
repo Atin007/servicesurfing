@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { CoverPic, DisplayPic, Spinner, TextButton } from '../components/common';
+import { CoverPic, DisplayPic, PostItem, Spinner, TextButton } from '../components/common';
 import { DEFAULT_DISPLAY_PIC, DEFAULT_COVER_PIC } from '../defaults';
 import { Icon } from 'react-native-elements';
 import firebase from 'firebase';
@@ -9,10 +9,12 @@ const window = Dimensions.get("window");
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentUser: null, edit: null, friend: null, loading: null, profile: null, profileID: null };
+    this.state = { currentUser: null, edit: null, friend: null, loading: null, profile: null, profileID: null, Posts: [] };
     this.currentUser = firebase.auth().currentUser;
     this.UserProfilesRef = firebase.database().ref('/UserProfiles');
     this.FriendsRef = firebase.database().ref('/Friends');
+    this.PostsRef = firebase.database().ref('/Posts');
+    this.Posts = [];
   }
 
   componentWillMount() {
@@ -34,6 +36,11 @@ class UserProfile extends Component {
     this.UserProfilesRef.child(this.currentUser.uid).on('value', snapshot => this.setState({currentUser: snapshot.val()}));
 
     this.UserProfilesRef.child(profileID).on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
+
+    this.PostsRef.orderByChild("userID").equalTo(profileID).on('child_added', snapshot => {
+      this.Posts = [snapshot.val(), ...this.Posts];
+      this.setState({Posts: this.Posts});
+    });
   }
 
   sendFriendRequest() {
@@ -142,8 +149,26 @@ class UserProfile extends Component {
     }
   }
 
+  renderPosts() {
+    return(
+      <View>
+        {this.state.Posts.map((post, i) => (
+          <PostItem
+            key={i}
+            userID={post.userID}
+            avatarImage={post.userPic || DEFAULT_DISPLAY_PIC}
+            userName={post.userName}
+            onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
+            postText={post.postText}
+            postImageURL={post.imageURL}
+          />
+        ))}
+      </View>
+    );
+  }
+
   renderContent() {
-    const { topContainer, dpContainer, profileTitleStyle, actionIconContainer, profileSummaryStyle, actionButtonContainer, buttonStyle } = styles;
+    const { topContainer, dpContainer, profileTitleStyle, actionIconContainer, profileSummaryStyle, actionButtonContainer, buttonStyle, subTitleStyle } = styles;
     if (!this.state.loading) {
       return (
         <ScrollView>
@@ -180,6 +205,8 @@ class UserProfile extends Component {
             </View>
           </View>
           <View style={{marginBottom: 10}}>
+            <Text style={subTitleStyle}>{this.state.profile.firstName}'s Posts</Text>
+            {this.renderPosts()}
           </View>
         </ScrollView>
       );
@@ -244,6 +271,12 @@ const styles = {
   buttonStyle: {
     paddingLeft: 30,
     paddingRight: 30
+  },
+  subTitleStyle: {
+    backgroundColor: 'transparent',
+    color: '#333',
+    fontSize: 18,
+    margin: 15
   }
 }
 

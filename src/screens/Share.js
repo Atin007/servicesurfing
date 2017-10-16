@@ -27,14 +27,15 @@ class Share extends Component {
   onButtonPress() {
     var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     var timestamp = new Date().toLocaleString('en-US', options);
-
-    this.PostsRef.child(this.currentUser.uid).push({
+    var timeMS = new Date().getTime();
+    this.PostsRef.push({
       postText: this.state.post,
       imageURL: '',
       userID: this.currentUser.uid,
       userName: this.currentUser.displayName,
       userPic: this.currentUser.photoURL || '',
-      timestamp: timestamp
+      timestamp: timestamp,
+      timeMS: -1 * timeMS
     }).then(() => this.props.navigation.navigate('UserProfile', {profileID: this.currentUser.uid, title: this.currentUser.displayName}));
   }
 
