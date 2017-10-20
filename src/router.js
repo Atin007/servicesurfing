@@ -71,6 +71,7 @@ export const Tabs = TabNavigator({
     tabBarComponent: TabBarBottom,
     tabBarPosition: Platform.OS == 'ios' ? 'bottom' : 'top',
     tabBarOptions: {
+      showIcon: true,
       showLabel: false,
       style: {
         backgroundColor: '#FFF',
