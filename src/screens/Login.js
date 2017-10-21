@@ -21,9 +21,6 @@ class Login extends Component {
               borderRadius: 15
             }}
           />
-          <Text style={textStyle}>
-            ServiceSurfing
-          </Text>
           <View style={textContainer}>
             <Text style={textStyle}>Hire Professionals around the world</Text>
             <Text style={textStyle}>Share articles, videos and images</Text>
@@ -67,8 +64,8 @@ const styles = {
     padding: 10
   },
   textContainer: {
-    paddingTop: 20,
-    paddingBottom: 20
+    paddingTop: 30,
+    paddingBottom: 30
   },
   buttonContainer: {
     paddingLeft: 20,
