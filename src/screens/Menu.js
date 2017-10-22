@@ -30,7 +30,7 @@ class Menu extends Component {
         title: 'Appointments',
         icon: 'ios-calendar',
         type: 'ionicon',
-        onPress: () => this.props.navigation.navigate('Appointments', {profileID: currentUser.uid})
+        onPress: () => this.props.navigation.navigate('Appointments')
       },
       {
         title: 'Terms of Service',

@@ -37,13 +37,18 @@ class BookAppointment extends Component {
       appointmentDate: this.state.appointmentDate,
       appointmentTime: this.state.appointmentTime
     };
-    this.AppointmentsRef.child(this.currentUser.uid).push(appointmentData)
+
+    var newAppointmentKey = this.AppointmentsRef.child(this.currentUser.uid).push().key;
+    var updates = {};
+
+    updates[this.currentUser.uid + '/' + newAppointmentKey] = appointmentData;
+    updates[this.state.profileID + '/' + newAppointmentKey] = appointmentData;
+
+    this.AppointmentsRef.update(updates)
       .then(() => {
-        this.AppointmentsRef.child(this.state.profileID).push(appointmentData).then(() => {
-          this.setState({ error: '', loading: false });
-          this.props.navigation.goBack();
-        });
-    });
+        this.setState({ error: '', loading: false });
+        this.props.navigation.navigate('Appointments');
+      });
   }
 
   renderButton() {
