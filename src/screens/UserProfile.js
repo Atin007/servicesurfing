@@ -45,19 +45,27 @@ class UserProfile extends Component {
 
   sendFriendRequest() {
     this.setState({friend: false});
-    this.FriendsRef.child(this.state.profileID).push({
+    var friendRequest1 = {
       from: this.currentUser.uid,
       to: this.state.profileID,
       userID: this.currentUser.uid,
       status: 'pending'
-    }).then(() => {
-        this.FriendsRef.child(this.currentUser.uid).push({
-          from: this.currentUser.uid,
-          to: this.state.profileID,
-          userID: this.state.profileID,
-          status: 'pending'
-        });
-    });
+    };
+
+    var friendRequest2 = {
+      from: this.currentUser.uid,
+      to: this.state.profileID,
+      userID: this.state.profileID,
+      status: 'pending'
+    };
+
+    var newKey = this.FriendsRef.child(this.currentUser.uid).push().key;
+    var updates = {};
+
+    updates[this.currentUser.uid + '/' + newKey] = friendRequest2;
+    updates[this.state.profileID + '/' + newKey] = friendRequest1;
+
+    this.FriendsRef.update(updates);
   }
 
   renderIcons() {

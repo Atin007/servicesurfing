@@ -12,7 +12,7 @@ class Search extends Component {
     this.state = {
       searchText: ''
     };
-    this.UsersRef = firebase.database().ref("/UserProfiles");
+    this.UserProfilesRef = firebase.database().ref("/UserProfiles");
     this.searchResults = [];
     this.resultKeys = [];
   }
@@ -20,7 +20,7 @@ class Search extends Component {
   handleChange(UsersRef) {
     this.searchResults = [];
     this.resultKeys = [];
-    UsersRef.orderByKey().on("child_added", snapshot => {
+    this.UserProfilesRef.orderByKey().on("child_added", snapshot => {
       name = snapshot.val().firstName + ' ' + snapshot.val().lastName;
       if (this.state.searchText != '' && name.indexOf(this.state.searchText) >= 0) {
         this.searchResults = [ ...this.searchResults, snapshot.val() ];

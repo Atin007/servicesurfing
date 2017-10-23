@@ -13,6 +13,7 @@ const ListItem = (props) => {
 
 const styles = {
   containerStyle: {
+    alignItems: 'center',
     backgroundColor: '#FFF',
     borderBottomWidth: 1,
     borderColor: '#ddd',
