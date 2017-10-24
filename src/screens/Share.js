@@ -54,29 +54,27 @@ class Share extends Component {
     const { containerStyle, textStyle, inputContainerStyle } = styles;
     return (
       <View style={{flex: 1}}>
-      <View style={containerStyle}>
-        <View style={{flexDirection: 'row'}}>
-          <Avatar
-            small
-            source={{uri: this.state.user.displayPic || DEFAULT_DISPLAY_PIC}}
-          />
-          <Text style={textStyle}>
-            {this.state.user.firstName + ' ' + this.state.user.lastName}
-          </Text>
+        <View style={containerStyle}>
+          <View style={{flexDirection: 'row'}}>
+            <Avatar
+              small
+              source={{uri: this.state.user.displayPic || DEFAULT_DISPLAY_PIC}}
+            />
+            <Text style={textStyle}>
+              {this.state.user.firstName + ' ' + this.state.user.lastName}
+            </Text>
+          </View>
+          <View style={inputContainerStyle}>
+            <TextInput
+              multiline={true}
+              style={{paddingTop: 15, fontSize: 16}}
+              placeholder="Share Something"
+              value={this.state.post}
+              onChangeText={post => this.setState({ post })}
+            />
+          </View>
         </View>
-        <View style={inputContainerStyle}>
-          <TextInput
-            multiline={true}
-            style={{paddingTop: 15, fontSize: 16}}
-            placeholder="Share Something"
-            value={this.state.post}
-            onChangeText={post => this.setState({ post })}
-          />
-        </View>
-      </View>
-      <View style={{flexDirection: 'row'}}>
         {this.renderButton()}
-      </View>
       </View>
     );
   }

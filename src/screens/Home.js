@@ -63,15 +63,15 @@ class Home extends Component {
                 <View style={{padding: 10}}>
                   <Avatar small source={{uri: this.state.profile.displayPic || DEFAULT_DISPLAY_PIC}} />
                 </View>
-                <View style={{paddingRight: 5}}>
-                  <TextButton onPress={() => this.props.navigation.navigate('Share')}>Share something with your friends!</TextButton>
+                <View style={{paddingRight: 10}}>
+                  <TextButton onPress={() => this.props.navigation.navigate('Share')}>Share something!</TextButton>
                 </View>
               </View>
             </CardSection>
           </Card>
+          <Text style={subTitleStyle}>New Posts</Text>
           <ScrollView>
             <View style={{marginBottom: 10}}>
-              <Text style={subTitleStyle}>New Posts</Text>
               {this.renderPosts()}
             </View>
           </ScrollView>
@@ -100,8 +100,7 @@ const styles = {
   shareCardStyle: {
     alignItems: 'center',
     flex: 1,
-    flexDirection:'row',
-    height: 40
+    flexDirection:'row'
   },
   subTitleStyle: {
     backgroundColor: 'transparent',

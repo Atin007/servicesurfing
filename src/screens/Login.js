@@ -7,9 +7,9 @@ const window = Dimensions.get("window");
 class Login extends Component {
 
   render() {
-    const { containerStyle, headerStyle, textStyle, textContainer, buttonContainer } = styles;
+    const { headerStyle, textStyle, textContainer } = styles;
     return (
-      <ScrollView style={containerStyle}>
+      <View>
         <View style={headerStyle}>
           <Image
             source={require('../assets/images/servicesurfing.png')}
@@ -27,35 +27,18 @@ class Login extends Component {
             <Text style={textStyle}>Invite your Friends</Text>
           </View>
         </View>
-        {/* <View style={buttonContainer}>
-          <Button buttonColor="#C71610" onPress={() => { this.props.navigation.navigate('Tabs') }}>
-            Continue with Google
-          </Button>
-        </View>
-        <View style={buttonContainer}>
-          <Button buttonColor="#3B5998" onPress={() => { this.props.navigation.navigate('Tabs') }}>
-            Continue with Facebook
-          </Button>
-        </View> */}
-        <View style={buttonContainer}>
-          <Button onPress={() => { this.props.navigation.navigate('SignIn') }}>
-            Login with Email
-          </Button>
-        </View>
-        <View style={buttonContainer}>
-          <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
-            New to ServiceSurfing? Sign up.
-          </TextButton>
-        </View>
-      </ScrollView>
+        <Button onPress={() => { this.props.navigation.navigate('SignIn') }}>
+          Login with Email
+        </Button>
+        <TextButton fontSize={16} onPress={() => { this.props.navigation.navigate('SignUp') }}>
+          New to ServiceSurfing? Sign up.
+        </TextButton>
+      </View>
     );
   }
 }
 
 const styles = {
-  containerStyle: {
-    flex: 1
-  },
   headerStyle: {
     alignItems: 'center'
   },
@@ -66,10 +49,6 @@ const styles = {
   textContainer: {
     paddingTop: 30,
     paddingBottom: 30
-  },
-  buttonContainer: {
-    paddingLeft: 20,
-    paddingRight: 20
   }
 };
 

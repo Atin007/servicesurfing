@@ -44,7 +44,6 @@ const styles = {
   lineStyle: {
     flex: 1,
     flexDirection: 'row',
-    height: 40,
     alignItems: 'center'
   },
   imageContainerStyle: {

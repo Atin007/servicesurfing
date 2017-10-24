@@ -32,11 +32,11 @@ const styles = {
     paddingBottom: 10
   },
   buttonStyle: {
-    flex: 1,
     borderRadius: 5,
     marginLeft: 15,
     marginRight: 15,
-    marginTop: 15
+    marginTop: 15,
+    marginBottom: 10
   }
 };
 
