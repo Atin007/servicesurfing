@@ -36,16 +36,13 @@ class Friends extends Component {
           this.friends = [ ...this.friends, { ...snapshot.val(), key: dataKey } ];
           this.friendKeys = [ ...this.friendKeys, key ];
           this.setState({friends: this.friends, friendKeys: this.friendKeys});
-          console.log(this.friends, this.friendKeys);
         });
       } else {
         if(this.currentUser.uid == profileID && snapshot.val().to == this.currentUser.uid) {
-          console.log(profileID, key);
           this.UserProfilesRef.child(key).on('value', snapshot => {
             this.pendingRequests = [ ...this.pendingRequests, { ...snapshot.val(), key: dataKey } ];
             this.pendingKeys = [ ...this.pendingKeys, key ];
             this.setState({pendingRequests: this.pendingRequests, pendingKeys: this.pendingKeys});
-            console.log(this.pendingRequests, this.pendingKeys);
           });
         }
       }
