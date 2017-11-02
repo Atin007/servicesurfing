@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
-import { Button, Card, CardSection, CardTitle, Input, InputDate, Select, Spinner } from '../components/common';
+import { Platform, ScrollView, Text, View } from 'react-native';
+import { Button, Card, CardSection, CardTitle, Input, InputDate, Select, Spinner, TextButton } from '../components/common';
+import ImagePicker from 'react-native-image-picker';
+import RNFetchBlob from 'react-native-fetch-blob';
 import firebase from 'firebase';
 import { Countries, CitiesByCountry, Currencies, Industries, Universities } from '../choices';
 
@@ -8,12 +10,14 @@ class EditProfile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: '', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', timestamp: '', modalVisibility: 0 };
+    this.state = { email: '', firstName: '', lastName: '', gender: '', birthday: '', country: '', city: '', institution: '', startWork: '', endWork: '', industry: '', position: '', university: '', faculty: '', startUniv: '', endUniv: '', phd: '', hIndex: '', hourlyRate: '', currency: '', satisfactionScore: '', timestamp: '', modalVisibility: 0, displayPic: '', coverPic: '' };
+    this.currentUser = firebase.auth().currentUser;
+    this.UserRef = firebase.database().ref(`/UserProfiles/${this.currentUser.uid}`);
+    this.UserStorageRef = firebase.storage().ref(`/user_photos/${this.currentUser.uid}`);
+    this.UserPhotosRef = firebase.database().ref(`/UserPhotos/${this.currentUser.uid}`);
   }
 
   componentWillMount() {
-    const { currentUser } = firebase.auth();
-    this.UserRef = firebase.database().ref(`/UserProfiles/${currentUser.uid}`);
     this.UserRef.on('value', (snapshot) => {
       this.setState(snapshot.val());
     });
@@ -42,6 +46,71 @@ class EditProfile extends Component {
     return (
       <Button onPress={() => this.onButtonPress()}>Submit</Button>
     );
+  }
+
+  uploadPicture(uri, type, imageName) {
+    const mime = 'image/jpg';
+    const Blob = RNFetchBlob.polyfill.Blob;
+    const fs = RNFetchBlob.fs;
+    window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
+    window.Blob = Blob;
+
+    const uploadURI = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
+    let uploadBlob = null;
+    const imageRef = this.UserStorageRef.child(imageName);
+
+    fs.readFile(uploadURI, 'base64')
+    .then((data) => {
+      return Blob.build(data, { type: `${mime};BASE64` });
+    })
+    .then((blob) => {
+      uploadBlob = blob;
+      return imageRef.put(blob, { contentType: mime });
+    })
+    .then((uploadTask) => {
+      uploadBlob.close();
+
+      if(type == 'displayPic') {
+        this.UserRef.update({
+          displayPic: uploadTask.downloadURL
+        });
+        this.currentUser.updateProfile({
+          photoURL: uploadTask.downloadURL
+        });
+      } else if (type == 'coverPic') {
+        this.UserRef.update({
+          coverPic: uploadTask.downloadURL
+        });
+      }
+      this.UserPhotosRef.push({
+        imageURL: uploadTask.downloadURL
+      });
+      
+      console.log(type, uploadTask.downloadURL);
+      return uploadTask.downloadURL;
+    });
+  }
+
+  changePicture(type) {
+    const cam_options = {
+      mediaType: 'photo',
+      quality: 0.4,
+      noData: true,
+    };
+    ImagePicker.showImagePicker(cam_options, (response) => {
+      if (response.didCancel) {
+      }
+      else if (response.error) {
+      }
+      else {
+        this.setState({
+          imagePath: response.uri,
+          imageHeight: response.height,
+          imageWidth: response.width,
+        });
+        this.uploadPicture(this.state.imagePath, type, `${type}_${new Date().getTime()}.jpg`);
+      }
+    });
   }
 
   render() {
@@ -83,6 +152,16 @@ class EditProfile extends Component {
               value={this.state.lastName}
               onChangeText={lastName => this.setState({ lastName })}
             />
+          </CardSection>
+          <CardSection>
+            <View style={{paddingLeft: 20}}>
+              <TextButton buttonColor="#06A0A2" onPress={() => this.changePicture("displayPic")}>Change Profile Picture</TextButton>
+            </View>
+          </CardSection>
+          <CardSection>
+            <View style={{paddingLeft: 20}}>
+              <TextButton buttonColor="#06A0A2" onPress={() => this.changePicture("coverPic")}>Change Cover Picture</TextButton>
+            </View>
           </CardSection>
         </Card>
         <Card>
