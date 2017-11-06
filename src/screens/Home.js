@@ -64,7 +64,7 @@ class Home extends Component {
                   <Avatar small source={{uri: this.state.profile.displayPic || DEFAULT_DISPLAY_PIC}} />
                 </View>
                 <View style={{paddingRight: 10}}>
-                  <TextButton onPress={() => this.props.navigation.navigate('Share')}>Share something!</TextButton>
+                  <TextButton onPress={() => this.props.navigation.navigate('Share', {imagePath: ''})}>Share something!</TextButton>
                 </View>
               </View>
             </CardSection>

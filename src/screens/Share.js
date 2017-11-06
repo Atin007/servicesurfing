@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, TextInput, View } from 'react-native';
 import { Button, Spinner } from '../components/common';
-import { DEFAULT_DISPLAY_PIC } from '../defaults';
+import { DEFAULT_DISPLAY_PIC, NO_IMAGE_PIC } from '../defaults';
 import { Avatar, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 
@@ -10,18 +10,16 @@ class Share extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      post: ''
+      post: '',
+      imagePath: ''
     };
     this.currentUser = firebase.auth().currentUser;
-    this.UserProfilesRef = firebase.database().ref('/UserProfiles');
     this.PostsRef = firebase.database().ref('/Posts');
   }
 
   componentWillMount() {
-    this.UserProfilesRef.child(this.currentUser.uid).on('value', snapshot => {
-      this.setState({user: snapshot.val()});
-    });
+    const { imagePath } = this.props.navigation.state.params;
+    this.setState({imagePath: imagePath});
   }
 
   onButtonPress() {
@@ -45,24 +43,25 @@ class Share extends Component {
     }
 
     return (
-      <Button onPress={() => this.onButtonPress()}>Post</Button>
+      <View>
+        <Button onPress={() => this.onButtonPress()}>Post</Button>
+        <Button>Add Photo</Button>
+      </View>
     );
   }
 
 
   render() {
-    const { containerStyle, textStyle, inputContainerStyle } = styles;
+    const { containerStyle, textStyle, inputContainerStyle, imageContainer } = styles;
     return (
       <View style={{flex: 1}}>
         <View style={containerStyle}>
           <View style={{flexDirection: 'row'}}>
             <Avatar
               small
-              source={{uri: this.state.user.displayPic || DEFAULT_DISPLAY_PIC}}
+              source={{uri: this.currentUser.photoURL || DEFAULT_DISPLAY_PIC}}
             />
-            <Text style={textStyle}>
-              {this.state.user.firstName + ' ' + this.state.user.lastName}
-            </Text>
+            <Text style={textStyle}>{this.currentUser.displayName}</Text>
           </View>
           <View style={inputContainerStyle}>
             <TextInput
@@ -75,6 +74,12 @@ class Share extends Component {
           </View>
         </View>
         {this.renderButton()}
+        <View style={imageContainer}>
+          <Avatar
+            large
+            source={{uri: this.state.imagePath || NO_IMAGE_PIC}}
+          />
+        </View>
       </View>
     );
   }
@@ -97,6 +102,12 @@ const styles ={
   inputContainerStyle: {
     minHeight: 120,
     maxHeight: 240
+  },
+  imageContainer: {
+    padding: 20,
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 10
   }
 }
 

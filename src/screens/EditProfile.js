@@ -83,10 +83,9 @@ class EditProfile extends Component {
         });
       }
       this.UserPhotosRef.push({
-        imageURL: uploadTask.downloadURL
+        uri: uploadTask.downloadURL
       });
-      
-      console.log(type, uploadTask.downloadURL);
+
       return uploadTask.downloadURL;
     });
   }
