@@ -45,7 +45,7 @@ class UserPhotos extends Component {
   addPicture() {
     const cam_options = {
       mediaType: 'photo',
-      quality: 0.2,
+      quality: 0.1,
       noData: true,
     };
     ImagePicker.showImagePicker(cam_options, (response) => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, TextInput, View } from 'react-native';
+import { Platform, ScrollView, Text, TextInput, View } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+import RNFetchBlob from 'react-native-fetch-blob';
 import { Button, Spinner } from '../components/common';
 import { DEFAULT_DISPLAY_PIC, NO_IMAGE_PIC } from '../defaults';
 import { Avatar, Icon } from 'react-native-elements';
@@ -11,10 +13,13 @@ class Share extends Component {
     super(props);
     this.state = {
       post: '',
-      imagePath: ''
+      imagePath: '',
+      loading: null
     };
     this.currentUser = firebase.auth().currentUser;
     this.PostsRef = firebase.database().ref('/Posts');
+    this.UserStorageRef = firebase.storage().ref(`/user_photos/${this.currentUser.uid}`);
+    this.UserPhotosRef = firebase.database().ref(`/UserPhotos/${this.currentUser.uid}`);
   }
 
   componentWillMount() {
@@ -23,18 +28,76 @@ class Share extends Component {
   }
 
   onButtonPress() {
+    this.setState({loading: true});
     var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     var timestamp = new Date().toLocaleString('en-US', options);
     var timeMS = new Date().getTime();
-    this.PostsRef.push({
-      postText: this.state.post,
-      imageURL: '',
-      userID: this.currentUser.uid,
-      userName: this.currentUser.displayName,
-      userPic: this.currentUser.photoURL || '',
-      timestamp: timestamp,
-      timeMS: -1 * timeMS
-    }).then(() => this.props.navigation.navigate('UserProfile', {profileID: this.currentUser.uid, title: this.currentUser.displayName}));
+    if (this.state.imagePath == '') {
+      this.PostsRef.push({
+        postText: this.state.post,
+        imageURL: this.state.imagePath,
+        userID: this.currentUser.uid,
+        timestamp: timestamp,
+        timeMS: -1 * timeMS
+      }).then(() => this.props.navigation.navigate('UserProfile', {profileID: this.currentUser.uid, title: this.currentUser.displayName}));
+    } else {
+      this.uploadPicture(this.state.imagePath, `photo_${new Date().getTime()}.jpg`);
+    }
+  }
+
+  uploadPicture(uri, imageName) {
+    const mime = 'image/jpg';
+    const Blob = RNFetchBlob.polyfill.Blob;
+    const fs = RNFetchBlob.fs;
+    window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
+    window.Blob = Blob;
+
+    const uploadURI = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
+    let uploadBlob = null;
+    const imageRef = this.UserStorageRef.child(imageName);
+
+    fs.readFile(uploadURI, 'base64')
+    .then((data) => {
+      return Blob.build(data, { type: `${mime};BASE64` });
+    })
+    .then((blob) => {
+      uploadBlob = blob;
+      return imageRef.put(blob, { contentType: mime });
+    })
+    .then((uploadTask) => {
+      uploadBlob.close();
+      var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      var timestamp = new Date().toLocaleString('en-US', options);
+      var timeMS = new Date().getTime();
+      this.UserPhotosRef.push({
+        uri: uploadTask.downloadURL
+      });
+      this.PostsRef.push({
+        postText: this.state.post,
+        imageURL: uploadTask.downloadURL,
+        userID: this.currentUser.uid,
+        timestamp: timestamp,
+        timeMS: -1 * timeMS
+      }).then(() => this.props.navigation.navigate('UserProfile', {profileID: this.currentUser.uid, title: this.currentUser.displayName}));
+      return uploadTask.downloadURL;
+    });
+  }
+
+  addPicture() {
+    const cam_options = {
+      mediaType: 'photo',
+      quality: 0.1,
+      noData: true,
+    };
+    ImagePicker.showImagePicker(cam_options, (response) => {
+      if (response.didCancel) {
+      }
+      else if (response.error) {
+      }
+      else {
+        this.setState({imagePath: response.uri});
+      }
+    });
   }
 
   renderButton() {
@@ -45,7 +108,7 @@ class Share extends Component {
     return (
       <View>
         <Button onPress={() => this.onButtonPress()}>Post</Button>
-        <Button>Add Photo</Button>
+        <Button onPress={() => this.addPicture()}>Add Photo</Button>
       </View>
     );
   }
@@ -104,7 +167,7 @@ const styles ={
     maxHeight: 240
   },
   imageContainer: {
-    padding: 20,
+    paddingTop: 20,
     marginLeft: 15,
     marginRight: 15,
     marginTop: 10

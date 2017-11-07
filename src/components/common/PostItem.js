@@ -23,8 +23,8 @@ const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', 
         </View>
         {postImageURL=='' ? <View></View> : <View style={imageContainerStyle}><Image
           source={{uri: postImageURL}}
-          resizeMode='cover'
-          style={{width: null, height: 0.5*window.width}}
+          resizeMode='contain'
+          style={{height: 0.5*window.width, width: 0.9*window.width}}
         /></View>}
         {/* <View style={lineStyle}>
           <Text style={postTextStyle}>{postLikes} Likes</Text>
@@ -56,8 +56,7 @@ const styles = {
     backgroundColor: '#ddd'
   },
   postTextStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: 10,
     fontSize: 16
   }
 }

@@ -164,9 +164,9 @@ class UserProfile extends Component {
           <PostItem
             key={i}
             userID={post.userID}
-            avatarImage={post.userPic || DEFAULT_DISPLAY_PIC}
-            userName={post.userName}
-            onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
+            avatarImage={this.state.profile.displayPic || DEFAULT_DISPLAY_PIC}
+            userName={this.state.profile.firstName + ' ' + this.state.profile.lastName}
+            onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: this.state.profile.firstName + ' ' + this.state.profile.lastName})}
             postText={post.postText}
             postImageURL={post.imageURL}
           />
