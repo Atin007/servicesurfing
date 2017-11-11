@@ -23,8 +23,11 @@ class Home extends Component {
       .on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
 
     this.FriendsRef.child(this.currentUser.uid).on('child_added', snapshot => {
+      this.UserProfilesRef.child(snapshot.val().userID).on('value', data => {
+        userData = data.val();
+      });
       this.PostsRef.orderByChild('userID').equalTo(snapshot.val().userID).on('child_added', snapshot => {
-        this.Posts = [ snapshot.val(), ...this.Posts ];
+        this.Posts = [ { ...snapshot.val(), userName: userData.firstName + ' ' + userData.lastName, userPic: userData.displayPic }, ...this.Posts ];
         this.Posts.sort(function(a, b) {
           return a.timeMS - b.timeMS;
         });
