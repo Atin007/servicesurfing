@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -35,14 +35,14 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
 	<key>NSCameraUsageDescription</key>
-	<string/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string/>
+	<string>For uploading photo from Camera to Social Network albums and profile pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To find a user's friends in nearby locations</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string/>
+	<string>For uploading recorded videos to the Social network service</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For uploading photo from Photo Library to Social Network albums and profile pictures</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
