@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { Button, Card, CardSection, Input, Spinner, TextButton } from '../components/common';
+import { Button, Card, CardSection, ErrorMessage, Input, Spinner, TextButton } from '../components/common';
 import firebase from 'firebase';
 
 class SignUp extends Component {
@@ -39,7 +39,7 @@ class SignUp extends Component {
         });
       })
       .catch((error) => {
-        this.setState({ error: error.code, loading: false });
+        this.setState({ error: error.message, loading: false });
       });
   }
 
@@ -111,6 +111,7 @@ class SignUp extends Component {
             />
           </CardSection>
         </Card>
+        <ErrorMessage>{this.state.error}</ErrorMessage>
         {this.renderButton()}
       </ScrollView>
     );

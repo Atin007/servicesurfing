@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { Button, Card, CardSection, Input, Spinner, TextButton } from '../components/common';
+import { Button, Card, CardSection, ErrorMessage, Input, Spinner, TextButton } from '../components/common';
 import { ToS, PP } from '../defaults';
 import firebase from 'firebase';
 
@@ -24,7 +24,7 @@ class SignIn extends Component {
         });
       })
       .catch((error) => {
-        this.setState({ error: error.code, loading: false });
+        this.setState({ error: error.message, loading: false });
       });
   }
 
@@ -79,6 +79,7 @@ class SignIn extends Component {
             />
           </CardSection>
         </Card>
+        <ErrorMessage>{this.state.error}</ErrorMessage>
         {this.renderButton()}
         <Text style={footerStyle}>
           By logging in you agree to ServiceSurfing's <Text style={hyperlinkStyle} onPress={() => this.props.navigation.navigate('PDFScreen', {fileURL: ToS, title: 'Terms of Service'})}>Terms of Service</Text> and <Text style={hyperlinkStyle} onPress={() => this.props.navigation.navigate('PDFScreen', {fileURL: PP, title: 'Privacy Policy'})}>Privacy Policy</Text>
