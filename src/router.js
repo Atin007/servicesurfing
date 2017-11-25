@@ -25,6 +25,7 @@ import ChatView from './screens/ChatView';
 import Appointments from './screens/Appointments';
 import EditProfile from './screens/EditProfile';
 import PDFView from './screens/PDFView';
+import Filters from './screens/Filters';
 
 // Verify User screen
 import VerifyUser from './screens/VerifyUser';
@@ -197,7 +198,12 @@ export const Root = StackNavigator({
       navigationOptions: ({ navigation }) => ({
         title: navigation.state.params.title,
       }),
-  },
+  }, Filters: {
+      screen: Filters,
+      navigationOptions: {
+        title: 'Apply Filters',
+      },
+  }
 }, {
     navigationOptions: {
       headerBackTitle: 'Back',
