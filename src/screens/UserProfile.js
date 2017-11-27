@@ -38,7 +38,7 @@ class UserProfile extends Component {
     this.UserProfilesRef.child(profileID).on('value', snapshot => this.setState({profile: snapshot.val(), loading: false}));
 
     this.PostsRef.orderByChild("userID").equalTo(profileID).on('child_added', snapshot => {
-      this.Posts = [snapshot.val(), ...this.Posts];
+      this.Posts = [{ ...snapshot.val(), postKey: snapshot.key }, ...this.Posts];
       this.setState({Posts: this.Posts});
     });
   }
@@ -157,6 +157,18 @@ class UserProfile extends Component {
     }
   }
 
+  onLike(postKey) {
+    val = 1;
+    this.PostsRef.child(`${postKey}/postLikes/${this.currentUser.uid}`).on('value', data => {
+      if (data.val() != null && data.val().like == 1) {
+        val = 0;
+      }
+    });
+    this.PostsRef.child(`${postKey}/postLikes/${this.currentUser.uid}`).set({
+      like: val
+    });
+  }
+
   renderPosts() {
     return(
       <View>
@@ -169,6 +181,7 @@ class UserProfile extends Component {
             onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: this.state.profile.firstName + ' ' + this.state.profile.lastName})}
             postText={post.postText}
             postImageURL={post.imageURL}
+            onLike={() => this.onLike(post.postKey)}
           />
         ))}
       </View>

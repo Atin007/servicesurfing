@@ -27,7 +27,7 @@ class Home extends Component {
         userData = data.val();
       });
       this.PostsRef.orderByChild('userID').equalTo(snapshot.val().userID).on('child_added', snapshot => {
-        this.Posts = [ { ...snapshot.val(), userName: userData.firstName + ' ' + userData.lastName, userPic: userData.displayPic }, ...this.Posts ];
+        this.Posts = [ { ...snapshot.val(), postKey: snapshot.key, userName: userData.firstName + ' ' + userData.lastName, userPic: userData.displayPic }, ...this.Posts ];
         this.Posts.sort(function(a, b) {
           return a.timeMS - b.timeMS;
         });
@@ -35,6 +35,18 @@ class Home extends Component {
       });
     });
 
+  }
+
+  onLike(postKey) {
+    val = 1;
+    this.PostsRef.child(`${postKey}/postLikes/${this.currentUser.uid}`).on('value', data => {
+      if (data.val() != null && data.val().like == 1) {
+        val = 0;
+      }
+    });
+    this.PostsRef.child(`${postKey}/postLikes/${this.currentUser.uid}`).set({
+      like: val
+    });
   }
 
   renderPosts() {
@@ -49,6 +61,7 @@ class Home extends Component {
             onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
             postText={post.postText}
             postImageURL={post.imageURL}
+            onLike={() => this.onLike(post.postKey)}
           />
         ))}
       </View>
