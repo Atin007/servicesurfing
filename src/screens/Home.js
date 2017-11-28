@@ -61,6 +61,7 @@ class Home extends Component {
             onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: post.userName})}
             postText={post.postText}
             postImageURL={post.imageURL}
+            toLikes={() => this.props.navigation.navigate('Likes', {postKey: post.postKey})}
             onLike={() => this.onLike(post.postKey)}
           />
         ))}

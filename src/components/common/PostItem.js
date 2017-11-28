@@ -4,7 +4,7 @@ import { Button, Card, TextButton } from './';
 import { Avatar } from 'react-native-elements';
 const window = Dimensions.get("window");
 
-const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', onPress, onLike, onComment}) => {
+const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', onPress, onLike, onComment, toLikes, toComments}) => {
   const { postContainerStyle, postTextStyle, lineStyle, imageContainerStyle } = styles;
 
   return (
@@ -27,7 +27,7 @@ const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', 
           style={{height: 0.5*window.width, width: 0.9*window.width}}
         /></View>}
         <View style={lineStyle}>
-          <Text style={[postTextStyle, {color: '#06A0A2'}]}>Likes</Text>
+          <Text onPress={toLikes} style={[postTextStyle, {color: '#06A0A2'}]}>Likes</Text>
           <Text style={[postTextStyle, {color: '#06A0A2'}]}>Comments</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>

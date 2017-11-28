@@ -181,6 +181,7 @@ class UserProfile extends Component {
             onPress={() => this.props.navigation.navigate('UserProfile', {profileID: post.userID, title: this.state.profile.firstName + ' ' + this.state.profile.lastName})}
             postText={post.postText}
             postImageURL={post.imageURL}
+            toLikes={() => this.props.navigation.navigate('Likes', {postKey: post.postKey})}
             onLike={() => this.onLike(post.postKey)}
           />
         ))}
