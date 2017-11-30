@@ -28,7 +28,7 @@ const PostItem = ({userID, avatarImage, userName, postText='', postImageURL='', 
         /></View>}
         <View style={lineStyle}>
           <Text onPress={toLikes} style={[postTextStyle, {color: '#06A0A2'}]}>Likes</Text>
-          <Text style={[postTextStyle, {color: '#06A0A2'}]}>Comments</Text>
+          <Text onPress={toComments} style={[postTextStyle, {color: '#06A0A2'}]}>Comments</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
           <TextButton onPress={onLike}>Like</TextButton>

@@ -27,6 +27,7 @@ import EditProfile from './screens/EditProfile';
 import PDFView from './screens/PDFView';
 import Filters from './screens/Filters';
 import Likes from './screens/Likes';
+import Comments from './screens/Comments';
 
 // Verify User screen
 import VerifyUser from './screens/VerifyUser';
@@ -208,6 +209,11 @@ export const Root = StackNavigator({
       screen: Likes,
       navigationOptions: {
         title: 'Likes',
+      },
+  }, Comments: {
+      screen: Comments,
+      navigationOptions: {
+        title: 'Comments',
       },
   }
 }, {

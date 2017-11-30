@@ -182,7 +182,9 @@ class UserProfile extends Component {
             postText={post.postText}
             postImageURL={post.imageURL}
             toLikes={() => this.props.navigation.navigate('Likes', {postKey: post.postKey})}
+            toComments={() => this.props.navigation.navigate('Comments', {postKey: post.postKey})}
             onLike={() => this.onLike(post.postKey)}
+            onComment={() => this.props.navigation.navigate('Comments', {postKey: post.postKey})}
           />
         ))}
       </View>
